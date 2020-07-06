@@ -11,11 +11,11 @@ Now, everyone talks about big data, and odds are you might be working for a comp
 ### Clone Repository
 
 Let's first setup VScode editor and clone repository. Clone the following repository by executing following command in the terminal.
-`git clone https://github.com/athertahir/datascience-machine-learning.git`{{execute}}
+`git clone https://github.com/athertahir/datascience-machine-learning.git`
 
 Now, move in the directory which contains the source code.
 
-`cd datascience-machine-learning`{{execute}}
+`cd datascience-machine-learning`
 
 
 **Note:**
@@ -24,7 +24,7 @@ Now, move in the directory which contains the source code.
 - Click **IDE Editor** tab to open Visual Studio and open solution explorer and open `datascience-machine-learning` to view files.
 
 #### Install pyspark
-PySpark is available in pypi. To install just run `pip install pyspark numpy sklearn`{{execute}} 
+PySpark is available in pypi. To install just run `pip install pyspark numpy sklearn` 
 
 ### Spark introduction
 
@@ -512,7 +512,7 @@ spark-submit SparkDecisionTree.py
 ```
 
 #### Run Code
-Now, run the python code by running: `python SparkDecisionTree.py`{{execute}}
+Now, run the python code by running: `python SparkDecisionTree.py`
 
 Hit Return, and off it will go. Again, if I were doing this on a cluster and I created my SparkConf accordingly, this would actually get distributed to the entire cluster, but, for now, we're just going to run it on my computer. When it's finished, you should see the below output:
 
@@ -633,7 +633,7 @@ Again, feel free to take a moment and stare at this a little bit longer if you w
 At the end of the day, it will just do k-means clustering, so let's go ahead and run it.
 
 #### Run Code
-Now, run the python code by running: `python SparkKMeans.py`{{execute}}
+Now, run the python code by running: `python SparkKMeans.py`
 
 ![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/23/2.png)
 

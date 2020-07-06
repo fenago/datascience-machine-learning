@@ -9,11 +9,11 @@ Everyone talks about big data, and odds are you might be working for a company t
 ### Clone Repository
 
 Let's first setup VScode editor and clone repository. Clone the following repository by executing following command in the terminal.
-`git clone https://github.com/athertahir/datascience-machine-learning.git`{{execute}}
+`git clone https://github.com/athertahir/datascience-machine-learning.git`
 
 Now, move in the directory which contains the source code.
 
-`cd datascience-machine-learning`{{execute}}
+`cd datascience-machine-learning`
 
 
 **Note:**
@@ -193,7 +193,7 @@ print (zippedResults.max())
 So, let's go run that and see what happens. As usual, to run the Spark script, we're not going to just hit the play icon. We have to go to Tools>Canopy Command Prompt. In the Command Prompt that opens up, we will type in spark-submit TF-IDF.py, and off it goes.
 
 #### Run Code
-Now, run the python code by running: `python TF-IDF.py`{{execute}}
+Now, run the python code by running: `python TF-IDF.py`
 
 We are asking it to chunk through quite a bit of data, even though it's a small sample of Wikipedia it's still a fair chunk of information, so it might take a while. Let's see what comes back for the best document match for Gettysburg, what document has the highest TF-IDF score?
 
@@ -338,7 +338,7 @@ So let's see if it works. Let's go up to Tools, Canopy Command Prompt, and we'll
 
 
 #### Run Code
-Now, run the python code by running: `python SparkLinearRegression.py`{{execute}}
+Now, run the python code by running: `python SparkLinearRegression.py`
 
 There's a little bit more upfront time to actually run these APIs with Datasets, but once they get going, they're very fast. Alright, there you have it.
 
@@ -348,7 +348,7 @@ Here we have our actual and predicted values side by side, and you can see that 
 
 ### Run Code
 
-Now, run the python code by running: `python SparkLinearRegression.py`{{execute}}
+Now, run the python code by running: `python SparkLinearRegression.py`
 
 There's a little bit more upfront time to actually run these APIs with Datasets, but once they get going, they're very fast. Alright, there you have it.
 

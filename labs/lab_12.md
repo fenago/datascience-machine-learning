@@ -19,7 +19,7 @@ We will run Jupyter Notebook as a Docker container. This setup will take some ti
 
 ## Login
 When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `{{execute}}
+`docker logs jupyter 2>&1 | grep -v "HEAD" `
 
 
 This will show something like:
@@ -32,7 +32,7 @@ copy/paste this URL into your browser when you connect for the first time, to lo
 The token is the value behind `/?token=`. You need that for logging in.
 
 **Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`{{execute}}
+`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
 
 Next, you can open the Jupyter Notebook at 
  https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
