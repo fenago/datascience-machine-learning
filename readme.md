@@ -1,12 +1,7 @@
 <img align="right" src="./images/logo-small.png">
 
 
-# 
-
-### Overview
-
-### Description
-
+# Datascience Machine Learning
 
 ### Labs
 
