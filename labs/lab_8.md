@@ -28,9 +28,9 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
- ### K-Means clustering
+### K-Means clustering
 
- Next, we're going to talk about k-means clustering, and this is an unsupervised learning technique where you have a collection of stuff that you want to group together into various clusters. Maybe it's movie genres or demographics of people, who knows? But it's actually a pretty simple idea, so let's see how it works.
+Next, we're going to talk about k-means clustering, and this is an unsupervised learning technique where you have a collection of stuff that you want to group together into various clusters. Maybe it's movie genres or demographics of people, who knows? But it's actually a pretty simple idea, so let's see how it works.
 
 K-means clustering is a very common technique in machine learning where you just try to take a bunch of data and find interesting clusters of things just based on the attributes of the data itself. Sounds fancy, but it's actually pretty simple. All we do in k-means clustering is try to split our data into K groups - that's where the K comes from, it's how many different groups you're trying to split your data into - and it does this by finding K centroids.
 

@@ -11,20 +11,15 @@ Everyone talks about big data, and odds are you might be working for a company t
 - Decision Trees in Spark
 - K-Means Clustering in Spark
 
-### Clone Repository
-
-Let's first setup VScode editor and clone repository. Clone the following repository by executing following command in the terminal.
-`git clone https://github.com/athertahir/datascience-machine-learning.git`
+### Terminal
 
 Now, move in the directory which contains the source code.
 
-`cd datascience-machine-learning`
-
+`cd ~/work/datascience-machine-learning`
 
 **Note:**
 - The supplied commands in the next steps MUST be run from your `datascience-machine-learning` directory. 
-- Final code was already cloned from github for this scenario. You can just understand the application code in the next steps and run it using the instructions.
-- Click **IDE Editor** tab to open Visual Studio and open solution explorer and open `datascience-machine-learning` to view files.
+- There should be terminal opened already. You can also open New terminal by Clicking `File` > `New` > `Terminal` from the top menu.
 
 ### TF-IDF
 
@@ -350,14 +345,3 @@ There's a little bit more upfront time to actually run these APIs with Datasets,
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/26/2.png)
 
 Here we have our actual and predicted values side by side, and you can see that they're not too bad. They tend to be more or less in the same ballpark. There you have it, a linear regression model in action using Spark 2.0, using the new dataframe-based API for MLlib. More and more, you'll be using these APIs going forward with MLlib in Spark, so make sure you opt for these when you can. Alright, that's MLlib in Spark, a way of actually distributing massive computing tasks across an entire cluster for doing machine learning on big Datasets. So, good skill to have. Let's move on.
-
-### Run Code
-
-Now, run the python code by running: `python SparkLinearRegression.py`
-
-There's a little bit more upfront time to actually run these APIs with Datasets, but once they get going, they're very fast. Alright, there you have it.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/26/2.png)
-
-Here we have our actual and predicted values side by side, and you can see that they're not too bad. They tend to be more or less in the same ballpark. There you have it, a linear regression model in action using Spark 2.0, using the new dataframe-based API for MLlib. More and more, you'll be using these APIs going forward with MLlib in Spark, so make sure you opt for these when you can. Alright, that's MLlib in Spark, a way of actually distributing massive computing tasks across an entire cluster for doing machine learning on big Datasets. So, good skill to have. Let's move on.
-
