@@ -21,6 +21,7 @@ Now, move in the directory which contains the source code.
 **Note:**
 - The supplied commands in the next steps MUST be run from your `datascience-machine-learning` directory. 
 - There should be terminal opened already. You can also open New terminal by Clicking `File` > `New` > `Terminal` from the top menu.
+- To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
 #### Install pyspark
 PySpark is available in pypi. To install just run `pip install pyspark sklearn` 
@@ -346,7 +347,7 @@ The first line is the actual headings of each column, so what we have above are 
 Let's go back to our script:
 
 ```
-rawData = sc.textFile("e:/sundog-consult/udemy/datascience/PastHires.csv") 
+rawData = sc.textFile("./PastHires.csv") 
 header = rawData.first() 
 rawData = rawData.filter(lambda x:x != header) 
 ```
@@ -473,8 +474,9 @@ Nothing new there. Alright, now for the magic let's move to the next code block:
 
 ```
 model = DecisionTree.trainClassifier(trainingData, numClasses=2, 
-                    categoricalFeaturesInfo={1:2, 3:4, 4:2, 5:2}, 
-                    impurity='gini', maxDepth=5, maxBins=32) 
+        categoricalFeaturesInfo={1:2, 3:4, 4:2, 5:2}, 
+        impurity='gini', maxDepth=5, maxBins=32) 
+
 ```
 
 We are going to call DecisionTree.trainClassifier, and this is what will actually build our decision tree itself. We pass in our trainingData, which is just an RDD full of LabeledPoint arrays, numClasses=2, because we have, basically, a yes or no prediction that we're trying to make, will this person be hired or not? The next parameter is called categoricalFeaturesInfo, and this is a Python dictionary that maps fields to the number of categories in each field. So, if you have a continuous range available to a given field, like the number of years of experience, you wouldn't specify that at all in here, but for fields that are categorical in nature, such as what degree do they have, for example, that would say fieldID3, mapping to the degree attained, which has four different possibilities: no education, BS, MS, and PhD. For all of the yes/no fields, we're mapping those to 2 possible categories, yes/no or 0/1 is what we converted those to.

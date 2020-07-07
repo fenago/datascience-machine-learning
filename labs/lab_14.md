@@ -20,6 +20,7 @@ Now, move in the directory which contains the source code.
 **Note:**
 - The supplied commands in the next steps MUST be run from your `datascience-machine-learning` directory. 
 - There should be terminal opened already. You can also open New terminal by Clicking `File` > `New` > `Terminal` from the top menu.
+- To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
 ### TF-IDF
 
@@ -83,7 +84,7 @@ sc = SparkContext(conf = conf)
 Next, we're going to use our SparkContext to create an RDD from subset-small.tsv.
 
 ```
-rawData = sc.textFile("e:/sundog-consult/Udemy/DataScience/subset-small.tsv") 
+rawData = sc.textFile("./subset-small.tsv") 
 ```
 
 This is a file containing tab-separated values, and it represents a small sample of Wikipedia articles. Again, you'll need to change your path as shown in the preceding code as necessary for wherever you installed the course materials for this book.

@@ -164,7 +164,7 @@ The first thing we're going to do is import the u.data file as part of the Movie
 import pandas as pd 
  
 r_cols = ['user_id', 'movie_id', 'rating'] 
-ratings = pd.read_csv('e:/sundog-consult/packt/datascience/ml-100k/u.data',  
+ratings = pd.read_csv('./ml-100k/u.data',  
                       sep='\\t', names=r_cols, usecols=range(3)) 
 ```
                       
@@ -180,7 +180,7 @@ If you're using a truly massive dataset, you'd save that to the end because you 
 
 ```
 m_cols = ['movie_id', 'title'] 
-movies = pd.read_csv('e:/sundog-consult/packt/datascience/ml-100k/u.item', 
+movies = pd.read_csv('./ml-100k/u.item', 
                      sep='|', names=m_cols, usecols=range(2)) 
 ```
 
@@ -351,11 +351,11 @@ Let's begin using the `ItemBasedCF.ipynb` file and let's start off by importing 
 import pandas as pd 
  
 r_cols = ['user_id', 'movie_id', 'rating'] 
-ratings = pd.read_csv('e:/sundog-consult/packt/datascience/ml-100k/u.data',      
+ratings = pd.read_csv('./ml-100k/u.data',      
                       sep='\t', names=r_cols, usecols=range(3)) 
  
 m_cols = ['movie_id', 'title'] 
-movies = pd.read_csv('e:/sundog-consult/packt/datascience/ml-100k/u.item', 
+movies = pd.read_csv('./ml-100k/u.item', 
                      sep='|', names=m_cols, usecols=range(2)) 
  
 ratings = pd.merge(movies, ratings) 
