@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Testing and Experimental Design
+-------------------------------------
+
 
 In this scenario, we'll see the concept of A/B testing. We'll go through the t-test, the t-statistic, and the p-value, all useful tools for determining whether a result is actually real or a result of random variation. We'll dive into some real examples and get our hands dirty with some Python code and compute the t-statistics and p-values.
 
@@ -12,29 +17,18 @@ We'll cover the following topics:
 - Determining how long to run an experiment
 - A/B test gotchas
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### A/B testing concepts
 
@@ -52,7 +46,7 @@ You basically have a control set of people that see the old website, and a test 
 
 For example, I own a business that has a website, we license software to people, and right now I have a nice, friendly, orange button that people click on when they want to buy a license as shown on the left in the following figure. But what would happen if I changed the color of that button to blue, as shown on the right?
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/3/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/3/1.png)
 
 So in this example, if I want to find out whether blue would be better. How do I know?
 
@@ -62,7 +56,7 @@ A/B testing will split people up into people who see the orange button, and peop
 
 You can test all sorts of things with an A/B test. These include:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/3/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/3/2.png)
 
 ### Measuring conversion for A/B testing
 
@@ -167,7 +161,7 @@ Let's fabricate some experimental data and use the t-statistic and p-value to de
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `TTest.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/TTest.ipynb
+
 
 
 #### Running A/B test on some experimental data
@@ -185,7 +179,7 @@ stats.ttest_ind(A, B)
 
 In this code example, our treatment group (A) is going to have a randomly distributed purchase behavior where they spend, on average, $25 per transaction, with a standard deviation of five and ten thousand samples, whereas the old website used to have a mean of $26 per transaction with the same standard deviation and sample size. We're basically looking at an experiment that had a negative result. All you have to do to figure out the t-statistic and the p-value is use this handy stats.ttest_ind method from scipy. What you do is, you pass it in your treatment group and your control group, and out comes your t-statistic as shown in the output here:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/9/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/1.jpg)
 
 In this case, we have a t-statistic of -14. The negative indicates that it is a negative change, this was a bad thing. And the p-value is very, very small. So, that implies that there is an extremely low probability that this change is just a result of random chance.
 
@@ -211,7 +205,7 @@ stats.ttest_ind(A, B)
 
 If we go ahead and run this, you can see our t-test ends up being below one now:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/9/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/2.jpg)
 
 Remember this is in terms of standard deviation. So this implies that there's probably not a real change there unless we have a much higher p-value as well, over 30 percent.
 
@@ -235,7 +229,7 @@ stats.ttest_ind(A, B)
 
 You can see in the following output that actually the p-value got a little bit lower and the t-test a little bit larger, but it's still not enough to declare a real difference. It's actually going in the direction you wouldn't expect it to go? Kind of interesting!
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/9/3.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/3.jpg)
 
 But these are still high values. Again, it's just the effect of random variance, and it can have more of an effect than you realize. Especially on a website when you're talking about order amounts.
 
@@ -251,7 +245,7 @@ stats.ttest_ind(A, B)
 
 Here is the result:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/9/4.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/4.jpg)
 
 What does that do? Well, now, we're back under 1 for the t-statistic, and our value's around 35 percent.
 
@@ -267,7 +261,7 @@ stats.ttest_ind(A, A)
 
 We can see in the following output, a t-statistic of 0 and a p-value of 1.0 because there is in fact no difference whatsoever between these sets.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-10/steps/9/5.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/5.jpg)
 
 Now, if you were to run that using real website data where you were looking at the same exact people and you saw a different value, that indicates there's a problem in the system itself that runs your testing. At the end of the day, like I said, it's all a judgment call.
 

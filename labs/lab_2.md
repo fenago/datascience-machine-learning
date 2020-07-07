@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Statistics and Probability Refresher, and Python Practice - Part 1
+-------------------------------------
+
 
 In this scenario, we are going to go through a few concepts of statistics and probability, which might be a refresher for some of you. These concepts are important to go through if you want to be a data scientist. We will see examples to understand these concepts better. We will also look at how to implement those examples using actual Python code.
 
@@ -8,29 +13,18 @@ We'll be covering the following topics in this scenario:
 - Statistical concepts of mean, median, mode, standard deviation, and variance
 - Probability density functions and probability mass functions
 
-### Jupyter Notebooks
-  
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-The token is the value behind `/?token=`. You need that for logging in.
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### Types of data
 
@@ -176,7 +170,7 @@ So go ahead and open up the `MeanMedianMode.ipynb` file from the data files for 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `MeanMedianMode.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/MeanMedianMode.ipynb
+
 
 ### Calculating mean using the NumPy package
 
@@ -220,7 +214,7 @@ plt.show()
 
 Go ahead and select the code block and hit play. It will actually create a new graph for us as follows:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/10/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/10/1.jpg)
 
 If you're not familiar with histograms or you need a refresher, the way to interpret this is that for each one of these buckets that we've discretized our data into is showing the frequency of that data.
 
@@ -292,7 +286,7 @@ ages
 
 Your output will be random, but should look something like the following screenshot:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/13/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/13/1.png)
 
 Now, SciPy, kind of like NumPy, is a bunch of like handy-dandy statistics functions, so we can import stats from SciPy using the following syntax. It's a little bit different than what we saw before.
 
@@ -321,7 +315,7 @@ stats.mode(ages)
 
 The output for randomizing the equation is as distribution is as follows:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/13/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/13/2.png)
 
 Make sure you selected that code block and then you can hit the play button to actually execute it.
 
@@ -357,7 +351,7 @@ Standard deviation and variance are two fundamental quantities for a data distri
 
 Let's look at a histogram, because variance and standard deviation are all about the spread of the data, the shape of the distribution of a dataset. Take a look at the following histogram:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/15/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/15/1.png)
 
 Let's say that we have some data on the arrival frequency of airplanes at an airport, for example, and this histogram indicates that we have around 4 arrivals per minute and that happened on around 12 days that we looked at for this data. However, we also have these outliers. We had one really slow day that only had one arrival per minute, we only had one really fast day where we had almost 12 arrivals per minute. So, the way to read a histogram is look up the bucket of a given value, and that tells you how frequently that value occurred in your data, and the shape of the histogram could tell you a lot about the probability distribution of a given set of data.
 
@@ -369,13 +363,13 @@ We know from this data that our airport is very likely to have around 4 arrivals
 
 We usually refer to variance as sigma squared, and you'll find out why momentarily, but for now, just know that variance is the average of the squared differences from the mean.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/16/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/16/1.png)
 
 Let's look at what happens there, so (-3.4)2 is a positive 11.56 and (-0.4)2 ends up being a much smaller number, that is 0.16, because that's much closer to the mean of 4.4. Also (0.6)2 turned out to be close to the mean, only 0.36. But as we get up to the positive outlier, (3.6)2 ends up being 12.96. That gives us: (11.56, 0.16, 0.36, 0.16, 12.96).
 
 To find the actual variance value, we just take the average of all those squared differences. So we add up all these squared variances, divide the sum by 5, that is number of values that we have, and we end up with a variance of 5.04.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/16/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/16/2.png)
 
 OK, that's all variance is.
 
@@ -385,12 +379,12 @@ Now typically, we talk about standard deviation more than variance, and it turns
 
 So, if I had this variance of 5.04, the standard deviation is 2.24. So you see now why we said that the variance = (σ)2. It's because σ itself represents the standard deviation. So,if I take the square root of (σ)2, I get sigma. That ends up in this example to be 2.24.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/17/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/17/1.png)
 
 #### Identifying outliers with standard deviation
 Here's a histogram of the actual data we were looking at in the preceding example for calculating variance.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/17/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/17/2.png)
 
 Now we see that the number 4 occurred twice in our dataset, and then we had one 1, one 5, and one 8.
 
@@ -427,7 +421,7 @@ So again, if this was some sort of sample that we took from a larger dataset, th
 
 As we've seen, population variance is usually designated as sigma squared (σ2), with sigma (σ) as standard deviation, and we can say that is the summation of each data point X minus the mean, mu, squared, that's the variance of each sample squared over N, the number of data points , and we can express it with the following equation:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/19/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/19/1.png)
 
 - X denotes each data point
 - µ denotes the mean
@@ -435,7 +429,7 @@ As we've seen, population variance is usually designated as sigma squared (σ2),
 
 Sample variance similarly is designated as S2, with the following equation:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/19/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/19/2.png)
 
 - X denotes each data point
 - M denotes the mean
@@ -447,7 +441,7 @@ That's all there is to it.
 
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `StdDevVariance.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/StdDevVariance.ipynb
+
 
 We will discuss this notebook in the next steps.
 
@@ -465,7 +459,7 @@ We use matplotlib to plot a histogram of some normally distributed random data, 
 
 Let's go ahead and generate that by executing that above code block and plotting it as shown in the following graph:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/21/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/21/1.png)
 
 We have 10,000 data points centered around 100. With a normal distribution and a standard deviation of 20, a measure of the spread of this data, you can see that the most common occurrence is around 100, and as we get further and further from that, things become less and less likely. The standard deviation point of 20 that we specified is around 80 and around 120. You can see in the histogram that this is the point where things start to fall off sharply, so we can say that things beyond that standard deviation boundary are unusual.
 
@@ -519,7 +513,7 @@ We've already seen some examples of a normal distribution function for some of t
 
 Let's talk about probability density functions, and we've used one of these already in the book. We just didn't call it that. Let's formalize some of the stuff that we've talked about. For example, we've seen the normal distribution a few times, and that is an example of a probability density function. The following figure is an example of a normal distribution curve
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/25/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/25/1.png)
 
 
 It's conceptually easy to try to think of this graph as the probability of a given value occurring, but that's a little bit misleading when you're talking about continuous data. Because there's an infinite number of actual possible data points in a continuous data distribution. There could be 0 or 0.001 or 0.00001 so the actual probability of a very specific value happening is very, very small, infinitely small. The probability density function really tells the probability of a given range of values occurring. So that's the way you've got to think about it.
@@ -536,7 +530,7 @@ So, the graph is just a way to visualize and talk about the probabilities of the
 
 Now when you're dealing with discrete data, that little nuance about having infinite numbers of possible values goes away, and we call that something different. So that is a probability mass function. If you're dealing with discrete data, you can talk about probability mass functions. Here's a graph to help visualize this:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/26/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/26/1.png)
 
 For example, you can plot a normal probability density function of continuous data on the black curve shown in the graph, but if we were to quantize that into a discrete dataset like we would do with a histogram, we can say the number 3 occurs some set number of times, and you can actually say the number 3 has a little over 30% chance of occurring. So a probability mass function is the way that we visualize the probability of discrete data occurring, and it looks a lot like a histogram because it basically is a histogram.
 

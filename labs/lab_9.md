@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Machine Learning with Python - Part 3
+-------------------------------------
+
 
 In this scenario, we get into machine learning and how to actually implement machine learning models in Python.
 
@@ -10,29 +15,18 @@ More specifically, we'll cover the following topics:
 - What is ensemble learning
 - Support Vector Machine (SVM) and its example using scikit-learn
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### Ensemble learning
 
@@ -45,7 +39,7 @@ Basically, the idea is that you have more than one model, and they might be the 
 
 A good example, from a few years ago, was the Netflix prize. Netflix ran a contest where they offered, I think it was a million dollars, to any researcher who could outperform their existing movie recommendation algorithm. The ones that won were ensemble approaches, where they actually ran multiple recommender algorithms at once and let them all vote on the final result. So, ensemble learning can be a very powerful, yet simple tool, for increasing the quality of your final results in machine learning. Let us now try to explore various types of ensemble learning:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-03/steps/3/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/3/1.png)
 
 Now, there is a whole field of research on ensemble learning that tries to find the optimal ways of doing ensemble learning, and if you want to sound smart, usually that involves using the word Bayes a lot. So, there are some very advanced methods of doing ensemble learning but all of them have weak points, and I think this is yet another lesson in that we should always use the simplest technique that works well for us.
 
@@ -85,7 +79,7 @@ One example that you often see with SVMs is using something called support vecto
 
 Here's an example of doing that with SVC: basically, we have sepal width and sepal length projected down to two dimensions so we can actually visualize it:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-03/steps/6/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/6/1.jpg)
 
 With different kernels you might get different results. SVC with a linear kernel will produce something very much as you see in the preceding image. You can use polynomial kernels or fancier kernels that might project down to curves in two dimensions as shown in the image. You can do some pretty fancy classification this way.
 
@@ -100,7 +94,7 @@ Let's try out some support vector machines here. Fortunately, it's a lot easier 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `SVC.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/SVC.ipynb
+
 
 
 If you want to go back to the k-means clustering section, you can learn more about kind of the idea behind this code that generates the fake data. And if you're ready, please consider the following code:
@@ -147,7 +141,7 @@ The following graph shows our data that we're playing with. Every time you run t
 
 A couple of new things here--I'm using the figsize parameter on plt.figure() to actually make a larger plot. So, if you ever need to adjust the size in matplotlib, that's how you do it. I'm using that same trick of using the color as the classification number that I end up with. So the number of the cluster that I started with is being plotted as the color of these data points. You can see, it's a pretty challenging problem, there's definitely some intermingling of clusters here:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-03/steps/9/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/1.jpg)
 
 
 Now we can use linear SVC (SVC is a form of SVM), to actually partition that into clusters. We're going to use SVM with a linear kernel, and with a C value of 1.0. C is just an error penalty term that you can adjust; it's 1 by default. Normally, you won't want to mess with that, but if you're doing some sort of convergence on the right model using ensemble learning or train/test, that's one of the things you can play with. Then, we will fit that model to our feature data, and the actual classifications that we have for our training dataset.
@@ -180,7 +174,7 @@ plotPredictions(svc)
 
 So, let's see how that works out. SVC is computationally expensive, so it takes a long time to run:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-03/steps/9/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/2.jpg)
 
 You can see here that it did its best. Given that it had to draw straight lines, and polygonal shapes, it did a decent job of fitting to the data that we had. So, you know, it did miss a few - but by and large, the results are pretty good.
 
@@ -195,7 +189,7 @@ This would put that person in, in our case, cluster number 1:
 
 If I had a someone making $50,000 here who was 65, I would use the following code:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-03/steps/9/3.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/3.jpg)
 
 ```
 svc.predict([[50000, 65]])
@@ -203,7 +197,7 @@ svc.predict([[50000, 65]])
 
 This is what your output should now look like:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-03/steps/9/4.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/4.jpg)
 
 
 That person would end up in cluster number 2, whatever that represents in this example. So,go ahead and play with it.

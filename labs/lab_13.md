@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Apache Spark - Machine Learning on Big Data - Part 1
+-------------------------------------
+
 
  So far in this book we've talked about a lot of general data mining and machine learning techniques that you can use in your data science career, but they've all been running on your desktop. As such, you can only run as much data as a single machine can process using technologies such as Python and scikit-learn.
 
@@ -39,7 +44,7 @@ The beauty of it is that Spark will automatically and optimally spread that proc
 
 How is Spark scalable? Well, let's get a little bit more specific here in how it all works.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/3/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/1.png)
 
 The way it works is, you write a driver program, which is just a little script that looks just like any other Python script really, and it uses the Spark library to actually write your script with. Within that library, you define what's called a Spark Context, which is sort of the root object that you work within when you're developing in Spark.
 
@@ -72,7 +77,7 @@ It's also not that hard. You have your choice of programming in Python, Java, or
 
 Spark actually has many different components that it's built up of. So there is a Spark Core that lets you do pretty much anything you can dream up just using Spark Core functions alone, but there are these other things built on top of Spark that are also useful.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/3/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/2.png)
 
 - **Spark Streaming:** Spark Streaming is a library that lets you actually process data in real time. Data can be flowing into a server continuously, say, from weblogs, and Spark Streaming can help you process that data in real time as you go, forever.
 - **Spark SQL:** This lets you actually treat data as a SQL database, and actually issue SQL queries on it, which is kind of cool if you're familiar with SQL already.
@@ -85,11 +90,11 @@ I do get some flack sometimes about using Python when I'm teaching people about 
 
 However, Python's a lot easier, and you don't need to compile things. Managing dependencies is also a lot easier. You can really focus your time on the algorithms and what you're doing, and less on the minutiae of actually getting it built, and running, and compiling, and all that nonsense. Plus, obviously, this book has been focused on Python so far, and it makes sense to keep using what we've learned and stick with Python throughout these lectures. Here's a quick summary of the pros and cons of the two languages:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/3/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/3.png)
 
 However, I will say that if you were to do some Spark programming in the real world, there's a good chance people are using Scala. Don't worry about it too much, though, because in Spark the Python and Scala code ends up looking very similar because it's all around the same RDD concept. The syntax is very slightly different, but it's not that different. If you can figure out how to do Spark using Python, learning how to use it in Scala isn't that big of a leap, really. Here's a quick example of the same code in the two languages:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/3/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/4.png)
 
 So, that's the basic concepts of Spark itself, why it's such a big deal, and how it's so powerful in letting you run machine learning algorithms on very large Datasets, or any algorithm really. Let's now talk in a little bit more detail about how it does that, and the core concept of the Resilient Distributed Dataset.
 
@@ -187,7 +192,7 @@ It's just a shorthand for very simple functions that you want to pass in as a tr
 
 You can also perform actions on an RDD, when you want to actually get a result. Here are some examples of what you can do:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/9-2/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/9-2/1.png)
 
 Remember, too, that nothing actually happens in Spark until you call an action. Once you call one of those action methods, that's when Spark goes out and does its magic with directed acyclic graphs, and actually computes the optimal way to get the answer you want. But remember, nothing really occurs until that action happens. So, that can sometimes trip you up when you're writing Spark scripts, because you might have a little print statement in there, and you might expect to get an answer, but it doesn't actually appear until the action is actually performed.
 
@@ -228,14 +233,14 @@ So, I think you finally have everything you need to get started, let's dive in a
 
 Alright, let's actually build some decision trees using Spark and the MLlib library, this is very cool stuff. Wherever you put the course materials for this book, I want you to go to that folder now. Make sure you're completely closed out of Canopy, or whatever environment you're using for Python development, because I want to make sure you're starting it from this directory, OK? And find the SparkDecisionTree script, and double-click that to open up Canopy:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/1.png)
 
 Now, up until this point we've been using IPython notebooks for our code, but you can't really use those very well with Spark. With Spark scripts, you need to actually submit them to the Spark infrastructure and run them in a very special way, and we'll see how that works shortly.
 
 #### Exploring decision trees code
 So, we are just looking at a raw Python script file now, without any of the usual embellishment of the IPython notebook stuff. let's walk through what's going on in the script.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/2.png)
 
 We'll go through it slowly, because this is your first Spark script that you've seen in this book.
 
@@ -327,7 +332,7 @@ Let's just get down these functions for now, and we'll come back to them later.
 
 Let's go to the first bit of Python code that actually gets executed in this script.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/3.png)
 
 The first thing we're going to do is load up this PastHires.csv file, and that's the same file we used in the decision tree exercise that we did earlier in this book.
 
@@ -335,7 +340,7 @@ Let's pause quickly to remind ourselves of the content of that file. If you reme
 
 Now, let's take a quick peek at the PastHires.csv, which will be an Excel file.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/4.png)
 
 You can see that Excel actually imported this into a table, but if you were to look at the raw text you'd see that it's made up of comma-separated values.
 
@@ -395,7 +400,7 @@ def createLabeledPoints(fields):
 
 It takes in a list of fields, and just to remind you again what that looks like, let's pull up that .csv Excel file again:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/5.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/5.png)
 
 So, at this point, every RDD entry has a field, it's a Python list, where the first element is the years of experience, second element is employed, so on and so forth. The problems here are that we want to convert those lists to Labeled Points, and we want to convert everything to numerical data. So, all these yes and no answers need to be converted to ones and zeros. These levels of experience need to be converted from names of degrees to some numeric ordinal value. Maybe we'll assign the value zero to no education, one can mean BS, two can mean MS, and three can mean PhD, for example. Again, all these yes/no values need to be converted to zeros and ones, because at the end of the day, everything going into our decision tree needs to be numeric, and that's what createLabeledPoints does. Now, let's go back to the code and run through it:
 
@@ -458,7 +463,7 @@ testCandidates = [ array([10, 1, 3, 1, 0, 0])]
 
 Let's quickly compare that code with the Excel document so you can see the array mapping:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/6.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/6.png)
 
 Again, we need to map these back to their original column representation, so that 10, 1, 3, 1, 0, 0 means 10 years of prior experience, currently employed, three previous employers, a BS degree, did not go to a top-tier school and did not do an internship. We could actually create an entire RDD full of candidates if we wanted to, but we'll just do one for now.
 
@@ -516,11 +521,11 @@ Now, run the python code by running: `python SparkDecisionTree.py`
 
 Hit Return, and off it will go. Again, if I were doing this on a cluster and I created my SparkConf accordingly, this would actually get distributed to the entire cluster, but, for now, we're just going to run it on my computer. When it's finished, you should see the below output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/7.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/7.png)
 
 So, in the above image, you can see in the test person that we put in above, we have a prediction that this person would be hired, and I've also printed out the decision tree itself, so it's kind of cool. Now, let's bring up that Excel document once more so we can compare it to the output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/12/8.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/8.png)
 
 We can walk through this and see what it means. So, in our output decision tree we actually end up with a depth of four, with nine different nodes, and, again, if we remind ourselves what these different fields correlate to, the way to read this is: If (feature 1 in 0), so that means if the employed is No, then we drop down to feature 5. This list is zero-based, so feature 5 in our Excel document is internships. We can run through the tree like that: this person is not currently employed, did not do an internship, has no prior years of experience and has a Bachelor's degree, we would not hire this person. Then we get to the Else clauses. If that person had an advanced degree, we would hire them, just based on the data that we had that we trained it on. So, you can work out what these different feature IDs mean back to your original source data, remember, you always start counting at 0, and interpret that accordingly. Note that all the categorical features are expressed in Boolean in this list of possible categories that it saw, whereas continuous data is expressed numerically as less than or greater than relationships.
 
@@ -530,7 +535,7 @@ And there you have it, an actual decision tree built using Spark and MLlib that 
 
 Alright, let's look at another example of using Spark in MLlib, and this time we're going to look at k-means clustering, and just like we did with decision trees, we're going to take the same example that we did using scikit-learn and we're going to do it in Spark instead, so it can actually scale up to a massive Dataset. So, again, I've made sure to close out of everything else, and I'm going to go into my book materials and open up the SparkKMeans Python script, and let's study what's going on in.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/23/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/23/1.png)
 
 Alright, so again, we begin with some boilerplate stuff.
 
@@ -635,7 +640,7 @@ At the end of the day, it will just do k-means clustering, so let's go ahead and
 #### Run Code
 Now, run the python code by running: `python SparkKMeans.py`
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-01/steps/23/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/23/2.png)
 
 
 It worked, awesome! So remember, the output that we asked for was, first of all, a count of how many points ended up in each cluster. So, this is telling us that cluster 0 had 21 points in it, cluster 1 had 20 points in it, and so on and so forth. It ended up pretty evenly distributed, so that's a good sign.

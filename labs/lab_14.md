@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Apache Spark - Machine Learning on Big Data - Part 2
+-------------------------------------
+
 
 Everyone talks about big data, and odds are you might be working for a company that does in fact have big data to process. Big data meaning that you can't actually control it all, you can't actually wrangle it all on just one system. You need to actually compute it using the resources of an entire cloud, a cluster of computing resources. And that's where Apache Spark comes in. Apache Spark is a very powerful tool for managing big data, and doing machine learning on large Datasets. By the end of the chapter, you will have an in-depth knowledge of the following topics:
 
@@ -56,7 +61,7 @@ We're going to build an actual working search algorithm for a piece of Wikipedia
 
 Go into your course materials and open up the TF-IDF.py script, and that should open up Canopy with the following code:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-02/steps/22/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/22/1.png)
 
 Now, step back for a moment and let it sink in that we're actually creating a working search algorithm, along with a few examples of using it in less than 50 lines of code here, and it's scalable. I could run this on a cluster. It's kind of amazing. Let's step through the code.
 
@@ -197,7 +202,7 @@ Now, run the python code by running: `python TF-IDF.py`
 
 We are asking it to chunk through quite a bit of data, even though it's a small sample of Wikipedia it's still a fair chunk of information, so it might take a while. Let's see what comes back for the best document match for Gettysburg, what document has the highest TF-IDF score?
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-02/steps/22/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/22/2.png)
 
 It's Abraham Lincoln! Isn't that awesome? We just made an actual search engine that actually works, in just a few lines of code.
 
@@ -217,7 +222,7 @@ This creates a higher-level API with which we can query and analyze massive Data
 
 Going forward in Spark 2.0, MLlib is pushing dataframes as its primary API. This is the way of the future, so let's take a look at how it works. I've gone ahead and opened up the SparkLinearRegression.py file in Canopy, as shown in the following figure, so let's walk through it a little bit:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-02/steps/26/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/26/1.png)
 
 As you see, for one thing, we're using ml instead of MLlib, and that's because the new dataframe-based API is in there.
 
@@ -342,7 +347,7 @@ Now, run the python code by running: `python SparkLinearRegression.py`
 
 There's a little bit more upfront time to actually run these APIs with Datasets, but once they get going, they're very fast. Alright, there you have it.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-02/steps/26/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/26/2.png)
 
 Here we have our actual and predicted values side by side, and you can see that they're not too bad. They tend to be more or less in the same ballpark. There you have it, a linear regression model in action using Spark 2.0, using the new dataframe-based API for MLlib. More and more, you'll be using these APIs going forward with MLlib in Spark, so make sure you opt for these when you can. Alright, that's MLlib in Spark, a way of actually distributing massive computing tasks across an entire cluster for doing machine learning on big Datasets. So, good skill to have. Let's move on.
 
@@ -352,7 +357,7 @@ Now, run the python code by running: `python SparkLinearRegression.py`
 
 There's a little bit more upfront time to actually run these APIs with Datasets, but once they get going, they're very fast. Alright, there you have it.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-09-02/steps/26/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/26/2.png)
 
 Here we have our actual and predicted values side by side, and you can see that they're not too bad. They tend to be more or less in the same ballpark. There you have it, a linear regression model in action using Spark 2.0, using the new dataframe-based API for MLlib. More and more, you'll be using these APIs going forward with MLlib in Spark, so make sure you opt for these when you can. Alright, that's MLlib in Spark, a way of actually distributing massive computing tasks across an entire cluster for doing machine learning on big Datasets. So, good skill to have. Let's move on.
 

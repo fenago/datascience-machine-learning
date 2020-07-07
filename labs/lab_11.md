@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : More Data Mining and Machine Learning Techniques
+-------------------------------------
+
 
 In this scenario, we talk about a few more data mining and machine learning techniques. We will talk about a really simple technique called k-nearest neighbors (KNN). We'll then use KNN to predict a rating for a movie. After that, we'll go on to talk about dimensionality reduction and principal component analysis. We'll also look at an example of PCA where we will reduce 4D data to two dimensions while still preserving its variance.
 
@@ -15,29 +20,18 @@ We'll cover the following topics:
 - The working behind the intelligent Pac-Man game
 - Some fancy words used for reinforcement learning
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### K-nearest neighbors - concepts
 
@@ -47,7 +41,7 @@ KNN sounds fancy but it's actually one of the simplest techniques out there! Let
 
 Let's imagine that the following scatter plot is plotting movies. The squares represent science fiction movies, and the triangles represent drama movies. We'll say that this is plotting ratings versus popularity, or anything else you can dream up:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/3/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/3/1.jpg)
 
 Here, we have some sort of distance that we can compute based on rating and popularity between any two points on the scatter plot. Let's say a new point comes in, a new movie that we don't know the genre for. What we could do is set K to 3 and take the 3 nearest neighbors to this point on the scatter plot; they can all then vote on the classification of the new point/movie.
 
@@ -61,7 +55,7 @@ That's all there is to it, it's just that simple. So, it is a very simple techni
 
 But let's do something a little bit more complicated with it and actually play around with movies, just based on their metadata. Let's see if we can actually figure out the nearest neighbors of a movie based on just the intrinsic values of those movies, for example, the ratings for it, the genre information for it:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/3/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/3/2.jpg)
 
 In theory, we could recreate something similar to Customers Who Watched This Item Also Watched (the above image is a screenshot from Amazon) just using k-nearest Neighbors. And, I can take it one step further: once I identify the movies that are similar to a given movie based on the k-nearest Neighbors algorithm, I can let them all vote on a predicted rating for that movie.
 
@@ -74,7 +68,7 @@ Alright, we're going to actually take the simple idea of KNN and apply that to a
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `KNN.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/KNN.ipynb
+
 
 What we're going to do is define a distance metric between movies just based on their metadata. By metadata I just mean information that is intrinsic to the movie, that is, the information associated with the movie. Specifically, we're going to look at the genre classifications of the movie.
 
@@ -95,7 +89,7 @@ ratings.head()ratings.head()
 
 If we go ahead and run that and look at the top of it, we can see that it's working, here's how the output should look like:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/1.png)
 
 We end up with a DataFrame that has user_id, movie_id, and rating. For example, user_id 0 rated movie_id 50, which I believe is Star Wars, 5 stars, and so on and so forth.
 
@@ -110,7 +104,7 @@ movieProperties.head()
 
 Let's go ahead and do that - comes back pretty quickly, here's how the output looks like:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/2.png)
 
 This gives us another DataFrame that tells us, for example, movie_id 1 had 452 ratings (which is a measure of its popularity, that is, how many people actually watched it and rated it), and a mean review score of 3.8. So, 452 people watched movie_id 1, and they gave it an average review of 3.87, which is pretty good.
 
@@ -126,13 +120,13 @@ movieNormalizedNumRatings.head()
 
 What this gives us, when we run it, is the following:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/3.png)
 
 This is basically a measure of popularity for each movie, on a scale of 0 to 1. So, a score of 0 here would mean that nobody watched it, it's the least popular movie, and a score of 1 would mean that everybody watched, it's the most popular movie, or more specifically, the movie that the most people watched. So, we have a measure of movie popularity now that we can use for our distance metric.
 
 Next, let's extract some general information. So, it turns out that there is a u.item file that not only contains the movie names, but also all the genres that each movie belongs to:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/4.png)
 
 The code above will actually go through each line of u.item. We're doing this the hard way; we're not using any pandas functions; we're just going to use straight-up Python this time. Again, make sure you change that path to wherever you installed this information.
 
@@ -144,7 +138,7 @@ movieDict[1]
 
 Following is the output of the preceding code:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/5.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/5.png)
 
 Entry 1 in our dictionary for movie_id 1 happens to be Toy Story, an old Pixar film from 1995 you've probably heard of. Next is a list of all the genres, where a 0 indicates it is not part of that genre, and 1 indicates it is part of that genre. There is a data file in the MovieLens dataset that will tell you what each of these genre fields actually corresponds to.
 
@@ -156,7 +150,7 @@ We will then compare the popularity scores and just take the raw difference, the
 
 Now, imagine a scatter plot if you will, like we saw back in our example from the previous sections, where one axis might be a measure of genre similarity, based on cosine metric, the other axis might be popularity, okay? We're just finding the distance between these two things:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/6.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/6.png)
 
 For this example, where we're trying to compute the distance using our distance metric between movies 2 and 4, we end up with a score of 0.8
 
@@ -170,7 +164,7 @@ print movieDict[4]
 
 It turns out it's the movies GoldenEye and Get Shorty, which are pretty darn different movies:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/7.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/7.png)
 
 You know, you have James Bond action-adventure, and a comedy movie - not very similar at all! They're actually comparable in terms of popularity, but the genre difference did it in. Okay! So, let's put it all together!
 
@@ -185,11 +179,11 @@ In this example, we're going to set K to 10, find the 10 nearest neighbors. We w
 
 As a side effect, we also get the 10 nearest neighbors based on our distance function, which we could call similar movies. So, that information itself is useful. Going back to that "Customers Who Watched Also Watched" example, if you wanted to do a similar feature that was just based on this distance metric and not actual behavior data, this might be a reasonable place to start, right?
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/8.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/8.png)
 
 So, let's go ahead and run this, and see what we end up with. The output of the following code is as follows:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/9.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/9.png)
 
 The results aren't that unreasonable. So, we are using as an example the movie Toy Story, which is movieID 1, and what we came back with, for the top 10 nearest neighbors, are a pretty good selection of comedy and children's movies. So, given that Toy Story is a popular comedy and children's movie, we got a bunch of other popular comedy and children's movies; so, it seems to work! We didn't have to use a bunch of fancy collaborative filtering algorithms, these results aren't that bad.
 
@@ -201,7 +195,7 @@ avgRating
 
 Following is the output of the preceding code:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/6/10.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/10.png)
 
 We end up with a predicted rating of 3.34, which actually isn't all that different from the actual rating for that movie, which was 3.87. So not great, but it's not too bad either! I mean it actually works surprisingly well, given how simple this algorithm is!
 
@@ -226,7 +220,7 @@ For this reason, dimensionality reduction techniques exist to find a way to redu
 
 A very simple example of dimensionality reduction can be thought of as k-means clustering:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/11/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/11/1.png)
 
 So you know, for example, we might start off with many points that represent many different dimensions in a dataset. But, ultimately, we can boil that down to K different centroids, and your distance to those centroids. That's one way of boiling data down to a lower dimensional representation.
 
@@ -258,7 +252,7 @@ Let's apply principal component analysis to the Iris dataset. This is a 4D datas
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `PCA.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/PCA.ipynb
+
 
 It's actually very easy to do using scikit-learn, as usual! Again, PCA is a dimensionality reduction technique. It sounds very science-fictiony, all this talk of higher dimensions. But, just to make it more concrete and real again, a common application is image compression. You can think of an image of a black and white picture, as 3 dimensions, where you have width, as your x-axis, and your y-axis of height, and each individual cell has some brightness value on a scale of 0 to 1, that is black or white, or some value in between. So, that would be 3D data; you have 2 spatial dimensions, and then a brightness and intensity dimension on top of that.
 
@@ -285,7 +279,7 @@ print list(iris.target_names)
 
 There's a handy dandy load_iris() function built into scikit-learn that will just load that up for you with no additional work; so you can just focus on the interesting part. Let's take a look at what that dataset looks like, the output of the preceding code is as follows:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/14/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/1.png)
 
 You can see that we are extracting the shape of that dataset, which means how many data points we have in it, that is 150, and how many features, or how many dimensions that dataset has, and that is 4. So, we have 150 Iris specimens in our dataset, with 4 dimensions of information. Again, that is the length and width of the sepal, and the length and width of the petal, for a total of 4 features, which we can think of as 4 dimensions.
 
@@ -309,7 +303,7 @@ print pca.components_
 
 Output to the preceding code is as follows:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/14/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/2.png)
 
 You can actually look at those values, they're not going to mean a lot to you, because you can't really picture 4 dimensions anyway, but we did that just so you can see that it's actually doing something with principal components. So, let's evaluate our results:
 
@@ -320,7 +314,7 @@ print sum(pca.explained_variance_ratio_)
 
 The PCA model gives us back something called explained_variance_ratio. Basically, that tells you how much of the variance in the original 4D data was preserved as I reduced it down to 2 dimensions. So, let's go ahead and take a look at that:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/14/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/3.png)
 
 What it gives you back is actually a list of 2 items for the 2 dimensions that we preserved. This is telling me that in the first dimension I can actually preserve 92% of the variance in the data, and the second dimension only gave me an additional 5% of variance. If I sum it together, these 2 dimensions that I projected my data down into, I still preserved over 97% of the variance in the source data. We can see that 4 dimensions weren't really necessary to capture all the information in this dataset, which is pretty interesting. It's pretty cool stuff!
 
@@ -343,7 +337,7 @@ pl.show()
 
 The following is what we end up with:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/14/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/4.png)
 
 That is our 4D Iris data projected down to 2 dimensions. Pretty interesting stuff! You can see it still clusters together pretty nicely. You know, you have all the Virginicas sitting together, all the Versicolors sitting in the middle, and the Setosas way off on the left side. It's really hard to imagine what these actual values represent. But, the important point is, we've projected 4D data down to 2D, and in such a way that we still preserve the variance. We can still see clear delineations between these 3 species. A little bit of intermingling going on in there, it's not perfect you know. But by and large, it was pretty effective.
 
@@ -405,7 +399,7 @@ Our next topic's a fun one: reinforcement learning. We can actually use this ide
 
 So, the idea behind reinforcement learning is that you have some sort of agent, in this case Pac-Man, that explores some sort of space, and in our example that space will be the maze that Pac-Man is in. As it goes, it learns the value of different state changes within different conditions.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/19/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/19/1.png)
 
 For example, in the preceding image, the state of Pac-Man might be defined by the fact that it has a ghost to the South, and a wall to the West, and empty spaces to the North and East, and that might define the current state of Pac-Man. The state changes it can take would be to move in a given direction. I can then learn the value of going in a certain direction. So, for example, if I were to move North, nothing would really happen, there's no real reward associated with that. But, if I were to move South I would be destroyed by the ghost, and that would be a negative value.
 
@@ -418,7 +412,7 @@ The benefit of this technique is that once you've explored the entire set of pos
 
 So, a very specific implementation of reinforcement learning is called Q-learning, and this formalizes what we just talked about a little bit more:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/19/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/19/2.png)
 
 So, we start off with a Q value of 0 for every possible state that Pac-Man could be in. And, as Pac-Man explores a maze, as bad things happen to Pac-Man, we reduce the Q value for the state that Pac-Man was in at the time. So, if Pac-Man ends up getting eaten by a ghost, we penalize whatever he did in that current state. As good things happen to Pac-Man, as he eats a power pill, or eats a ghost, we'll increase the Q value for that action, for the state that he was in. Then, what we can do is use those Q values to inform Pac-Man's future choices, and sort of build a little intelligent agent that can perform optimally, and make a perfect little Pac-Man. From the same image of Pac-Man that we saw just above, we can further define the current state of Pac-Man by defining that he has a wall to the West, empty space to the North and East, a ghost to the South.
 
@@ -478,7 +472,7 @@ So, even more fancy words: dynamic programming can be used to describe what we j
 
 The next time the same subproblem occurs, instead of recomputing its solution, one simply looks up the previously computed solution thereby saving computation time at the expense of a (hopefully) modest expenditure in storage space:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-07/steps/19/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/19/3.png)
 
 We have a complicated exploration phase that finds the optimal rewards associated with each action for a given state. Once we have that table of the right action to take for a given state, we can very quickly use that to make our Pac-Man move in an optimal manner in a whole new maze that he hasn't seen before. So, reinforcement learning is also a form of dynamic programming. Wow!
 

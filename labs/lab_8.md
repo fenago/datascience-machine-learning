@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Machine Learning with Python - Part 2
+-------------------------------------
+
 
 In this scenario, we get into machine learning and how to actually implement machine learning models in Python.
 
@@ -10,29 +15,18 @@ More specifically, we'll cover the following topics:
 - Example of clustering in Python
 - Entropy and how to measure it
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### K-Means clustering
 
@@ -42,7 +36,7 @@ K-means clustering is a very common technique in machine learning where you just
 
 So, basically, what group a given data point belongs to is defined by which of these centroid points it's closest to in your scatter plot. You can visualize this in the following image:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/3/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/3/1.jpg)
 
 This is showing an example of k-means clustering with K of three, and the squares represent data points in a scatter plot. The circles represent the centroids that the k-means clustering algorithm came up with, and each point is assigned a cluster based on which centroid it's closest to. So that's all there is to it, really. It's an example of unsupervised learning. It isn't a case where we have a bunch of data and we already know the correct cluster for a given set of training data; rather, you're just given the data itself and it tries to converge on these clusters naturally just based on the attributes of the data alone. It's also an example where you are trying to find clusters or categorizations that you didn't even know were there. As with most unsupervised learning techniques, the point is to find latent values, things you didn't really realize were there until the algorithm showed them to you.
 
@@ -59,7 +53,7 @@ Predict the cluster for new points: To predict the clusters for new points that 
 
 Let's look at a graphical example to make a little bit more sense. We'll call the first figure in the following image as A, second as B, third as C and the fourth as D.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/3/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/3/2.jpg)
 
 The gray squares in image A represent data points in our scatter plot. The axes represent some different features of something. Maybe it's age and income; it's an example I keep using, but it could be anything. And the gray squares might represent individual people or individual songs or individual something that I want to find relationships between.
 
@@ -86,7 +80,7 @@ Let's see just how easy it is to do k-means clustering using scikit-learn and Py
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `KMeans.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/KMeans.ipynb
+
 
 We will discuss notebook in the next steps.
 
@@ -152,9 +146,9 @@ Now the scale I alluded to earlier, that's normalizing the data. One important t
 
 So, once we've actually called fit on our model, we can actually look at the resulting labels that we got. Then we can actually visualize it using a little bit of matplotlib magic. You can see in the code we have a little trick where we assigned the color to the labels that we ended up with converted to some floating point number. That's just a little trick you can use to assign arbitrary colors to a given value. So let's see what we end up with:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/8/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/8/1.jpg)
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/8/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/8/2.jpg)
 
 
 
@@ -179,11 +173,11 @@ Entropy is just a way of quantifying that sameness or difference throughout my d
 
 Now mathematically, it's a little bit more involved than that, so when I actually compute a number for entropy, it's computed using the following expression:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/12/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/12/1.jpg)
 
 So for every different class that I have in my data, I'm going to have one of these p terms, p1, p2, and so on and so forth through pn, for n different classes that I might have. The p just represents the proportion of the data that is that class. And if you actually plot what this looks like for each term- pi* ln * pi, it'll look a little bit something like the following graph:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/12/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/12/2.jpg)
 
 You add these up for each individual class. For example, if the proportion of the data, that is, for a given class is 0, then the contribution to the overall entropy is 0. And if everything is that class, then again the contribution to the overall entropy is 0 because in either case, if nothing is this class or everything is this class, that's not really contributing anything to the overall entropy.
 
@@ -200,7 +194,7 @@ There are many different aspects of the weather that might influence my decision
 
 The way it would work in this example would be as follows. I would have some sort of dataset of historical weather, and data about whether or not people went outside to play on a particular day. I would feed the model this data of whether it was sunny or not on each day, what the humidity was, and if it was windy or not; and whether or not it was a good day to go play outside. Given that training data, a decision tree algorithm can then arrive at a tree that gives us a flowchart that we can print out. It looks just like the following flow chart. You can just walk through and figure out whether or not it's a good day to play outside based on the current attributes. You can use that to predict the decision for a new set of values:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/14/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/14/1.jpg)
 
 How cool is that? We have an algorithm that will make a flowchart for you automatically just based on observational data. What's even cooler is how simple it all works once you learn how it works.
 
@@ -212,13 +206,13 @@ We could construct a decision tree that will let us go through an individual res
 
 So let's make some totally fabricated hiring data that we're going to use in this example:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/14/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/14/2.jpg)
 
 In the preceding table, we have candidates that are just identified by numerical identifiers. I'm going to pick some attributes that I think might be interesting or helpful to predict whether or not they're a good hire or not. How many years of experience do they have? Are they currently employed? How many employers have they had previous to this one? What's their level of education? What degree do they have? Did they go to what we classify as a top-tier school? Did they do an internship while they were in college? We can take a look at this historical data, and the dependent variable here is Hired. Did this person actually get a job offer or not based on that information?
 
 Now, obviously there's a lot of information that isn't in this model that might be very important, but the decision tree that we train from this data might actually be useful in doing an initial pass at weeding out some candidates. What we end up with might be a tree that looks like the following:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/14/3.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/14/3.jpg)
 
 So it just turns out that in my totally fabricated data, anyone that did an internship in college actually ended up getting a job offer. So my first decision point is "did this person do an internship or not?" If yes, go ahead and bring them in. In my experience, internships are actually a pretty good predictor of how good a person is. If they have the initiative to actually go out and do an internship, and actually learn something at that internship, that's a good sign.
 Do they currently have a job? Well, if they are currently employed, in my very small fake dataset it turned out that they are worth hiring, just because somebody else thought they were worth hiring too. Obviously it would be a little bit more of a nuanced decision in the real world.
@@ -253,7 +247,7 @@ Turns out that it's easy to make decision trees; in fact it's crazy just how eas
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `DecisionTree.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/DecisionTree.ipynb
+
 
 
 I've included a PastHires.csv file with your book materials, and that just includes some fabricated data, that I made up, about people that either got a job offer or not based on the attributes of those candidates.
@@ -275,7 +269,7 @@ df.head()
 
 Sure enough we have some valid data in the output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/18/1.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/1.jpg)
 
 So, for each candidate ID, we have their years of past experience, whether or not they were employed, their number of previous employers, their highest level of education, whether they went to a top-tier school, and whether they did an internship; and finally here, in the Hired column, the answer - where we knew that we either extended a job offer to this person or not.
 
@@ -297,7 +291,7 @@ Basically, we're making a dictionary in Python that maps the letter Y to the num
 
 We do the same thing for Employed, Top-tier school and Interned, so all those get mapped using the yes/no dictionary. So, the Ys and Ns become 1s and 0s instead. For the Level of Education, we do the same trick, we just create a dictionary that assigns BS to 0, MS to 1, and PhD to 2 and uses that to remap those degree names to actual numerical values. So if I go ahead and run that and do a head() again, you can see that it worked:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/18/2.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/2.jpg)
 
 All my yeses are 1's, my nos are 0's, and my Level of Education is now represented by a numerical value that has real meaning.
 
@@ -311,7 +305,7 @@ features
 
 We get the following output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/18/3.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/3.jpg)
 
 Above are the column names that contain our feature information: Years Experience, Employed?, Previous employers, Level of Education, Top-tier school, and Interned. These are the attributes of candidates that we want to predict hiring on.
 
@@ -346,7 +340,7 @@ So let's go ahead and run this.
 
 This is what your output should now look like:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/18/4.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/4.jpg)
 
 There we have it! How cool is that?! We have an actual flow chart here.
 
@@ -390,7 +384,7 @@ You don't have to walk through the trees by hand, and when you're dealing with a
 
 If you remember this maps to these columns: Years Experience, Employed?, Previous employers, Level of Education, Top-tier school, and Interned; interpreted as numerical values. We predict the employment of an employed 10-year veteran. We also predict the employment of an unemployed 10-year veteran. And, sure enough, we get a result:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-05-02/steps/18/5.jpg)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/5.jpg)
 
 So, in this particular case, we ended up with a hire decision on both. But, what's interesting is there is a random component to that. You don't actually get the same result every time! More often than not, the unemployed person does not get a job offer, and if you keep running this you'll see that's usually the case. But, the random nature of bagging, of bootstrap aggregating each one of those trees, means you're not going to get the same result every time. So, maybe 10 isn't quite enough trees. So, anyway, that's a good lesson to learn here!
 

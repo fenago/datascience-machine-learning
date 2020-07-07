@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Matplotlib and Advanced Probability Concepts - Part 1
+-------------------------------------
+
 
 After going through some of the simpler concepts of statistics and probability in the previous chapter, we're now going to turn our attention to some more advanced topics that you'll need to be familiar with to get the most out of the remainder of this book. Don't worry, they're not too complicated. First of all, let's have some fun and look at some of the amazing graphing capabilities of the matplotlib library.
 
@@ -7,40 +12,29 @@ We'll be covering the following topics in this scenario:
 - Using the matplotlib package to plot graphs
 - Understanding covariance and correlation to determine the relationship between data
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/datascience-machine-learning` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+### A crash course in Matplotlib
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
-
- ### A crash course in Matplotlib
-
- Your data is only as good as you can present it to other people, really, so let's talk about plotting and graphing your data and how to present it to others and make your graphs look pretty. We're going to introduce Matplotlib more thoroughly and put it through its paces.
+Your data is only as good as you can present it to other people, really, so let's talk about plotting and graphing your data and how to present it to others and make your graphs look pretty. We're going to introduce Matplotlib more thoroughly and put it through its paces.
 
 I'll show you a few tricks on how to make your graphs as pretty as you can. Let's have some fun with graphs. It's always good to make pretty pictures out of your work. This will give you some more tools in your tool chest for visualizing different types of data using different types of graphs and making it look pretty. We'll use different colors, different line styles, different axes, things like that. It's not only important to use graphs and data visualization to try to find interesting patterns in your data, but it's also interesting to present your findings well to a non-technical audience. Without further ado, let's dive in to Matplotlib.
 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `MatPlotLib.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/MatPlotLib.ipynb
+
 
 
 ```
@@ -60,7 +54,7 @@ So in this example, I import matplotlib.pyplot as plt, and with this, we can ref
 
 So tying it back into last chapter's look at probability density functions, here we are plotting a normal probability density function using matplotlib. So we just call pyplot's plot() method to set up our plot, and then we display it using plt.show(). When we run the previous code, we get the following output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/1.png)
 
 That's what we get: a pretty little graph with all the default formatting.
 
@@ -76,7 +70,7 @@ plt.show()
 
 In this example, I'm calling my original function of just a normal distribution, but I'm going to render another normal distribution here as well, with a mean around 1.0 and a standard deviation of 0.5. Then, I'm going to show those two together so you can see how they compare to each other.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/2.png)
 
 You can see that by default, matplotlib chooses different colors for each graph automatically for you, which is very nice and handy of it.
 
@@ -114,7 +108,7 @@ In this example, first I get the axes using plt.axes. Once I have these axes obj
 
 Once I've adjusted my axes, I just called plot() with the functions that I want to plot and called show() to display it. Sure enough, there you have the result.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/3.png)
 
 ### Adding a grid
 
@@ -135,7 +129,7 @@ plt.show()
 
 By executing the above code, I get nice little grid lines. That makes it a little bit easier to see where a specific point is, although it clutters things up a little bit. It's a little bit of a stylistic choice there.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/4.png)
 
 ### Changing line types and colors
 
@@ -155,7 +149,7 @@ plt.show()
 
 So you see in the preceding code, there's actually an extra parameter on the plot() functions at the end where I can pass a little string that describes the style of a line. In this first example, what b- indicates is I want a blue, solid line. The b stands for blue, and the dash means a solid line. For my second plot() function, I'm going to plot it in red, that's what the r means, and the colon means I'm going to plot it with a dotted line.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/5.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/5.png)
 
 If I run that, you can see in the above graph what it does, and you can change different types of line styles.
 
@@ -175,7 +169,7 @@ plt.show()
 
 The preceding code gives you dashed red line as a line style as shown in the following graph image:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/6.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/6.png)
 
 
 I can also do a dash dot combination (-.).
@@ -194,7 +188,7 @@ plt.show()
 
 You get an output that looks like the following graph image:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/7.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/7.png)
 
 So, those are the different choices there. I could even make it green with vertical slashes (g:).
 
@@ -212,7 +206,7 @@ plt.show()
 
 I'll get the following output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/8.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/8.png)
 
 Have some fun with that if you want, experiment with different values, and you can get different line styles.
 
@@ -237,7 +231,7 @@ plt.show()
 
 Into the legend, you pass in basically a list of what you want to name each graph. So, my first graph is going to be called Sneetches, and my second graph is going to be called Gacks, and the loc parameter indicates what location you want it at, where 4 represents the lower right-hand corner. Let's go ahead and run the code, and you should see the following:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/9.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/9.png)
 
 You can see that I'm plotting Greebles versus Probability for both Sneetches and Gacks. A little Dr. Seuss reference for you there. So that's how you set axes labels and legends.
 
@@ -271,7 +265,7 @@ plt.ylabel('my overall health')
 
 In this example, you call plt.xkcd(), which puts Matplotlib in XKCD mode. After you do that, things will just have a style with kind of a comic book font and squiggly lines automatically. This little simple example will show a funny little graph where we are plotting your health versus time, where your health takes a steep decline once you realize you can cook bacon whenever you want to. All we're doing there is using the xkcd() method to go into that mode. You can see the results below:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/10.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/10.png)
 
 There's a little bit of interesting Python here in how we're actually putting this graph together. We're starting out by making a data line that is nothing but the value 1 across 100 data points. Then we use the old Python list slicing operator to take everything after the value of 70, and we subtract off from that sub-list of 30 items, the range of 0 through 30. So that has the effect of subtracting off a larger value linearly as you get past 70, which results in that line heading downward down to 0 beyond the point 70.
 
@@ -298,7 +292,7 @@ plt.show()
 
 You can see in this code that I'm creating a pie chart with the values 12, 55, 4, 32, and 14. I'm assigning explicit colors to each one of those values, and explicit labels to each one of those values. I'm exploding out the Russian segment of the pie by 20%, and giving this plot a title of Student Locations and showing it. The following is the output you should see:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/11.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/11.png)
 
 That's all there is to it.
 
@@ -315,7 +309,7 @@ plt.show()
 
 I've defined an array of values and an array of colors, and just plot the data. The above code plots from the range of 0 to 5, using the y values from the values array and using the explicit list of colors listed in the colors array. Go ahead and show that, and there you have your bar chart:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/12.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/12.png)
 
 ### Generating scatter plots
 
@@ -336,7 +330,7 @@ plt.show()
 
 You get the following scatter plot as output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/13.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/13.png)
 
 
 This is what it looks like, pretty cool. You can see the sort of a concentration in the center here, because of the normal distribution that's being used in both axes, but since it is random, there's no real correlation between those two.
@@ -354,7 +348,7 @@ plt.show()
 
 In this example, I call a normal distribution centered on 27,000, with a standard deviation of 15,000 with 10,000 data points. Then, I just call pyplot's histogram function, that is, hist(), and specify the input data and the number of buckets that we want to group things into in our histogram. Then I call show() and the rest is magic.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/14.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/14.png)
 
 ### Generating box-and-whisker plots
 
@@ -385,7 +379,7 @@ plt.show()
 
 In the code, we have a uniform random distribution of data (uniformSkewed). Then we added a few outliers on the high end (high_outliers) and a few negative outliers (low_outliers) as well. Then we concatenated these lists together and created a single dataset from these three different sets that we created using NumPy. We then took that combined dataset of uniform data and a few outliers and we plotted using plt.boxplot(), and that's how you get a box-and-whisker plot. Call show() to visualize it, and there you go.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/2/15.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/15.png)
 
 You can see that the graph is showing the box that represents the inner 50% of all data, and then we have these outlier lines where we can see little crosses (they may be circles in your version) for each individual outlier that lies in that range.
 
@@ -396,7 +390,7 @@ Next, we're going to talk about covariance and correlation. Let's say I have two
 #### Defining the concepts
 Imagine we have a scatter plot, and each one of the data points represents a person that we measured, and we're plotting their age on one axis versus their income on another. Each one of these dots would represent a person, for example their x value represents their age and the y value represents their income. I'm totally making this up, this is fake data.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/17/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/1.png)
 
 Now if I had a scatter plot that looks like the left one in the preceding image, you see that these values tend to lie all over the place, and this would tell you that there's no real correlation between age and income based on this data. For any given age, there can be a huge range of incomes and they tend to be clustered around the middle, but we're not really seeing a very clear relationship between these two different attributes of age and income. Now in contrast, in the scatter plot on the right you can see there's a very clear linear relationship between age and income.
 
@@ -436,7 +430,7 @@ Alright, let's get our hands dirty with covariance and correlation here with som
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `CovarianceCorrelation.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/CovarianceCorrelation.ipynb
+
 
 I'm going to start by doing this the hard way. NumPy does have a method to just compute the covariance for you, and we'll talk about that later, but for now I want to show that you can actually do this from first principles:
 
@@ -475,7 +469,7 @@ covariance (pageSpeeds, purchaseAmount)
 
 So just as a sanity check here we'll start off by scatter plotting this stuff:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/17/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/2.png)
 
 You'll see that it tends to cluster around the middle because of the normal distribution on each attribute, but there's no real relationship between the two. For any given page speed is a wide variety of amount spent, and for any given amount spent there's a wide variety of page speeds, so no real correlation there except for ones that are coming out the randomness or through the nature of the normal distribution. Sure enough, if we compute the covariance in these two sets of attributes, we end up with a very small value, -0.07. So that's a very small covariance value, close to zero. That implies there's no real relationship between these two things.
 
@@ -492,7 +486,7 @@ covariance (pageSpeeds, purchaseAmount)
 
 Here, we are keeping things a little bit random, but we are creating a real relationship between these two sets of values. For a given user, there's a real relationship between the page speeds they encounter and the amount that they spend. If we plot that out, we can see the following output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/17/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/3.png)
 
 You can see that there's actually this little curve where things tend to be tightly aligned. Things get a little bit wonky near the bottom, just because of how random things work out. If we compute the covariance, we end up with a much larger value, -8, and it's the magnitude of that number that matters. The sign, positive or negative, just implies a positive or negative correlation, but that value of 8 says that's a much higher value than zero. So there's something going on there, but again it's hard to interpret what 8 actually means.
 
@@ -509,7 +503,7 @@ correlation(pageSpeeds, purchaseAmount)
 
 Again, doing that from first principles, we can take the correlation between two sets of attributes, compute the standard deviation of each, then compute the covariance between these two things, and divide by the standard deviations of each dataset. That gives us the correlation value, which is normalized to -1 to 1. We end up with a value of -0.4, which tells us there is some correlation between these two things in the negative direction:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/17/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/4.png)
 
 It's not a perfect line, that would be -1, but there's something interesting going on there.
 
@@ -546,6 +540,6 @@ correlation (pageSpeeds, purchaseAmount)
 
 And again, here we would expect the correlation to come out to -1 for a perfect negative correlation, and in fact, that's what we end up with:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-01/steps/17/5.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/5.png)
 
 Again, a reminder: Correlation does not imply causality. Just because people might spend more if they have faster page speeds, maybe that just means that they can afford a better Internet connection. Maybe that doesn't mean that there's actually a causation between how fast your pages render and how much people spend, but it tells you there's an interesting relationship that's worth investigating more. You cannot say anything about causality without running an experiment, but correlation can tell you what experiments you might want to run.

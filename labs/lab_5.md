@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Matplotlib and Advanced Probability Concepts - Part 2
+-------------------------------------
+
 
 After going through some of the simpler concepts of statistics and probability in the previous chapter, we're now going to turn our attention to some more advanced topics that you'll need to be familiar with to get the most out of the remainder of this book. Don't worry, they're not too complicated.
 
@@ -7,29 +12,18 @@ We'll be covering the following topics in this scenario:
 - Understanding conditional probability with examples
 - Understanding Bayes' theorem and its importance
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### Conditional probability
 
@@ -43,7 +37,7 @@ In mathematical notation, the way we indicate things here is that P(A,B) represe
 
 Whereas this notation, P(B|A), is read as the probability of B given A. So, what is the probability of B given that event A has already occurred? It's a little bit different, and these things are related like this:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-02/steps/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/1.png)
 
 The probability of B given A is equal to the probability of A and B occurring over the probability of A alone occurring, so this teases out the probability of B being dependent on the probability of A.
 
@@ -53,7 +47,7 @@ Let's say that I give you, my readers, two tests, and 60% of you pass both tests
 
 I'm going to represent A as the probability of passing the first test, and B as the probability of passing the second test. What I'm looking for is the probability of passing the second test given that you passed the first, that is, P (B|A).
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-02/steps/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/2.png)
 
 So the probability of passing the second test given that you passed the first is equal to the probability of passing both tests, P(A,B) (I know that 60% of you passed both tests irrespective of each other), divided by the probability of passing the first test, P(A), which is 80%. It's worked out to 60% passed both tests, 80% passed the first test, therefore the probability of passing the second given that you passed the first works out to 75%.
 
@@ -68,7 +62,7 @@ Let's put conditional probability into action here and use some of the ideas to 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `ConditionalProbabilityExercise.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/ConditionalProbabilityExercise.ipynb
+
 
 
 What I'm going to do is write a little bit of Python code that creates some fake data:
@@ -221,7 +215,7 @@ So that's conditional probability, both in theory and in practice. You can see t
 
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `ConditionalProbabilitySolution.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/ConditionalProbabilitySolution.ipynb
+
 
 Did you do your homework? I hope so. Let's take a look at my solution to the problem of seeing how conditional probability tells us about whether there's a relationship between age and purchase probability in a fake dataset.
 
@@ -276,7 +270,7 @@ You'll hear about this a lot, but not many people really understand what it mean
 
 First, let's talk about Bayes' theorem at a high level. Bayes' theorem is simply this: the probability of A given B is equal to the probability of A times the probability of B given A over the probability of B. So you can substitute A and B with whatever you want.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-02/steps/12/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/12/1.png)
 
 **Note:**
 
@@ -301,7 +295,7 @@ We need to work out the probability of testing positively overall. We can work t
 
 Let's do the math and calculate the probability of being a user of the drug given that you tested positively.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-03-02/steps/12/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/12/2.png)
 
 So the probability of a positive test result given that you're actually a drug user works out as the probability of being a user of the drug overall (P(A)), which is 3% (you know that 3% of the population is a drug user) multiplied by P(B|A) that is the probability of testing positively given that you're a user divided by the probability of testing positively overall which is 1.3%. Again, this test has what sounds like a very high accuracy of 99%. We have 0.3% of the population which uses a drug multiplied by the accuracy of 99% divided by the probability of testing positively overall, which is 1.3%. So the probability of being an actual user of this drug given that you tested positive for it is only 22.8%. So even though this drug test is accurate 99% of the time, it's still providing a false result in most of the cases where you're testing positive.
 

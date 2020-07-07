@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Getting Started
+-------------------------------------
+
 
 In this scenario, we will first install and get ready in a working Python environment:
 
@@ -14,40 +19,29 @@ In this scenario, we will first install and get ready in a working Python enviro
 
 You'll have everything you need for an amazing journey into data science with Python
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/datascience-machine-learning` folder.
+
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+### Using and understanding IPython (Jupyter) Notebooks
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
-
- ### Using and understanding IPython (Jupyter) Notebooks
-
- Let's now explore using Jupyter Notebooks, which is also known as IPython Notebook. These days, the more modern name is the Jupyter Notebook, but a lot of people still call it an IPython Notebook, and I consider the names interchangeable for working developers as a result. I do also find the name IPython Notebooks helps me remember the notebook file name suffix which is .ipynb as you'll get to know very well in this book!
+Let's now explore using Jupyter Notebooks, which is also known as IPython Notebook. These days, the more modern name is the Jupyter Notebook, but a lot of people still call it an IPython Notebook, and I consider the names interchangeable for working developers as a result. I do also find the name IPython Notebooks helps me remember the notebook file name suffix which is .ipynb as you'll get to know very well in this book!
 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `Outliers.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/Outliers.ipynb
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/2/1.png)
+
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/2/1.png)
 
 As you can see here, notebooks are structured in such a way that I can intersperse my little notes and commentary about what you're seeing here within the actual code itself, and you can actually run this code within your web browser! So, it's a very handy format for me to give you sort of a little reference that you can use later on in life to go and remind yourself how these algorithms work that we're going to talk about, and actually experiment with them and play with them yourself.
 
@@ -59,11 +53,11 @@ Let's take a quick look at this code while we're here. We are setting up a littl
 
 We can select any code block in the notebook by clicking on it. So if you now click in the code block that contains the code we just looked at above, we can then hit the run button at the top to run it. Here's the area at the top of the screen where you'll find the Run button:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/3/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/3/1.png)
 
 Hitting the Run button with the code block selected, will cause this graph to be regenerated:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/3/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/3/2.png)
 
 Similarly, we can click on the next code block a little further down, you'll spot the one which has the following single line of code :
 
@@ -94,7 +88,7 @@ plt.show()
 
 So select the corresponding code block in the notebook, and press the run button again. When you do that, you'll see this graph instead:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/4/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/4/1.png)
 
 Now we see a much better histogram that represents the more typical American - now that we've taken out our outlier that was messing things up.
 
@@ -107,7 +101,7 @@ There are a few quirky things about the Python scripting language that you need 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `Python101.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/Python101.ipynb
+
 
 
 
@@ -117,11 +111,11 @@ One cool thing about Python is that there are several ways to run code with Pyth
 
 The first example that I want to give you of some Python code is right here. The following block of code represents some real Python code that we can actually run right within this view of the entire notebook page, but let's zoom in now and look at that code:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/7/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/7/1.png)
 
 Let's take a look at what's going on. We have a list of numbers and a list in Python, kind of like an array in other languages. It is designated by these square brackets:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/7/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/7/2.png)
 
 We have this data structure of a list that contains the numbers 1 through 6, and then to iterate through every number in that list, we'll say for number in listOfNumbers:, that's the Python syntax for iterating through a list of stuff and a colon.
 
@@ -145,12 +139,12 @@ print ("Hooray! We're all done.")
 
 You'll notice that within this for block, we have a tab of one within that entire block, and for every number in listOfNumbers we will execute all of this code that's tabbed in by one Tab stop. We'll print the number, and the comma just means that we're not going to do a new line afterwards. We'll print something else right after it, and if (number % 2 = 0), we'll say it's even. Otherwise, we'll say it's odd, and when we're done, we'll print out All done:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/7/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/7/3.png)
 
 
 You can see the output right below the code. I ran the output before as I had actually saved it within my notebook, but if you want to actually run it yourself, you can just click within that block and click on the Play button, and we'll actually execute it and do it again. Just to convince yourself that it's really doing something, let's change the print statement to say something else, say, Hooray! We're all done. Let's party! If I run this now, you can see, sure enough, my message there has changed:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/8/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/8/1.png)
 
 So again, the point I want to make is that whitespace is important. You will designate blocks of code that run together, you know, such as a for loop or if then statements, using indentation or tabs, so remember that. Also, pay attention to your colons too. You'll notice that a lot of these clauses begin with a colon.
 
@@ -174,7 +168,7 @@ print (A)
 
 The output should look like this:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/9/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/9/1.png)
 
 Sure enough, I get different results. That's pretty cool.
 
@@ -190,7 +184,7 @@ print (A)
 
 Hey, all my numbers changed, they're closer to 55 now, how about that?
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-01/steps/10/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/10/1.png)
 
 Alright, let's talk about data structures a little bit here. As we saw in our first example, you can have a list, and the syntax looks like this.
 

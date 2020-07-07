@@ -1,4 +1,9 @@
-### Introduction
+<img align="right" src="../images/logo-small.png">
+
+
+Lab : Statistics and Probability Refresher, and Python Practice - Part 2
+-------------------------------------
+
 
 In this scenario, we are going to go through a few concepts of statistics and probability, which might be a refresher for some of you. These concepts are important to go through if you want to be a data scientist. We will see examples to understand these concepts better. We will also look at how to implement those examples using actual Python code.
 
@@ -7,29 +12,18 @@ We'll be covering the following topics in this scenario:
 - Types of data distributions and how to plot them
 - Understanding percentiles and moments
 
-### Jupyter Notebooks
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
-We will run Jupyter Notebook as a Docker container. This setup will take some time because of the size of the image.
+#### Lab Environment
+Notebooks are ready to run. All packages have been installed. There is no requirement for any setup.
 
-## Login
-When the container is running, execute this statement:
-`docker logs jupyter 2>&1 | grep -v "HEAD" `
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
+All Notebooks are present in `work/datascience-machine-learning` folder.
 
-This will show something like:
-```
-copy/paste this URL into your browser when you connect for the first time, to login with a token:
-    http://localhost:8888/?token=f89b02dd78479d52470b3c3a797408b20cc5a11e067e94b8
-    THIS IS NOT YOUR TOKEN.  YOU HAVE TO SEARCH THE LOGS TO GET YOUR TOKEN
-```
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-The token is the value behind `/?token=`. You need that for logging in.
-
-**Note:** You can also run following command to get token directly: 
-`docker exec -it jupyter bash -c 'jupyter notebook list' | cut -d'=' -f 2 | cut -d' ' -f 1`
-
-Next, you can open the Jupyter Notebook at 
- https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/
 
  ### Types of data distributions
 
@@ -40,7 +34,7 @@ Go ahead and open up the Distributions.ipynb from the book materials, and you ca
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `Distributions.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/Distributions.ipynb
+
 
 ### Uniform distribution
 
@@ -57,7 +51,7 @@ plt.show()
 
 So we can create a uniform distribution by using the NumPy random.uniform function. The preceding code says, I want a uniformly distributed random set of values that ranges between -10 and 10, and I want 100000 of them. If I then create a histogram of those values, you can see it looks like the following.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/2/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/1.png)
 
 There's pretty much an equal chance of any given value or range of values occurring within that data. So, unlike the normal distribution, where we saw a concentration of values near the mean, a uniform distribution has equal probability across any given value within the range that you define.
 
@@ -79,7 +73,7 @@ plt.plot(x, norm.pdf(x))
 
 In the preceding example, we're creating a list of x values for plotting that range between -3 and 3 with an increment of 0.001 in between them by using the arange function. So those are the x values on the graph and we're going to plot the x-axis with using those values. The y-axis is going to be the normal function, norm.pdf, that the probability density function for a normal distribution, on those x values. We end up with the following output:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/2/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/2.png)
 
 The pdf function with a normal distribution looks just like it did in our previous section, that is, a normal distribution for the given numbers that we provided, where 0 represents the mean, and the numbers -3, -2, -1, 1, 2, and 3 are standard deviations.
 
@@ -98,7 +92,7 @@ plt.show()
 
 In the above code, we use the random.normal function of the NumPy package, and the first parameter mu, represents the mean that you want to center the data around. sigma is the standard deviation of that data, which is basically the spread of it. Then, we specify the number of data points that we want using a normal probability distribution function, which is 10000 here. So that's a way to use a probability distribution function, in this case the normal distribution function, to generate a set of random data. We can then plot that, using a histogram broken into 50 buckets and show it. The following output is what we end up with:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/2/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/3.png)
 
 It does look more or less like a normal distribution, but since there is a random element, it's not going to be a perfect curve. We're talking about probabilities; there are some odds of things not quite being what they should be.
 
@@ -120,7 +114,7 @@ plt.plot(x, expon.pdf(x))
 
 So again, in the above code, we just create our x values using the NumPy arange function to create a bunch of values between 0 and 10 with a step size of `0.001`. Then, we plot those x values against the y-axis, which is defined as the function `expon.pdf(x)`. The output looks like an exponential fall off. As shown in the following screenshot:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/2/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/4.png)
 
 
 ### Binomial probability mass function
@@ -139,7 +133,7 @@ So instead of expon or norm, we just use binom. A reminder: The probability mass
 
 Coming back to our code, we're creating some discrete x values between 0 and 10 at a spacing of 0.01, and we're saying I want to plot a binomial probability mass function using that data. With the binom.pmf function, I can actually specify the shape of that data using two shape parameters, n and p. In this case, they're 10 and 0.5 respectively. output is shown on the following graph:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/2/5.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/5.png)
 
 If you want to go and play around with different values to see what effects it has, that's a good way to get an intuitive sense of how those shape parameters work on the probability mass function.
 
@@ -160,7 +154,7 @@ plt.plot(x, poisson.pmf(x, mu))
 
 In this code example, I'm saying my average is 500 mu. I'm going to set up some x values to look at between 400 and 600 with a spacing of 0.5. I'm going to plot that using the poisson.pmf function. I can use that graph to look up the odds of getting any specific value that's not `500`, assuming a normal distribution:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/2/6.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/6.png)
 
 The odds of seeing 550 visitors on a given day, it turns out, comes out to about 0.002 or 0.2% probability. Very interesting.
 
@@ -188,7 +182,7 @@ In a dataset, a percentile is the point at which x% of the values are less than 
 
 The following graph is an example for income distribution:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/1.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/1.png)
 
 The preceding image shows an example of income distribution data. For example, at the 99th percentile we can say that 99% of the data points, which represent people in America, make less than $506,553 a year, and one percent make more than that. Conversely, if you're a one-percenter, you're making more than $506,553 a year. Congratulations! But if you're a more typical median person, the 50th percentile defines the point at which half of the people are making less and half are making more than you are, which is the definition of median. The 50th percentile is the same thing as median, and that would be at $42,327 given this dataset. So, if you're making $42,327 a year in the US, you are making exactly the median amount of income for the country.
 
@@ -200,7 +194,7 @@ Percentiles are also used in the context of talking about the quartiles in a dis
 
 Here's an example illustrating Percentile in normal distribution:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/2.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/2.png)
 
 Looking at the normal distribution in the preceding image, we can talk about quartiles. Quartile 1 (Q1) and quartile 3 (Q3) in the middle are just the points that contain together 50% of the data, so 25% are on left side of the median and 25% are on the right side of the median.
 
@@ -215,7 +209,7 @@ Let's look at some more examples of percentiles using Python and kind of get our
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `Percentiles.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/Percentiles.ipynb
+
 
 
 Let's start off by generating some randomly distributed normal data, or normally distributed random data, rather, refer to the following code block:
@@ -233,7 +227,7 @@ plt.show()
 
 In this example, what we're going to do is generate some data centered around zero, that is with a mean of zero, with a standard deviation of 0.5, and I'm going to make 10000 data points with that distribution. Then, we're going to plot a histogram and see what we come up with.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/3.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/3.png)
 
 The generated histogram looks very much like a normal distribution, but because there is a random component we have a little outlier near the deviation of -2 in this example here. Things are tipped a little bit at the mean, a little bit of random variation there to make things interesting.
 
@@ -291,7 +285,7 @@ It's one of those examples where people in statistics and data science like to u
 
 Basically, moments are ways to measure the shape of a data distribution, of a probability density function, or of anything, really. Mathematically, we've got some really fancy notation to define them:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/4.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/4.png)
 
 If you do know calculus, it's actually not that complicated of a concept. We're taking the difference between each value from some value raised to the nth power, where n is the moment number and integrating across the entire function from negative infinity to infinity. But intuitively, it's a lot easier than calculus.
 
@@ -306,13 +300,13 @@ Ready? Here we go!
 - The second moment is the variance. That's it. The second moment of the dataset is the same thing as the variance value. It might seem a little bit creepy that these things kind of fall out of the math naturally, but think about it. The variance is really based on the square of the differences from the mean, so coming up with a mathematical way of saying that variance is related to mean isn't really that much of a stretch, right. It's just that simple.
 - Now when we get to the third and fourth moments, things get a little bit trickier, but they're still concepts that are easy to grasp. The third moment is called skew, and it is basically a measure of how lopsided a distribution is.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/5.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/5.png)
 
 You can see in these two examples above that, if I have a longer tail on the left, now then that is a negative skew, and if I have a longer tail on the right then, that's a positive skew. The dotted lines show what the shape of a normal distribution would look like without skew. The dotted line out on the left side then I end up with a negative skew, or on the other side, a positive skew in that example. OK, so that's all skew is. It's basically stretching out the tail on one side or the other, and it is a measure of how lopsided, or how skewed a distribution is.
 
 - The fourth moment is called kurtosis. Wow, that's a fancy word! All that really is, is how thick is the tail and how sharp is the peak. So again, it's a measure of the shape of the data distribution. Here's an example:
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/6.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/6.png)
 
 You can see that the higher peak values have a higher kurtosis value. The topmost curve has a higher kurtosis than the bottommost curve. It's a very subtle difference, but a difference nonetheless. It basically measures how peaked your data is.
 
@@ -325,7 +319,7 @@ Let's play around in Python and actually compute these moments and see how you d
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `Moments.ipynb` in the `work` folder.
 
-You can also open the Jupyter Notebook at https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/notebooks/work/Moments.ipynb
+
 
 Let's again create that same normal distribution of random data. Again, we're going to make it centered around zero, with a 0.5 standard deviation and 10,000 data points, and plot that out:
 
@@ -341,7 +335,7 @@ plt.show()
 
 So again, we get a randomly generated set of data with a normal distribution around zero.
 
-![](https://github.com/fenago/katacoda-scenarios/raw/master/datascience-machine-learning/datascience-machine-learning-chapter-02-01/steps/9/7.png)
+![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/7.png)
 
 Now, we find the mean and variance. We've done this before; NumPy just gives you a mean and var function to compute that. So, we just call np.mean to find the first moment, which is just a fancy word for the mean, as shown in the following code:
 
