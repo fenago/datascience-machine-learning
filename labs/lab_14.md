@@ -22,6 +22,7 @@ Now, move in the directory which contains the source code.
 - There should be terminal opened already. You can also open New terminal by Clicking `File` > `New` > `Terminal` from the top menu.
 - To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
+You can access jupyter lab at `http://<host-ip>/lab/workspaces/lab14_Spark`
 
 
 

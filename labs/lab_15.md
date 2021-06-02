@@ -21,7 +21,7 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 All Notebooks are present in `work/datascience-machine-learning` folder.
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
+You can access jupyter lab at `http://<host-ip>/lab/workspaces/lab15_Design`
 
 
 
