@@ -28,65 +28,6 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
- ### Ensemble learning
-
- When we talked about random forests, that was an example of ensemble learning, where we're actually combining multiple models together to come up with a better result than any single model could come up with. So, let's learn about that in a little bit more depth. Let's talk about ensemble learning a little bit more.
-
-So, remember random forests? We had a bunch of decision trees that were using different subsamples of the input data, and different sets of attributes that it would branch on, and they all voted on the final result when you were trying to classify something at the end. That's an example of ensemble learning. Another example: when we were talking about k-means clustering, we had the idea of maybe using different k-means models with different initial random centroids, and letting them all vote on the final result as well. That is also an example of ensemble learning.
-
-Basically, the idea is that you have more than one model, and they might be the same kind of model or it might be different kinds of models, but you run them all, on your set of training data, and they all vote on the final result for whatever it is you're trying to predict. And oftentimes, you'll find that this ensemble of different models produces better results than any single model could on its own.
-
-
-A good example, from a few years ago, was the Netflix prize. Netflix ran a contest where they offered, I think it was a million dollars, to any researcher who could outperform their existing movie recommendation algorithm. The ones that won were ensemble approaches, where they actually ran multiple recommender algorithms at once and let them all vote on the final result. So, ensemble learning can be a very powerful, yet simple tool, for increasing the quality of your final results in machine learning. Let us now try to explore various types of ensemble learning:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/3/1.png)
-
-Now, there is a whole field of research on ensemble learning that tries to find the optimal ways of doing ensemble learning, and if you want to sound smart, usually that involves using the word Bayes a lot. So, there are some very advanced methods of doing ensemble learning but all of them have weak points, and I think this is yet another lesson in that we should always use the simplest technique that works well for us.
-
-
-Now these are all very complicated techniques that I can't really get into in the scope of this book, but at the end of the day, it's hard to outperform just the simple techniques that we've already talked about. A few of the complex techniques are listed here:
-
-- **Bayes optical classifier:** In theory, there's something called the Bayes Optimal Classifier that will always be the best, but it's impractical, because it's computationally prohibitive to do it.
-- **Bayesian parameter averaging:** Many people have tried to do variations of the Bayes Optimal Classifier to make it more practical, like the Bayesian Parameter Averaging variation. But it's still susceptible to overfitting and it's often outperformed by bagging, which is the same idea behind random forests; you just resample the data multiple times, run different models, and let them all vote on the final result. Turns out that works just as well, and it's a heck of a lot simpler!
-- **Bayesian model combination:** Finally, there's something called Bayesian Model Combination that tries to solve all the shortcomings of Bayes Optimal Classifier and Bayesian Parameter Averaging. But, at the end of the day, it doesn't do much better than just cross validating against the combination of models.
-
-Again, these are very complex techniques that are very difficult to use. In practice, we're better off with the simpler ones that we've talked about in more detail. But, if you want to sound smart and use the word Bayes a lot it's good to be familiar with these techniques at least, and know what they are.
-
-So, that's ensemble learning. Again, the takeaway is that the simple techniques, like bootstrap aggregating, or bagging, or boosting, or stacking, or bucket of models, are usually the right choices. There are some much fancier techniques out there but they're largely theoretical. But, at least you know about them now.
-
-It's always a good idea to try ensemble learning out. It's been proven time and time again that it will produce better results than any single model, so definitely consider it!
-
-### Support vector machine overview
-
-Finally, we're going to talk about support vector machines (SVM), which is a very advanced way of clustering or classifying higher dimensional data.
-
-So, what if you have multiple features that you want to predict from? SVM can be a very powerful tool for doing that, and the results can be scarily good! It's very complicated under the hood, but the important things are understanding when to use it, and how it works at a higher level. So, let's cover SVM now.
-
-Support vector machines is a fancy name for what actually is a fancy concept. But fortunately, it's pretty easy to use. The important thing is knowing what it does, and what it's good for. So, support vector machines works well for classifying higher-dimensional data, and by that I mean lots of different features. So, it's easy to use something like k-means clustering, to cluster data that has two dimensions, you know, maybe age on one axis and income on another. But, what if I have many, many different features that I'm trying to predict from. Well, support vector machines might be a good way of doing that.
-
-Support vector machines finds higher-dimensional support vectors across which to divide the data (mathematically, these support vectors define hyperplanes). That is, mathematically, what support vector machines can do is find higher dimensional support vectors (that's where it gets its name from) that define the higher-dimensional planes that split the data into different clusters.
-
-
-Obviously the math gets pretty weird pretty quickly with all this. Fortunately, the scikit-learn package will do it all for you, without you having to actually get into it. Under the hood, you need to understand though that it uses something called the kernel trick to actually find those support vectors or hyperplanes that might not be apparent in lower dimensions. There are different kernels you can use, to do this in different ways. The main point is that SVM's are a good choice if you have higher- dimensional data with lots of different features, and there are different kernels you can use that have varying computational costs and might be better fits for the problem at hand.
-
-**Note:**
-
-The important point is that SVMs employ some advanced mathematical trickery to cluster data, and it can handle data sets with lots of features. It's also fairly expensive - the "kernel trick" is the only thing that makes it possible.
-
-I want to point out that SVM is a supervised learning technique. So, we're actually going to train it on a set of training data, and we can use that to make predictions for future unseen data or test data. It's a little bit different than k-means clustering and that k-means was completely unsupervised; with a support vector machine, by contrast, it is training based on actual training data where you have the answer of the correct classification for some set of data that it can learn from. So, SVM's are useful for classification and clustering, if you will - but it's a supervised technique!
-
-One example that you often see with SVMs is using something called support vector classification. The typical example uses the Iris dataset which is one of the sample datasets that comes with scikit-learn. This set is a classification of different flowers, different observations of different Iris flowers and their species. The idea is to classify these using information about the length and width of the petal on each flower, and the length and width of the sepal of each flower. (The sepal, apparently, is a little support structure underneath the petal. I didn't know that until now either.) You have four dimensions of attributes there; you have the length and width of the petal, and the length and the width of the sepal. You can use that to predict the species of an Iris given that information.
-
-Here's an example of doing that with SVC: basically, we have sepal width and sepal length projected down to two dimensions so we can actually visualize it:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/6/1.jpg)
-
-With different kernels you might get different results. SVC with a linear kernel will produce something very much as you see in the preceding image. You can use polynomial kernels or fancier kernels that might project down to curves in two dimensions as shown in the image. You can do some pretty fancy classification this way.
-
-These have increasing computational costs, and they can produce more complex relationships. But again, it's a case where too much complexity can yield misleading results, so you need to be careful and actually use train/test when appropriate. Since we are doing supervised learning, you can actually do train/test and find the right model that works, or maybe use an ensemble approach.
-
-You need to arrive at the right kernel for the task at hand. For things like polynomial SVC, what's the right degree polynomial to use? Even things like linear SVC will have different parameters associated with them that you might need to optimize for. This will make more sense with a real example, so let's dive into some actual Python code and see how it works!
-
 ### Using SVM to cluster people by using scikit-learn
 
 Let's try out some support vector machines here. Fortunately, it's a lot easier to use than it is to understand. We're going to go back to the same example I used for k-means clustering, where I'm going to create some fabricated cluster data about ages and incomes of a hundred random people.
@@ -208,6 +149,3 @@ Now, linear is just one of many kernels that you can use, like I said there are 
 
 This is a little exercise, not just in playing with SVM and different kinds of SVC, but also in familiarizing yourself with how to learn more on your own about SVC. And, honestly, a very important trait of any data scientist or engineer is going to be the ability to go and look up information yourself when you don't know the answers.
 
-So, you know, I'm not being lazy by not telling you what those other kernels are, I want you to get used to the idea of having to look this stuff up on your own, because if you have to ask someone else about these things all the time you're going to get really annoying, really fast in a workplace. So, go look that up, play around it, see what you come up with.
-
-So, that's SVM/SVC, a very high power technique that you can use for classifying data, in supervised learning. Now you know how it works and how to use it, so keep that in your bag of tricks!

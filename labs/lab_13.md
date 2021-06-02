@@ -4,9 +4,7 @@
 Lab : Apache Spark - Machine Learning on Big Data - Part 1
 -------------------------------------
 
-So far in this book we've talked about a lot of general data mining and machine learning techniques that you can use in your data science career, but they've all been running on your desktop. As such, you can only run as much data as a single machine can process using technologies such as Python and scikit-learn.
-
-Now, everyone talks about big data, and odds are you might be working for a company that does in fact have big data to process. Big data meaning that you can't actually control it all, you can't actually wrangle it all on just one system. You need to actually compute it using the resources of an entire cloud, a cluster of computing resources. And that's where Apache Spark comes in. Apache Spark is a very powerful tool for managing big data, and doing machine learning on large Datasets. By the end of the chapter, you will have an in-depth knowledge of the following topics:
+In this lab, we'll cover the following topics:
 
 - Installing and working with Spark
 - Resilient Distributed Datasets (RDDs)
@@ -28,81 +26,6 @@ PySpark is available in pypi. To install just run `pip install pyspark sklearn`
 
 **Note:** Above packages are already installed.
 
-### Spark introduction
-
-Let's get started with a high-level overview of Apache Spark and see what it's all about, what it's good for, and how it works.
-
-What is Spark? Well, if you go to the Spark website, they give you a very high-level, hand-wavy answer, "A fast and general engine for large-scale data processing." It slices, it dices, it does your laundry. Well, not really. But it is a framework for writing jobs or scripts that can process very large amounts of data, and it manages distributing that processing across a cluster of computing for you. Basically, Spark works by letting you load your data into these large objects called Resilient Distributed Data stores, RDDs. It can automatically perform operations that transform and create actions based on those RDDs,which you can think of as large data frames.
-
-The beauty of it is that Spark will automatically and optimally spread that processing out amongst an entire cluster of computers, if you have one available. You are no longer restricted to what you can do on a single machine or a single machine's memory. You can actually spread that out to all the processing capabilities and memory that's available to a cluster of machines, and, in this day and age, computing is pretty cheap. You can actually rent time on a cluster through things like Amazon's Elastic MapReduce service, and just rent some time on a whole cluster of computers for just a few dollars, and run your job that you couldn't run on your own desktop.
-
-
-**It's scalable**
-
-How is Spark scalable? Well, let's get a little bit more specific here in how it all works.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/1.png)
-
-The way it works is, you write a driver program, which is just a little script that looks just like any other Python script really, and it uses the Spark library to actually write your script with. Within that library, you define what's called a Spark Context, which is sort of the root object that you work within when you're developing in Spark.
-
-From there, the Spark framework kind of takes over and distributes things for you. So if you're running in standalone mode on your own computer, like we're going to be doing in these upcoming sections, it all just stays there on your computer, obviously. However, if you are running on a cluster manager, Spark can figure that out and automatically take advantage of it. Spark actually has its own built-in cluster manager, you can actually use it on its own without even having Hadoop installed, but if you do have a Hadoop cluster available to you, it can use that as well.
-
-Hadoop is more than MapReduce; there's actually a component of Hadoop called YARN that separates out the entire cluster management piece of Hadoop. Spark can interface with YARN to actually use that to optimally distribute the components of your processing amongst the resources available to that Hadoop cluster.
-
-Within a cluster, you might have individual executor tasks that are running. These might be running on different computers, or they might be running on different cores of the same computer. They each have their own individual cache and their own individual tasks that they run. The driver program, the Spark Context and the cluster manager work together to coordinate all this effort and return the final result back to you.
-
-The beauty of it is, all you have to do is write the initial little script, the driver program, which uses a Spark Context to describe at a high level the processing you want to do on this data. Spark, working together with the cluster manager that you're using, figures out how to spread that out and distribute it so you don't have to worry about all those details. Well, if it doesn't work, obviously, you might have to do some troubleshooting to figure out if you have enough resources available for the task at hand, but, in theory, it's all just magic.
-
-
-**It's fast**
-
-What's the big deal about Spark? I mean, there are similar technologies like MapReduce that have been around longer. Spark is fast though, and on the website they claim that Spark is "up to 100x faster than MapReduce when running a job in memory, or 10 times faster on disk." Of course, the key words here are "up to," your mileage may vary. I don't think I've ever seen anything, actually, run that much faster than MapReduce. Some well-crafted MapReduce code can actually still be pretty darn efficient. But I will say that Spark does make a lot of common operations easier. MapReduce forces you to really break things down into mappers and reducers, whereas Spark is a little bit higher level. You don't have to always put as much thought into doing the right thing with Spark.
-
-Part of that leads to another reason why Spark is so fast. It has a DAG engine, a directed acyclic graph. Wow, that's another fancy word. What does it mean? The way Spark works is, you write a script that describes how to process your data, and you might have an RDD that's basically like a data frame. You might do some sort of transformation on it, or some sort of action on it. But nothing actually happens until you actually perform an action on that data. What happens at that point is, Spark will say "hmm, OK. So, this is the end result you want on this data. What are all the other things I had to do to get up this point, and what's the optimal way to lay out the strategy for getting to that point?" So, under the hood, it will figure out the best way to split up that processing, and distribute that information to get the end result that you're looking for. So, the key inside here, is that Spark waits until you tell it to actually produce a result, and only at that point does it actually go and figure out how to produce that result. So, it's kind of a cool concept there, and that's the key to a lot of its efficiency.
-
-**It's young**
-
-Spark is a very hot technology, and is relatively young, so it's still very much emerging and changing quickly, but a lot of big people are using it. Amazon, for example, has claimed they're using it, eBay, NASA's Jet Propulsional Laboratories, Groupon, TripAdvisor, Yahoo, and many, many others have too. I'm sure there's a lot of companies using it that don't confess up to it, but if you go to the Spark Apache Wiki page at http://spark.apache.org/powered-by.html.
-
-There's actually a list you can look up of known big companies that are using Spark to solve real-world data problems. If you are worried that you're getting into the bleeding edge here, fear not, you're in very good company with some very big people that are using Spark in production for solving real problems. It is pretty stable stuff at this point.
-
-**It's not difficult**
-
-It's also not that hard. You have your choice of programming in Python, Java, or Scala, and they're all built around the same concept that I just described earlier, that is, the Resilient Distributed Dataset, RDD for short. We'll talk about that in a lot more detail in the coming sections of this chapter.
-
-### Components of Spark
-
-Spark actually has many different components that it's built up of. So there is a Spark Core that lets you do pretty much anything you can dream up just using Spark Core functions alone, but there are these other things built on top of Spark that are also useful.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/2.png)
-
-- **Spark Streaming:** Spark Streaming is a library that lets you actually process data in real time. Data can be flowing into a server continuously, say, from weblogs, and Spark Streaming can help you process that data in real time as you go, forever.
-- **Spark SQL:** This lets you actually treat data as a SQL database, and actually issue SQL queries on it, which is kind of cool if you're familiar with SQL already.
-- **MLlib:** This is what we're going to be focusing on in this section. It is actually a machine learning library that lets you perform common machine learning algorithms, with Spark underneath the hood to actually distribute that processing across a cluster. You can perform machine learning on much larger Datasets than you could have otherwise.
-- **GraphX:** This is not for making pretty charts and graphs. It refers to graph in the network theory sense. Think about a social network; that's an example of a graph. GraphX just has a few functions that let you analyze the properties of a graph of information.
-
-### Python versus Scala for Spark
-
-I do get some flack sometimes about using Python when I'm teaching people about Apache Spark, but there's a method to my madness. It is true that a lot of people use Scala when they're writing Spark code, because that's what Spark is developed in natively. So, you are incurring a little bit of overhead by forcing Spark to translate your Python code into Scala and then into Java interpreter commands at the end of the day.
-
-However, Python's a lot easier, and you don't need to compile things. Managing dependencies is also a lot easier. You can really focus your time on the algorithms and what you're doing, and less on the minutiae of actually getting it built, and running, and compiling, and all that nonsense. Plus, obviously, this book has been focused on Python so far, and it makes sense to keep using what we've learned and stick with Python throughout these lectures. Here's a quick summary of the pros and cons of the two languages:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/3.png)
-
-However, I will say that if you were to do some Spark programming in the real world, there's a good chance people are using Scala. Don't worry about it too much, though, because in Spark the Python and Scala code ends up looking very similar because it's all around the same RDD concept. The syntax is very slightly different, but it's not that different. If you can figure out how to do Spark using Python, learning how to use it in Scala isn't that big of a leap, really. Here's a quick example of the same code in the two languages:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/3/4.png)
-
-So, that's the basic concepts of Spark itself, why it's such a big deal, and how it's so powerful in letting you run machine learning algorithms on very large Datasets, or any algorithm really. Let's now talk in a little bit more detail about how it does that, and the core concept of the Resilient Distributed Dataset.
-
-### Spark and Resilient Distributed Datasets (RDD)
-
-Let's get a little bit deeper into how Spark works. We're going to talk about Resilient Distributed Datasets, known as RDDs. It's sort of the core that you use when programming in Spark, and we'll have a few code snippets to try to make it real. We're going to give you a crash course in Apache Spark here. There's a lot more depth to it than what we're going to cover in the next few sections, but I'm just going to give you the basics you need to actually understand what's going on in these examples, and hopefully get you started and pointed in the right direction.
-
-As mentioned, the most fundamental piece of Spark is called the Resilient Distributed Dataset, an RDD, and this is going to be the object that you use to actually load and transform and get the answers you want out of the data that you're trying to process. It's a very important thing to understand. The final letter in RDD stands for Dataset, and at the end of the day that's all it is; it's just a bunch of rows of information that can contain pretty much anything. But the key is the R and the first D.
-
-- **Resilient:** It is resilient in that Spark makes sure that if you're running this on a cluster and one of those clusters goes down, it can automatically recover from that and retry. Now, that resilience only goes so far, mind you. If you don't have enough resources available to the job that you're trying to run, it will still fail, and you will have to add more resources to it. There's only so many things it can recover from; there is a limit to how many times it will retry a given task. But it does make its best effort to make sure that in the face of an unstable cluster or an unstable network it will still continue to try its best to run through to completion.
-- **Distributed:** Obviously, it is distributed. The whole point of using Spark is that you can use it for big data problems where you can actually distribute the processing across the entire CPU and memory power of a cluster of computers. That can be distributed horizontally, so you can throw as many computers as you want to a given problem. The larger the problem, the more computers; there's really no upper bound to what you can do there.
 
 ### The SparkContext object
 
@@ -181,9 +104,6 @@ rdd.map(lambda x: x*x)
 
 Let's say I created an RDD just from the list 1, 2, 3, 4. I can then call rdd.map() with a lambda function of x that takes in each row, that is, each value of that RDD, calls it x, and then it applies the function x multiplied by x to square it. If I were to then collect the output of this RDD, it would be 1, 4, 9 and 16, because it would take each individual entry of that RDD and square it, and put that into a new RDD.
 
-If you don't remember what lambda functions are, we did talk about it a little bit earlier in this book, but as a refresher, the lambda function is just a shorthand for defining a function in line. So rdd.map(lambda x: x*x) is exactly the same thing as a separate function def squareIt(x): return x*x, and saying rdd.map(squareIt).
-
-It's just a shorthand for very simple functions that you want to pass in as a transformation. It eliminates the need to actually declare this as a separate named function of its own. That's the whole idea of functional programming. So you can say you understand functional programming now, by the way! But really, it's just shorthand notation for defining a function inline as part of the parameters to a map() function, or any transformation for that matter.
 
 ### Actions
 
@@ -195,42 +115,10 @@ Remember, too, that nothing actually happens in Spark until you call an action. 
 
 That is Spark 101 in a nutshell. Those are the basics you need for Spark programming. Basically, what is an RDD and what are the things you can do to an RDD. Once you get those concepts, then you can write some Spark code. Let's change tack now and talk about MLlib, and some specific features in Spark that let you do machine learning algorithms using Spark.
 
-### Introducing MLlib
 
-Fortunately, you don't have to do things the hard way in Spark when you're doing machine learning. It has a built-in component called MLlib that lives on top of Spark Core, and this makes it very easy to perform complex machine learning algorithms using massive Datasets, and distributing that processing across an entire cluster of computers. So, very exciting stuff. Let's learn more about what it can do.
-
-#### Some MLlib Capabilities
-So, what are some of the things MLlib can do? Well, one is feature extraction.
-
-One thing you can do at scale is term frequency and inverse document frequency stuff, and that's useful for creating, for example, search indexes. We will actually go through an example of that later in the chapter. The key, again, is that it can do this across a cluster using massive Datasets, so you could make your own search engine for the web with this, potentially. It also offers basic statistics functions, chi-squared tests, Pearson or Spearman correlation, and some simpler things like min, max, mean, and variance. Those aren't terribly exciting in and of themselves, but what is exciting is that you can actually compute the variance or the mean or whatever, or the correlation score, across a massive Dataset, and it would actually break that Dataset up into various chunks and run that across an entire cluster if necessary.
-
-So, even if some of these operations aren't terribly interesting, what's interesting about it is the scale at which it can operate at. It can also support things like linear regression and logistic regression, so if you need to fit a function to a massive set of data and use that for predictions, you can do that too. It also supports Support Vector Machines. We're getting into some of the more fancy algorithms here, some of the more advanced stuff, and that too can scale up to massive Datasets using Spark's MLlib. There is a Naive Bayes classifier built into MLlib, so, remember that spam classifier that we built earlier in the book? You could actually do that for an entire e-mail system using Spark, and scale that up as far as you want to.
-
-`Decision trees`, one of my favorite things in machine learning, are also supported by Spark,and we'll actually have an example of that later in this scenario. We'll also look at K-Means clustering, and you can do clustering using K-Means and massive Datasets with Spark and MLlib. Even principal component analysis and SVD (Singular Value Decomposition) can be done with Spark as well, and we'll have an example of that too. And, finally, there's a built-in recommendations algorithm called Alternating Least Squares that's built into MLlib. Personally, I've had kind of mixed results with it, you know, it's a little bit too much of a black box for my taste, but I am a recommender system snob, so take that with a grain of salt!
-
-### Special MLlib data types
-
-Using MLlib is usually pretty straightforward, there are just some library functions you need to call. It does introduce a few new data types; however, that you need to know about,and one is the vector.
-
-**The vector data type**
-
-Remember when we were doing movie similarities and movie recommendations earlier in the book? An example of a vector might be a list of all the movies that a given user rated. There are two types of vector, sparse and dense. Let's look at an example of those. There are many, many movies in the world, and a dense vector would actually represent data for every single movie, whether or not a user actually watched it. So, for example, let's say I have a user who watched Toy Story, obviously I would store their rating for Toy Story, but if they didn't watch the movie Star Wars, I would actually store the fact that there is not a number for Star Wars. So, we end up taking up space for all these missing data points with a dense vector. A sparse vector only stores the data that exists, so it doesn't waste any memory space on missing data, OK. So, it's a more compact form of representing a vector internally, but obviously that introduces some complexity while processing. So, it's a good way to save memory if you know that your vectors are going to have a lot of missing data in them.
-
-**LabeledPoint data type**
-
-There's also a LabeledPoint data type that comes up, and that's just what it sounds like, a point that has some sort of label associated with it that conveys the meaning of this data in human readable terms.
-
-**Rating data type**
-
-Finally, there is a Rating data type that you'll encounter if you're using recommendations with MLlib. This data type can take in a rating that represents a 1-5 or 1-10, whatever star rating a person might have, and use that to inform product recommendations automatically.
-
-So, I think you finally have everything you need to get started, let's dive in and actually look at some real MLlib code and run it, and then it will make a lot more sense.
 
 ### Decision Trees in Spark with MLlib
 
-Alright, let's actually build some decision trees using Spark and the MLlib library, this is very cool stuff. Wherever you put the course materials for this book, I want you to go to that folder now. Make sure you're completely closed out of Canopy, or whatever environment you're using for Python development, because I want to make sure you're starting it from this directory, OK? And find the SparkDecisionTree script, and double-click that to open up Canopy:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/1.png)
 
 Now, up until this point we've been using IPython notebooks for our code, but you can't really use those very well with Spark. With Spark scripts, you need to actually submit them to the Spark infrastructure and run them in a very special way, and we'll see how that works shortly.
 
@@ -239,7 +127,7 @@ So, we are just looking at a raw Python script file now, without any of the usua
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/2.png)
 
-We'll go through it slowly, because this is your first Spark script that you've seen in this book.
+
 
 First, we're going to import, from pyspark.mllib, the bits that we need from the machine learning library for Spark.
 
@@ -331,7 +219,7 @@ Let's go to the first bit of Python code that actually gets executed in this scr
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/3.png)
 
-The first thing we're going to do is load up this PastHires.csv file, and that's the same file we used in the decision tree exercise that we did earlier in this book.
+The first thing we're going to do is load up this PastHires.csv file, and that's the same file we used in the decision tree exercise that we did earlier in this course.
 
 Let's pause quickly to remind ourselves of the content of that file. If you remember right, we have a bunch of attributes of job candidates, and we have a field of whether or not we hired those people. What we're trying to do is build up a decision tree that will predict - would we hire or not hire a person given those attributes?
 
@@ -508,16 +396,22 @@ That will actually print out a little representation of the decision tree that i
 
 Alright, feel free to take some time, stare at this script a little bit more, digest what's going on, but, if you're ready, let's move on and actually run this beast. So, to do so, you can't just run it directly from Canopy. We're going to go to the Tools menu and open up a Canopy Command Prompt, and this just opens up a Windows command prompt with all the necessary environment variables in place for running Python scripts in Canopy. Make sure that the working directory is the directory that you installed all of the course materials into.
 
+#### Run Code
+
 All we need to do is call spark-submit, so this is a script that lets you run Spark scripts from Python, and then the name of the script, `SparkDecisionTree.py`. That's all I have to do.
 
 ```
 spark-submit SparkDecisionTree.py 
 ```
 
-#### Run Code
-Now, run the python code by running: `python SparkDecisionTree.py`
+**Note:** We can also run python code by running:
 
-Hit Return, and off it will go. Again, if I were doing this on a cluster and I created my SparkConf accordingly, this would actually get distributed to the entire cluster, but, for now, we're just going to run it on my computer. When it's finished, you should see the below output:
+```
+python SparkDecisionTree.py
+```
+
+
+When it's finished, you should see the below output:
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/7.png)
 
@@ -620,14 +514,7 @@ WSSSE = data.map(lambda point: error(point)).reduce(lambda x, y: x + y)
 print("Within Set Sum of Squared Error = " + str(WSSSE)) 
 ```
 
-First of all, we define this error function that computes the squared error for each point. It just takes the distance from the point to the centroid center of each cluster and sums it up. To do that, we're taking our source data, calling a lambda function on it that actually computes the error from each centroid center point, and then we can chain different operations together here.
-
-
-First, we call map to compute the error for each point. Then to get a final total that represents the entire Dataset, we're calling reduce on that result. So, we're doing data.map to compute the error for each point, and then reduce to take all of those errors and add them all together. And that's what the little lambda function does. This is basically a fancy way of saying, "I want you to add up everything in this RDD into one final result." reduce will take the entire RDD, two things at a time, and combine them together using whatever function you provide. The function I'm providing it above is "take the two rows that I'm combining together and just add them up."
-
-If we do that throughout every entry of the RDD, we end up with a final summed-up total. It might seem like a little bit of a convoluted way to just sum up a bunch of values, but by doing it this way we are able to make sure that we can actually distribute this operation if we need to. We could actually end up computing the sum of one piece of the data on one machine, and a sum of a different piece over on another machine, and then take those two sums and combine them together into a final result. This reduce function is saying, how do I take any two intermediate results from this operation, and combine them together?
-
-Again, feel free to take a moment and stare at this a little bit longer if you want it to sink in. Nothing really fancy going on here, but there are a few important points:
+There are a few important points:
 
 - We introduced the use of a cache if you want to make sure that you don't do unnecessary recomputations on an RDD that you're going to use more than once.
 - We introduced the use of the reduce function.
@@ -636,13 +523,20 @@ Again, feel free to take a moment and stare at this a little bit longer if you w
 At the end of the day, it will just do k-means clustering, so let's go ahead and run it.
 
 #### Run Code
-Now, run the python code by running: `python SparkKMeans.py`
+Now, run the python code by running: `spark-submit SparkKMeans.py`
+
+
+**Note:** We can also run python code by running:
+
+```
+python SparkKMeans.py
+```
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/23/2.png)
 
 
-It worked, awesome! So remember, the output that we asked for was, first of all, a count of how many points ended up in each cluster. So, this is telling us that cluster 0 had 21 points in it, cluster 1 had 20 points in it, and so on and so forth. It ended up pretty evenly distributed, so that's a good sign.
+Remember, the output that we asked for was, first of all, a count of how many points ended up in each cluster. So, this is telling us that cluster 0 had 21 points in it, cluster 1 had 20 points in it, and so on and so forth. It ended up pretty evenly distributed, so that's a good sign.
 
 Next, we printed out the cluster assignments for each individual point, and, if you remember, the original data that fabricated this data did it sequentially, so it's actually a good thing that you see all of the 3s together, and all the 1s together, and all the 4s together, it looks like it started to get a little bit confused with the 0s and 2s, but by and large, it seems to have done a pretty good job of uncovering the clusters that we created the data with originally.
 
-And finally, we computed the WSSSE metric, it came out to 19.97 in this example. So, if you want to play around with this a little bit, I encourage you to do so. You can see what happens to that error metric as you increase or decrease the values of K, and think about why that may be. You can also experiment with what happens if you don't normalize all the data, does that actually affect your results in a meaningful way? Is that actually an important thing to do? And you can also experiment with the maxIterations parameter on the model itself and get a good feel of what that actually does to the final results, and how important it is. So, feel free to mess around with it and experiment away. That's k-means clustering done with MLlib and Spark in a scalable manner. Very cool stuff.
+And finally, we computed the WSSSE metric, it came out to 19.97 in this example. So, if you want to play around with this a little bit, . You can see what happens to that error metric as you increase or decrease the values of K, and think about why that may be. You can also experiment with what happens if you don't normalize all the data, does that actually affect your results in a meaningful way? Is that actually an important thing to do? And you can also experiment with the maxIterations parameter on the model itself and get a good feel of what that actually does to the final results, and how important it is. So, feel free to mess around with it and experiment away. That's k-means clustering done with MLlib and Spark in a scalable manner. Very cool stuff.

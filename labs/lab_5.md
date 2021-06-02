@@ -5,8 +5,6 @@ Lab : Matplotlib and Advanced Probability Concepts - Part 2
 -------------------------------------
 
 
-After going through some of the simpler concepts of statistics and probability in the previous chapter, we're now going to turn our attention to some more advanced topics that you'll need to be familiar with to get the most out of the remainder of this book. Don't worry, they're not too complicated.
-
 We'll be covering the following topics in this scenario:
 
 - Understanding conditional probability with examples
@@ -24,34 +22,6 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-
- ### Conditional probability
-
- Next, we're going to talk about conditional probability. It's a very simple concept. It's trying to figure out the probability of something happening given that something else occurred. Although it sounds simple, it can be actually very difficult to wrap your head around some of the nuances of it. So get an extra cup of coffee, make sure your thinking cap's on, and if you're ready for some more challenging concepts here. Let's do this.
-
-Conditional probability is a way to measure the relationship between two things happening to each other. Let's say I want to find the probability of an event happening given that another event already happened. Conditional probability gives you the tools to figure that out.
-
-What I'm trying to find out with conditional probability is if I have two events that depend on each other. That is, what's the probability that both will occur?
-
-In mathematical notation, the way we indicate things here is that P(A,B) represents the probability of both A and B occurring independent of each other. That is, what's the probability of both of these things happening irrespective of everything else.
-
-Whereas this notation, P(B|A), is read as the probability of B given A. So, what is the probability of B given that event A has already occurred? It's a little bit different, and these things are related like this:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/1.png)
-
-The probability of B given A is equal to the probability of A and B occurring over the probability of A alone occurring, so this teases out the probability of B being dependent on the probability of A.
-
-It'll make more sense with an example here, so bear with me.
-
-Let's say that I give you, my readers, two tests, and 60% of you pass both tests. Now the first test was easier, 80% of you passed that one. I can use this information to figure out what percentage of readers who passed the first test also passed the second. So here's a real example of the difference between the probability of B given A and the probability of A and B.
-
-I'm going to represent A as the probability of passing the first test, and B as the probability of passing the second test. What I'm looking for is the probability of passing the second test given that you passed the first, that is, P (B|A).
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/2.png)
-
-So the probability of passing the second test given that you passed the first is equal to the probability of passing both tests, P(A,B) (I know that 60% of you passed both tests irrespective of each other), divided by the probability of passing the first test, P(A), which is 80%. It's worked out to 60% passed both tests, 80% passed the first test, therefore the probability of passing the second given that you passed the first works out to 75%.
-
-OK, it's a little bit tough to wrap your head around this concept. It took me a little while to really internalize the difference between the probability of something given something and the probability of two things happening irrespective of each other. Make sure you internalize this example and how it's really working before you move on.
 
 ### Conditional probability exercises in Python
 
@@ -86,9 +56,6 @@ for _ in range(100000):
 What I'm going to do is take 100,000 virtual people and randomly assign them to an age bracket. They can be in their 20s, their 30s, their 40s, their 50s, their 60s, or their 70s. I'm also going to assign them a number of things that they bought during some period of time, and I'm going to weight the probability of purchasing something based on their age.
 
 What this code ends up doing is randomly assigning each person to an age group using the random.choice() function from NumPy. Then I'm going to assign a probability of purchasing something, and I have weighted it such that younger people are less likely to buy stuff than older people. I'm going to go through 100,000 people and add everything up as I go, and what I end up with are two Python dictionaries: one that gives me the total number of people in each age group, and another that gives me the total number of things bought within each age group. I'm also going to keep track of the total number of things bought overall. Let's go ahead and run that code.
-
-
-If you want to take a second to kind of work through that code in your head and figure out how it works, you've got the IPython Notebook. You can go back into that later too. Let's take a look what we ended up with.
 
 
 Our totals dictionary is telling us how many people are in each age bracket, and it's pretty evenly distributed, just like we expected. The amount purchased by each age group is in fact increasing by age, so 20-year-olds only bought about 3,000 things and 70-year-olds bought about 11,000 things, and overall the entire population bought about 45,000 things.
@@ -209,7 +176,6 @@ purchases[ageDecade] += 1
 
 Modify it to actually not have a dependency between purchases and age. Make that an evenly distributed chance as well. See what that does to your results. Do you end up with a very different conditional probability of being in your 30s and purchasing something versus the overall probability of purchasing something? What does that tell you about your data and the relationship between those two different attributes? Go ahead and try that, and make sure you can actually get some results from this data and understand what's going on, and I'll run through my own solution to that exercise in just a minute.
 
-So that's conditional probability, both in theory and in practice. You can see there's a lot of little nuances to it and a lot of confusing notation. Go back and go through this section again if you need to wrap your head around it. I gave you a homework assignment, so go off and do that now, see if you can actually modify my code in that IPython Notebook to produce a constant probability of purchase for those different age groups. Come back and we'll take a look at how I solved that problem and what my results were.
 
 ### My assignment solution
 
@@ -235,6 +201,8 @@ for _ in range(100000):
     if (random.random() < purchaseProbability): 
         totalPurchases += 1 
         purchases[ageDecade] += 1 
+```
+
 What I've done here is I've taken the original snippet of code for creating our dictionary of age groups and how much was purchased by each age group for a set of 100,000 random people. Instead of making purchase probability dependent on age, I've made it a constant probability of 40%. Now we just have people randomly being assigned to an age group, and they all have the same probability of buying something. Let's go ahead and run that.
 
 
@@ -257,52 +225,3 @@ P(Purchase): 0.4003
 I can see here that the probability of purchasing something given that you're in your 30s is about the same as the probability of purchasing something irrespective of your age (that is, P(E|F) is pretty close to P(E)). That suggests that there's no real relationship between those two things, and in fact, I know there isn't from this data.
 
 Now in practice, you could just be seeing random chance, so you'd want to look at more than one age group. You'd want to look at more than one data point to see if there really is a relationship or not, but this is an indication that there's no relationship between age and probability of purchase in this sample data that we modified.
-
-So, that's conditional probability in action. Hopefully your solution was fairly close and had similar results. If not, go back and study my solution. It's right there in the data files for this book, ConditionalProbabilitySolution.ipynb, if you need to open it up and study it and play around with it. Obviously, the random nature of the data will make your results a little bit different and will depend on what choice you made for the overall purchase probability, but that's the idea.
-
-And with that behind us, let's move on to Bayes' theorem.
-
-### Bayes' theorem
-
-Now that you understand conditional probability, you can understand how to apply Bayes' theorem, which is based on conditional probability. It's a very important concept, especially if you're going into the medical field, but it is broadly applicable too, and you'll see why in a minute.
-
-You'll hear about this a lot, but not many people really understand what it means or its significance. It can tell you very quantitatively sometimes when people are misleading you with statistics, so let's see how that works.
-
-First, let's talk about Bayes' theorem at a high level. Bayes' theorem is simply this: the probability of A given B is equal to the probability of A times the probability of B given A over the probability of B. So you can substitute A and B with whatever you want.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/12/1.png)
-
-**Note:**
-
-The key insight is that the probability of something that depends on B depends very much on the base probability of B and A. People ignore this all the time.
-
-One common example is drug testing. We might say, what's the probability of being an actual user of a drug given that you tested positive for it. The reason Bayes' theorem is important is that it calls out that this very much depends on both the probability of A and the probability of B. The probability of being a drug user given that you tested positive depends very much on the base overall probability of being a drug user and the overall probability of testing positive. The probability of a drug test being accurate depends a lot on the overall probability of being a drug user in the population, not just the accuracy of the test.
-
-It also means that the probability of B given A is not the same thing as the probability of A given B. That is, the probability of being a drug user given that you tested positive can be very different from the probability of testing positive given that you're a drug user. You can see where this is going. That is a very real problem where diagnostic tests in medicine or drug tests yield a lot of false positives. You can still say that the probability of a test detecting a user can be very high, but it doesn't necessarily mean that the probability of being a user given that you tested positive is high. Those are two different things, and Bayes' theorem allows you to quantify that difference.
-
-Let's nail that example home a little bit more.
-
-Again, a drug test can be a common example of applying Bayes' theorem to prove a point. Even a highly accurate drug test can produce more false positives than true positives. So in our example here, we're going to come up with a drug test that can accurately identify users of a drug 99% of the time and accurately has a negative result for 99% of non-users, but only 0.3% of the overall population actually uses the drug in question. So we have a very small probability of actually being a user of a drug. What seems like a very high accuracy of 99% isn't actually high enough, right?
-
-We can work out the math as follows:
-
-- Event A = is a user of the drug
-- Event B = tested positively for the drug
-
-So let event A mean that you're a user of some drug, and event B the event that you tested positively for the drug using this drug test.
-
-We need to work out the probability of testing positively overall. We can work that out by taking the sum of probability of testing positive if you are a user and the probability of testing positive if you're not a user. So, P(B) works out to 1.3% (0.99*0.003+0.01*0.997) in this example. So we have a probability of B, the probability of testing positively for the drug overall without knowing anything else about you.
-
-Let's do the math and calculate the probability of being a user of the drug given that you tested positively.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-02/steps/12/2.png)
-
-So the probability of a positive test result given that you're actually a drug user works out as the probability of being a user of the drug overall (P(A)), which is 3% (you know that 3% of the population is a drug user) multiplied by P(B|A) that is the probability of testing positively given that you're a user divided by the probability of testing positively overall which is 1.3%. Again, this test has what sounds like a very high accuracy of 99%. We have 0.3% of the population which uses a drug multiplied by the accuracy of 99% divided by the probability of testing positively overall, which is 1.3%. So the probability of being an actual user of this drug given that you tested positive for it is only 22.8%. So even though this drug test is accurate 99% of the time, it's still providing a false result in most of the cases where you're testing positive.
-
-
-**Note:**
-Even though P(B|A) is high (99%), it doesn't mean P(A|B) is high.
-
-People overlook this all the time, so if there's one lesson to be learned from Bayes' theorem, it is to always take these sorts of things with a grain of salt. Apply Bayes' theorem to these actual problems and you'll often find that what sounds like a high accuracy rate can actually be yielding very misleading results if you're dealing with a low overall incidence of a given problem. We see the same thing in cancer screening and other sorts of medical screening as well. That's a very real problem; there's a lot of people getting very, very real and very unnecessary surgery as a result of not understanding Bayes' theorem. If you're going into the medical profession with big data, please, please, please remember this theorem.
-
-So that's Bayes' theorem. Always remember that the probability of something given something else is not the same thing as the other way around, and it actually depends a lot on the base probabilities of both of those two things that you're measuring. It's a very important thing to keep in mind, and always look at your results with that in mind. Bayes' theorem gives you the tools to quantify that effect. I hope it proves useful.

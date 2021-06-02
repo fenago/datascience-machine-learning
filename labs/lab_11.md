@@ -5,11 +5,7 @@ Lab : More Data Mining and Machine Learning Techniques
 -------------------------------------
 
 
-In this scenario, we talk about a few more data mining and machine learning techniques. We will talk about a really simple technique called k-nearest neighbors (KNN). We'll then use KNN to predict a rating for a movie. After that, we'll go on to talk about dimensionality reduction and principal component analysis. We'll also look at an example of PCA where we will reduce 4D data to two dimensions while still preserving its variance.
-
-We'll then walk through the concept of data warehousing and see the advantages of the newer ELT process over the ETL process. We'll learn the fun concept of reinforcement learning and see the technique used behind the intelligent Pac-Man agent of the Pac-Man game. Lastly, we'll see some fancy terminology used for reinforcement learning.
-
-We'll cover the following topics:
+In this lab, we'll cover the following topics:
 
 - The concept of k-nearest neighbors
 - Implementation of KNN to predict the rating of a movie
@@ -33,33 +29,6 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
- ### K-nearest neighbors - concepts
-
- Let's talk about a few data mining and machine learning techniques that employers expect you to know about. We'll start with a really simple one called KNN for short. You're going to be surprised at just how simple a good supervised machine learning technique can be. Let's take a look!
-
-KNN sounds fancy but it's actually one of the simplest techniques out there! Let's say you have a scatter plot and you can compute the distance between any two points on that scatter plot. Let's assume that you have a bunch of data that you've already classified, that you can train the system from. If I have a new data point, all I do is look at the KNN based on that distance metric and let them all vote on the classification of that new point.
-
-Let's imagine that the following scatter plot is plotting movies. The squares represent science fiction movies, and the triangles represent drama movies. We'll say that this is plotting ratings versus popularity, or anything else you can dream up:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/3/1.jpg)
-
-Here, we have some sort of distance that we can compute based on rating and popularity between any two points on the scatter plot. Let's say a new point comes in, a new movie that we don't know the genre for. What we could do is set K to 3 and take the 3 nearest neighbors to this point on the scatter plot; they can all then vote on the classification of the new point/movie.
-
-
-You can see if I take the three nearest neighbors (K=3), I have 2 drama movies and 1 science fiction movie. I would then let them all vote, and we would choose the classification of drama for this new point based on those 3 nearest neighbors. Now, if I were to expand this circle to include 5 nearest neighbors, that is K=5, I get a different answer. So, in that case I pick up 3 science fiction and 2 drama movies. If I let them all vote I would end up with a classification of science fiction for the new movie instead.
-
-Our choice of K can be very important. You want to make sure it's small enough that you don't go too far and start picking up irrelevant neighbors, but it has to be big enough to enclose enough data points to get a meaningful sample. So, often you'll have to use train/test or a similar technique to actually determine what the right value of K is for a given dataset. But, at the end of the day, you have to just start with your intuition and work from there.
-
-That's all there is to it, it's just that simple. So, it is a very simple technique. All you're doing is literally taking the k nearest neighbors on a scatter plot, and letting them all vote on a classification. It does qualify as supervised learning because it is using the training data of a set of known points, that is, known classifications, to inform the classification of a new point.
-
-
-But let's do something a little bit more complicated with it and actually play around with movies, just based on their metadata. Let's see if we can actually figure out the nearest neighbors of a movie based on just the intrinsic values of those movies, for example, the ratings for it, the genre information for it:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/3/2.jpg)
-
-In theory, we could recreate something similar to Customers Who Watched This Item Also Watched (the above image is a screenshot from Amazon) just using k-nearest Neighbors. And, I can take it one step further: once I identify the movies that are similar to a given movie based on the k-nearest Neighbors algorithm, I can let them all vote on a predicted rating for that movie.
-
-That's what we're going to do in our next example. So you now have the concepts of KNN, k-nearest neighbors. Let's go ahead and apply that to an example of actually finding movies that are similar to each other and using those nearest neighbor movies to predict the rating for another movie we haven't seen before.
 
 ### Using KNN to predict a rating for a movie
 
@@ -69,9 +38,7 @@ Alright, we're going to actually take the simple idea of KNN and apply that to a
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `KNN.ipynb` in the `work` folder.
 
 
-
 What we're going to do is define a distance metric between movies just based on their metadata. By metadata I just mean information that is intrinsic to the movie, that is, the information associated with the movie. Specifically, we're going to look at the genre classifications of the movie.
-
 
 Every movie in our MovieLens dataset has additional information on what genre it belongs to. A movie can belong to more than one genre, a genre being something like science fiction, or drama, or comedy, or animation. We will also look at the overall popularity of the movie, given by the number of people who rated it, and we also know the average rating of each movie. I can combine all this information together to basically create a metric of distance between two movies just based on rating information and genre information. Let's see what we get.
 
@@ -205,44 +172,6 @@ Most of the complexity in this example was just in determining our distance metr
 
 If you really want to do a more involved exercise you can actually try to apply it to train/test, to actually find the value of K that most optimally can predict the rating of the given movie based on KNN. And, you can use different distance metrics, I kind of made that up too! So, play around the distance metric, maybe you can use different sources of information, or weigh things differently. It might be an interesting thing to do. Maybe, popularity isn't really as important as the genre information, or maybe it's the other way around. See what impact that has on your results too. So, go ahead and mess with these algorithms, mess with the code and run with it, and see what you can get! And, if you do find a significant way of improving on this, share that with your classmates.
 
-That is KNN in action! So, a very simple concept but it can be actually pretty powerful. So, there you have it: similar movies just based on the genre and popularity and nothing else. Works out surprisingly well! And, we used the concept of KNN to actually use those nearest neighbors to predict a rating for a new movie, and that actually worked out pretty well too. So, that's KNN in action, very simple technique but often it works out pretty darn good!
-
-### Dimensionality reduction and principal component analysis
-
-Alright, time to get all trippy! We're going to talking about higher dimensions, and dimensionality reduction. Sounds scary! There is some fancy math involved, but conceptually it's not as hard to grasp as you might think. So, let's talk about dimensionality reduction and principal component analysis next. Very dramatic sounding! Usually when people talk about this, they're talking about a technique called principal component analysis or PCA, and a specific technique called singular value decomposition or SVD. So PCA and SVD are the topics of this section. Let's dive into it!
-
-#### Dimensionality reduction
-So, what is the curse of dimensionality? Well, a lot of problems can be thought of having many different dimensions. So, for example, when we were doing movie recommendations, we had attributes of various movies, and every individual movie could be thought of as its own dimension in that data space.
-
-If you have a lot of movies, that's a lot of dimensions and you can't really wrap your head around more than 3, because that's what we grew up to evolve within. You might have some sort of data that has many different features that you care about. You know, in a moment we'll look at an example of flowers that we want to classify, and that classification is based on 4 different measurements of the flowers. Those 4 different features, those 4 different measurements can represent 4 dimensions, which again, is very hard to visualize.
-
-For this reason, dimensionality reduction techniques exist to find a way to reduce higher dimensional information into lower dimensional information. Not only can that make it easier to look at, and classify things, but it can also be useful for things like compressing data. So, by preserving the maximum amount of variance, while we reduce the number of dimensions, we're more compactly representing a dataset. A very common application of dimensionality reduction is not just for visualization, but also for compression, and for feature extraction. We'll talk about that a little bit more in a moment.
-
-A very simple example of dimensionality reduction can be thought of as k-means clustering:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/11/1.png)
-
-So you know, for example, we might start off with many points that represent many different dimensions in a dataset. But, ultimately, we can boil that down to K different centroids, and your distance to those centroids. That's one way of boiling data down to a lower dimensional representation.
-
-### Principal component analysis
-
-
-Usually, when people talk about dimensionality reduction, they're talking about a technique called principal component analysis. This is a much more-fancy technique, it gets into some pretty involved mathematics. But, at a high-level, all you need to know is that it takes a higher dimensional data space, and it finds planes within that data space and higher dimensions.
-
-These higher dimensional planes are called hyper planes, and they are defined by things called eigenvectors. You take as many planes as you want dimensions in the end, project that data onto those hyperplanes, and those become the new axes in your lower dimensional data space:
-
-
-You know, unless you're familiar with higher dimensional math and you've thought about it before, it's going to be hard to wrap your head around! But, at the end of the day, it means we're choosing planes in a higher dimensional space that still preserve the most variance in our data, and project the data onto those higher dimensional planes that we then bring into a lower dimensional space, okay?
-
-You don't really have to understand all the math to use it; the important point is that it's a very principled way of reducing a dataset down to a lower dimensional space while still preserving the variance within it. We talked about image compression as one application of this. So you know, if I want to reduce the dimensionality in an image, I could use PCA to boil it down to its essence.
-
-Facial recognition is another example. So, if I have a dataset of faces, maybe each face represents a third dimension of 2D images, and I want to boil that down, SVD and principal component analysis can be a way to identify the features that really count in a face. So, it might end up focusing more on the eyes and the mouth, for example, those important features that are necessary for preserving the variance within that dataset. So, it can produce some very interesting and very useful results that just emerge naturally out of the data, which is kind of cool!
-
-To make it real, we're going to use a simpler example, using what's called the Iris dataset. This is a dataset that's included with scikit-learn. It's used pretty commonly in examples, and here's the idea behind it: So, an Iris actually has 2 different kinds of petals on its flower. One's called a petal, which is the flower petals you're familiar with, and it also has something called a sepal, which is kind of this supportive lower set of petals on the flower.
-
-We can take a bunch of different species of Iris, and measure the petal length and width, and the sepal length and width. So, together the length and width of the petal, and the length and width of the sepal are 4 different measurements that correspond to 4 different dimensions in our dataset. I want to use that to classify what species an Iris might belong to. Now, PCA will let us visualize this in 2 dimensions instead of 4, while still preserving the variance in that dataset. So, let's see how well that works and actually write some Python code to make PCA happen on the Iris dataset.
-
-So, those were the concepts of dimensionality reduction, principal component analysis, and singular value decomposition. All big fancy words and yeah, it is kind of a fancy thing. You know, we're dealing with reducing higher dimensional spaces down to smaller dimensional spaces in a way that preserves their variance. Fortunately, scikit-learn makes this extremely easy to do, like 3 lines of code is all you need to actually apply PCA. So let's make that happen!
 
 
 ### A PCA example with the Iris dataset
@@ -346,143 +275,3 @@ That is our 4D Iris data projected down to 2 dimensions. Pretty interesting stuf
 As you recall from explained_variance_ratio, we actually captured most of the variance in a single dimension. Maybe the overall size of the flower is all that really matters in classifying it; and you can specify that with one feature. So, go ahead and modify the results if you are feeling up to it. See if you can get away with 2 dimensions, or 1 dimension instead of 2! So, go change that n_components to 1, and see what kind of variance ratio you get.
 
 What happens? Does it makes sense? Play around with it, get some familiarity with it. That is dimensionality reduction, principal component analysis, and singular value decomposition all in action. Very, very fancy terms, and you know, to be fair it is some pretty fancy math under the hood. But as you can see, it's a very powerful technique and with scikit-learn, it's not hard to apply. So, keep that in your tool chest.
-
-And there you have it! A 4D dataset of flower information boiled down to 2 dimensions that we can both easily visualize, and also still see clear delineations between the classifications that we're interested in. So, PCA works really well in this example. Again, it's a useful tool for things like compression, or feature extraction, or facial recognition as well. So, keep that in your toolbox.
-
-### Data warehousing overview
-
-Next, we're going to talk a little bit about data warehousing. This is a field that's really been upended recently by the advent of Hadoop, and some big data techniques and cloud computing. So, a lot of big buzz words there, but concepts that are important for you to understand.
-
-Let's dive in and explore these concepts! Let's talk about ELT and ETL, and data warehousing in general. This is more of a concept, as opposed to a specific practical technique, so we're going to talk about it conceptually. But, it is something that's likely to come up in the setting of a job interview. So, let's make sure you understand these concepts.
-
-We'll start by talking about data warehousing in general. What is a data warehouse? Well, it's basically a giant database that contains information from many different sources and ties them together for you. For example, maybe you work at a big ecommerce company and they might have an ordering system that feeds information about the stuff people bought into your data warehouse.
-
-You might also have information from web server logs that get ingested into the data warehouse. This would allow you to tie together browsing information on the website with what people ultimately ordered for example. Maybe you could also tie in information from your customer service systems, and measure if there's a relationship between browsing behavior and how happy the customers are at the end of the day.
-
-A data warehouse has the challenge of taking data from many different sources, transforming them into some sort of schema that allows us to query these different data sources simultaneously, and it lets us make insights, through data analysis. So, large corporations and organizations have this sort of thing pretty commonly. We're going into the concept of big data here. You can have a giant Oracle database, for example, that contains all this stuff and maybe it's partitioned in some way, and replicated and it has all sorts of complexity. You can just query that through SQL, structured query language, or, through graphical tools, like Tableau which is a very popular one these days. That's what a data analyst does, they query large datasets using stuff like Tableau.
-
-That's kind of the difference between a data analyst and a data scientist. You might be actually writing code to perform more advanced techniques on data that border on AI, as opposed to just using tools to extract graphs and relationships out of a data warehouse. It's a very complicated problem. At Amazon, we had an entire department for data warehousing that took care of this stuff full time, and they never had enough people, I can tell you that; it's a big job!
-
-You know, there are a lot of challenges in doing data warehousing. One is data normalization: so, you have to figure out how do all the fields in these different data sources actually relate to each other? How do I actually make sure that a column in one data source is comparable to a column from another data source and has the same set of data, at the same scale, using the same terminology? How do I deal with missing data? How do I deal with corrupt data or data from outliers, or from robots and things like that? These are all very big challenges. Maintaining those data feeds is also a very big problem.
-
-A lot can go wrong when you're importing all this information into your data warehouse, especially when you have a very large transformation that needs to happen to take the raw data, saved from web logs, into an actual structured database table that can be imported into your data warehouse. Scaling also can get tricky when you're dealing with a monolithic data warehouse. Eventually, your data will get so large that those transformations themselves start to become a problem. This starts to get into the whole topic of ELT versus ETL thing.
-
-
-### ETL versus ELT
-
-Let's first talk about ETL. What does that stand for? It stands for extract, transform, and load - and that's sort of the conventional way of doing data warehousing.
-
-Basically, first you extract the data that you want from the operational systems that you want. So, for example, I might extract all of the web logs from our web servers each day. Then I need to transform all that information into an actual structured database table that I can import into my data warehouse.
-
-This transformation stage might go through every line of those web server logs, transform that into an actual table, where I'm plucking out from each web log line things like session ID, what page they looked at, what time it was, what the referrer was and things like that, and I can organize that into a tabular structure that I can then load into the data warehouse itself, as an actual table in a database. So, as data becomes larger and larger, that transformation step can become a real problem. Think about how much processing work is required to go through all of the web logs on Google, or Amazon, or any large website, and transform that into something a database can ingest. That itself becomes a scalability challenge and something that can introduce stability problems through the entire data warehouse pipeline.
-
-That's where the concept of ELT comes in, and it kind of flips everything on its head. It says, "Well, what if we don't use a huge Oracle instance? What if instead we use some of these newer techniques that allow us to have a more distributed database over a Hadoop cluster that lets us take the power of these distributed databases like Hive, or Spark, or MapReduce, and use that to actually do the transformation after it's been loaded"
-
-The idea here is we're going to extract the information we want as we did before, say from a set of web server logs. But then, we're going to load that straight in to our data repository, and we're going to use the power of the repository itself to actually do the transformation in place. So, the idea here is, instead of doing an offline process to transform my web logs, as an example, into a structured format, I'm just going to suck those in as raw text files and go through them one line at a time, using the power of something like Hadoop, to actually transform those into a more structured format that I can then query across my entire data warehouse solution.
-
-
-Things like Hive let you host a massive database on a Hadoop cluster. There's things like Spark SQL that let you also do queries in a very SQL-like data warehouse-like manner, on a data warehouse that is actually distributed on Hadoop cluster. There are also distributed NoSQL data stores that can be queried using Spark and MapReduce. The idea is that instead of using a monolithic database for a data warehouse, you're instead using something built on top of Hadoop, or some sort of a cluster, that can actually not only scale up the processing and querying of that data, but also scale the transformation of that data as well.
-
-Once again, you first extract your raw data, but then we're going to load it into the data warehouse system itself as is. And, then use the power of the data warehouse, which might be built on Hadoop, to do that transformation as the third step. Then I can query things together. So, it's a very big project, very big topic. You know, data warehousing is an entire discipline in and of itself. We're going to talk about Spark some more in this book very soon, which is one way of handling this thing - there's something called Spark SQL in particular that's relevant.
-
-The overall concept here is that if you move from a monolithic database built on Oracle or MySQL to one of these more modern distributed databases built on top of Hadoop, you can take that transform stage and actually do that after you've loaded in the raw data, as opposed to before. That can end up being simpler and more scalable, and taking advantage of the power of large computing clusters that are available today.
-
-That's ETL versus ELT, the legacy way of doing it with a lot of clusters all over the place in cloud-based computing versus a way that makes sense today, when we do have large clouds of computing available to us for transforming large datasets. That's the concept.
-
-ETL is kind of the old school way of doing it, you transform a bunch of data offline before importing it in and loading it into a giant data warehouse, monolithic database. But with today's techniques, with cloud-based databases, and Hadoop, and Hive, and Spark, and MapReduce, you can actually do it a little bit more efficiently and take the power of a cluster to actually do that transformation step after you've loaded the raw data into your data warehouse.
-
-This is really changing the field and it's important that you know about it. Again, there's a lot more to learn on the subject, so I encourage you to explore more on this topic. But, that's the basic concept, and now you know what people are talking about when they talk about ETL versus ELT.
-
-### Reinforcement learning
-
-Our next topic's a fun one: reinforcement learning. We can actually use this idea with an example of Pac-Man. We can actually create a little intelligent Pac-Man agent that can play the game Pac-Man really well on its own. You'll be surprised how simple the technique is for building up the smarts behind this intelligent Pac-Man. Let's take a look!
-
-So, the idea behind reinforcement learning is that you have some sort of agent, in this case Pac-Man, that explores some sort of space, and in our example that space will be the maze that Pac-Man is in. As it goes, it learns the value of different state changes within different conditions.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/19/1.png)
-
-For example, in the preceding image, the state of Pac-Man might be defined by the fact that it has a ghost to the South, and a wall to the West, and empty spaces to the North and East, and that might define the current state of Pac-Man. The state changes it can take would be to move in a given direction. I can then learn the value of going in a certain direction. So, for example, if I were to move North, nothing would really happen, there's no real reward associated with that. But, if I were to move South I would be destroyed by the ghost, and that would be a negative value.
-
-
-As I go and explore the entire space, I can build up a set of all the possible states that Pac-Man can be in, and the values associated with moving in a given direction in each one of those states, and that's reinforcement learning. And as it explores the whole space, it refines these reward values for a given state, and it can then use those stored reward values to choose the best decision to make given a current set of conditions. In addition to Pac-Man, there's also a game called Cat & Mouse that is an example that's used commonly that we'll look at later.
-
-The benefit of this technique is that once you've explored the entire set of possible states that your agent can be in, you can very quickly have a very good performance when you run different iterations of this. So, you know, you can basically make an intelligent Pac-Man by running reinforcement learning and letting it explore the values of different decisions it can make in different states and then storing that information, to very quickly make the right decision given a future state that it sees in an unknown set of conditions.
-
-### Q-learning
-
-So, a very specific implementation of reinforcement learning is called Q-learning, and this formalizes what we just talked about a little bit more:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/19/2.png)
-
-So, we start off with a Q value of 0 for every possible state that Pac-Man could be in. And, as Pac-Man explores a maze, as bad things happen to Pac-Man, we reduce the Q value for the state that Pac-Man was in at the time. So, if Pac-Man ends up getting eaten by a ghost, we penalize whatever he did in that current state. As good things happen to Pac-Man, as he eats a power pill, or eats a ghost, we'll increase the Q value for that action, for the state that he was in. Then, what we can do is use those Q values to inform Pac-Man's future choices, and sort of build a little intelligent agent that can perform optimally, and make a perfect little Pac-Man. From the same image of Pac-Man that we saw just above, we can further define the current state of Pac-Man by defining that he has a wall to the West, empty space to the North and East, a ghost to the South.
-
-We can look at the actions he can take: he can't actually move left at all, but he can move up, down, or right, and we can assign a value to all those actions. By going up or right, nothing really happens at all, there's no power pill or dots to consume. But if he goes left, that's definitely a negative value. We can say for the state given by the current conditions that Pac-Man is surrounded by, moving down would be a really bad choice; there should be a negative Q value for that. Moving left just can't be done at all. Moving up or right or staying neutral, the Q value would remain 0 for those action choices for that given state.
-
-
-Now, you can also look ahead a little bit, to make an even more intelligent agent. So, I'm actually two steps away from getting a power pill here. So, as Pac-Man were to explore this state, if I were to hit the case of eating that power pill on the next state, I could actually factor that into the Q value for the previous state. If you just have some sort of a discount factor, based on how far away you are in time, how many steps away you are, you can factor that all in together. So, that's a way of actually building in a little bit of memory into the system. You can "look ahead" more than one step by using a discount factor when computing Q (here s is previous state, s' is current state):
-
-```
-Q(s,a) += discount * (reward(s,a) + max(Q(s')) - Q(s,a))
-```
-
-So, the Q value that I experience when I consume that power pill might actually give a boost to the previous Q values that I encountered along the way. So, that's a way to make Q-learning even better.
-
-### The exploration problem
-
-One problem that we have in reinforcement learning is the exploration problem. How do I make sure that I efficiently cover all the different states and actions within those states during the exploration phase?
-
-**The simple approach**
-
-One simple approach is to always choose the action for a given state with the highest Q value that I've computed so far, and if there's a tie, just choose at random. So, initially all of my Q values might be 0, and I'll just pick actions at random at first.
-
-As I start to gain information about better Q values for given actions and given states, I'll start to use those as I go. But, that ends up being pretty inefficient, and I can actually miss a lot of paths that way if I just tie myself into this rigid algorithm of always choosing the best Q value that I've computed thus far.
-
-**The better way**
-
-So, a better way is to introduce a little bit of random variation into my actions as I'm exploring. So, we call that an epsilon term. So, suppose we have some value, that I roll the dice, I have a random number. If it ends up being less than this epsilon value, I don't actually follow the highest Q value; I don't do the thing that makes sense, I just take a path at random to try it out, and see what happens. That actually lets me explore a much wider range of possibilities, a much wider range of actions, for a wider range of states more efficiently during that exploration stage.
-
-So, what we just did can be described in very fancy mathematical terms, but you know conceptually it's pretty simple.
-
-### Fancy words
-
-I explore some set of actions that I can take for a given set of states, I use that to inform the rewards associated with a given action for a given set of states, and after that exploration is done I can use that information, those Q values, to intelligently navigate through an entirely new maze for example.
-
-This can also be called a Markov decision process. So again, a lot of data science is just assigning fancy, intimidating names to simple concepts, and there's a ton of that in reinforcement learning.
-
-**Markov decision process**
-
-So, if you look up the definition of Markov decision processes, it is "a mathematical framework for modeling decision making in situations where outcomes are partly random and partly under the control of a decision maker".
-
-- **Decision making:** What action do we take given a set of possibilities for a given state?
-- **In situations where outcomes are partly random:** Hmm, kind of like our random exploration there.
-- **Partly under the control of a decision maker:** The decision maker is our Q values that we computed.
-
-So, MDPs, Markov decision processes, are a fancy way of describing our exploration algorithm that we just described for reinforcement learning. The notation is even similar, states are still described as s, and s' is the next state that we encounter. We have state transition functions that are defined as Pa for a given state of s and s'. We have our Q values, which are basically represented as a reward function, an Ra value for a given s and s'. So, moving from one state to another has a given reward associated with it, and moving from one state to another is defined by a state transition function:
-
-- States are still described as **s** and **s''**
-- State transition functions are described as **Pa(s,s')**
-- Our Q values are described as a reward function **Ra(s,s')**
-
-So again, describing what we just did, only a mathematical notation, and a fancier sounding word, Markov decision processes. And, if you want to sound even smarter, you can also call a Markov decision process by another name: a discrete time stochastic control process. That sounds intelligent! But the concept itself is the same thing that we just described.
-
-### Dynamic programming
-
-
-So, even more fancy words: dynamic programming can be used to describe what we just did as well. Wow! That sounds like artificial intelligence, computers programming themselves, Terminator 2, Skynet stuff. But no, it's just what we just did. If you look up the definition of dynamic programming, it is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions ideally, using a memory-based data structure.
-
-The next time the same subproblem occurs, instead of recomputing its solution, one simply looks up the previously computed solution thereby saving computation time at the expense of a (hopefully) modest expenditure in storage space:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/19/3.png)
-
-We have a complicated exploration phase that finds the optimal rewards associated with each action for a given state. Once we have that table of the right action to take for a given state, we can very quickly use that to make our Pac-Man move in an optimal manner in a whole new maze that he hasn't seen before. So, reinforcement learning is also a form of dynamic programming. Wow!
-
-To recap, you can make an intelligent Pac-Man agent by just having it semi-randomly explore different choices of movement given different conditions, where those choices are actions and those conditions are states. We keep track of the reward or penalty associated with each action or state as we go, and we can actually discount, going back multiple steps if you want to make it even better.
-
-Then we store those Q values that we end up associating with each state, and we can use that to inform its future choices. So we can go into a whole new maze, and have a really smart Pac-Man that can avoid the ghosts and eat them up pretty effectively, all on its own. It's a pretty simple concept, very powerful though. You can also say that you understand a bunch of fancy terms because it's all called the same thing. Q-learning, reinforcement learning, Markov decision processes, dynamic programming: all tied up in the same concept.
-
-I don't know, I think it's pretty cool that you can actually make sort of an artificially intelligent Pac-Man through such a simple technique, and it really does work! If you want to go look at it in more detail, following are a few examples you can look at that have one actual source code you can look at, and potentially play with, Python Markov Decision Process Toolbox: http://pymdptoolbox.readthedocs.org/en/latest/api/mdp.html.
-
-There is a Python Markov decision process toolbox that wraps it up in all that terminology we talked about. There's an example you can look at, a working example of the cat and mouse game, which is similar. And, there is actually a Pac-Man example you can look at online as well, that ties in more directly with what we were talking about. Feel free to explore these links, and learn even more about it.
-
-And so that's reinforcement learning. More generally, it's a useful technique for building an agent that can navigate its way through a possible different set of states that have a set of actions that can be associated with each state. So, we've talked about it mostly in the context of a maze game. But, you can think more broadly, and you know whenever you have a situation where you need to predict behavior of something given a set of current conditions and a set of actions it can take. Reinforcement learning and Q-learning might be a way of doing it. So, keep that in mind!
-

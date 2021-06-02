@@ -5,11 +5,7 @@ Lab : Dealing with Real-World Data
 -------------------------------------
 
 
-In this scenario, we're going to talk about the challenges of dealing with real-world data, and some of the quirks you might run into. The chapter starts by talking about the bias-variance trade-off, which is kind of a more principled way of talking about the different ways you might overfit and underfit data, and how it all interrelates with each other. We then talk about the k-fold cross-validation technique, which is an important tool in your chest to combat overfitting, and look at how to implement it using Python.
-
-Next, we analyze the importance of cleaning your data and normalizing it before actually applying any algorithms on it. We see an example to determine the most popular pages on a website which will demonstrate the importance of cleaning data. The chapter also covers the importance of remembering to normalize numerical data. Finally, we look at how to detect outliers and deal with them.
-
-Specifically, this chapter covers the following topics:
+In this lab, we will cover the following topics:
 
 - Analyzing the bias/variance trade-off
 - The concept of k-fold cross-validation and its implementation
@@ -31,72 +27,8 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
- ### Bias/variance trade-off
-
- One of the basic challenges that we face when dealing with real-world data is overfitting versus underfitting your regressions to that data, or your models, or your predictions. When we talk about underfitting and overfitting, we can often talk about that in the context of bias and variance, and the bias-variance trade-off. So, let's talk about what that means.
-
-So conceptually, bias and variance are pretty simple. Bias is just how far off you are from the correct values, that is, how good are your predictions overall in predicting the right overall value. If you take the mean of all your predictions, are they more or less on the right spot? Or are your errors all consistently skewed in one direction or another? If so, then your predictions are biased in a certain direction.
-
-Variance is just a measure of how spread out, how scattered your predictions are. So, if your predictions are all over the place, then that's high variance. But, if they're very tightly focused on what the correct values are, or even an incorrect value in the case of high bias, then your variance is small.
-
-Let's look at some examples. Let's imagine that the following dartboard represents a bunch of predictions we're making where the real value we're trying to predict is in the center of the bullseye:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/3/1.png)
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/3/1-1.png)
-
-
-In reality, you often need to choose between bias and variance. It comes down to over fitting Vs underfitting your data. Let's take a look at the following example:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/3/2.png)
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/3/3.png)
-
-It's a little bit of a different way of thinking of bias and variance. So, in the left graph, we have a straight line, and you can think of that as having very low variance, relative to these observations. So, there's not a lot of variance in this line, that is, there is low variance. But the bias, the error from each individual point, is actually high.
-
-Now, contrast that to the overfitted data in the graph at the right, where we've kind of gone out of our way to fit the observations. The line has high variance, but low bias, because each individual point is pretty close to where it should be. So, this is an example of where we traded off variance for bias.
-
-At the end of the day, you're not out to just reduce bias or just reduce variance, you want to reduce error. That's what really matters, and it turns out you can express error as a function of bias and variance:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/3/4.png)
-
-Looking at this, error is equal to bias squared plus variance. So, these things both contribute to the overall error, with bias actually contributing more. But keep in mind, it's error you really want to minimize, not the bias or the variance specifically, and that an overly complex model will probably end up having a high variance and low bias, whereas a too simple model will have low variance and high bias. However, they could both end up having similar error terms at the end of the day. You just have to find the right happy medium of these two things when you're trying to fit your data. We'll talk about some more principled ways of actually avoiding overfitting in our forthcoming sections. But, it's just the concept of bias and variance that I want to get across, because people do talk about it and you're going to be expected to know what means.
-
-
-Now let's tie that back to some earlier concepts in this book. For example, in k-nearest neighbors if we increase the value of K, we start to spread out our neighborhood that were averaging across to a larger area. That has the effect of decreasing variance because we're kind of smoothing things out over a larger space, but it might increase our bias because we'll be picking up a larger population that may be less and less relevant to the point we started from. By smoothing out KNN over a larger number of neighbors, we can decrease the variance because we're smoothing things out over more values. But, we might be introducing bias because we're introducing more and more points that are less than less related to the point we started with.
-
-Decision trees is another example. We know that a single decision tree is prone to overfitting, so that might imply that it has a high variance. But, random forests seek to trade off some of that variance for bias reduction, and it does that by having multiple trees that are randomly variant and averages all their solutions together. It's like when we average things out by increasing K in KNN: we can average out the results of a decision tree by using more than one decision tree using random forests similar idea.
-
-This is bias-variance trade-off. You know the decision you have to make between how overall accurate your values are, and how spread out they are or how tightly clustered they are. That's the bias-variance trade-off and they both contribute to the overall error, which is the thing you really care about minimizing. So, keep those terms in mind!
-
-### K-fold cross-validation to avoid overfitting
-
-Earlier in the book, we talked about train and test as a good way of preventing overfitting and actually measuring how well your model can perform on data it's never seen before. We can take that to the next level with a technique called k-fold cross-validation. So, let's talk about this powerful tool in your arsenal for fighting overfitting; k-fold cross-validation and learn how that works.
-
-To recall from train/test, the idea was that we split all of our data that we're building a machine learning model based off of into two segments: a training dataset, and a test dataset. The idea is that we train our model only using the data in our training dataset, and then we evaluate its performance using the data that we reserved for our test dataset. That prevents us from overfitting to the data that we have because we're testing the model against data that it's never seen before.
-
-However, train/test still has its limitations: you could still end up overfitting to your specific train/test split. Maybe your training dataset isn't really representative of the entire dataset, and too much stuff ended up in your training dataset that skews things. So, that's where k-fold cross-validation comes in, it takes train/test and kicks it up a notch.
-
-The idea, although it sounds complicated, is fairly simple:
-
-- Instead of dividing our data into two buckets, one for training and one for testing, we divide it into K buckets.
-- We reserve one of those buckets for testing purposes, for evaluating the results of our model.
-- We train our model against the remaining buckets that we have, K-1, and then we take our test dataset and use that to evaluate how well our model did amongst all of those different training datasets.
-- We average those resulting error metrics, that is, those r-squared values, together to get a final error metric from k-fold cross-validation.
-
-That's all it is. It is a more robust way of doing train/test, and that's one way of doing it.
-
-Now, you might think to yourself well, what if I'm overfitting to that one test dataset that I reserved? I'm still using the same test dataset for every one of those training datasets. What if that test dataset isn't really representative of things either?
-
-There are variations of k-fold cross-validation that will randomize that as well. So, you could randomly pick what the training dataset is as well each time around, and just keep randomly assigning things to different buckets and measuring the results. But usually, when people talk about k-fold cross-validation, they're talking about this specific technique where you reserve one bucket for testing, and the remaining buckets for training, and you evaluate all of your training datasets against the test dataset when you build a model for each one.
-
 ### Example of k-fold cross-validation using scikit-learn
 
-Fortunately, scikit-learn makes this really easy to do, and it's even easier than doing normal train/test! It's extremely simple to do k-fold cross-validation, so you may as well just do it.
-
-Now, the way this all works in practice is you will have a model that you're trying to tune, and you will have different variations of that model, different parameters you might want to tweak on it, right?
-
-Like, for example, the degree of polynomial for a polynomial fit. So, the idea is to try different values of your model, different variations, measure them all using k-fold cross-validation, and find the one that minimizes error against your test dataset. That's kind of your sweet spot there. In practice, you want to use k-fold cross-validation to measure the accuracy of your model against a test dataset, and just keep refining that model, keep trying different values within it, keep trying different variations of that model or maybe even different models entirely, until you find the technique that reduces error the most, using k-fold cross validation.
 
 Let's go dive into an example and see how it works. We're going to apply this to our Iris dataset again, revisiting SVC, and we'll play with k-fold cross-validation and see how simple it is. Let's actually put k-fold cross-validation and train/test into practice here using some real Python code. You'll see it's actually very easy to use, which is a good thing because this is a technique you should be using to measure the accuracy, the effectiveness of your models in supervised learning.
 
@@ -214,13 +146,6 @@ We're going to show the importance of cleaning your data. I have some web log da
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `TopPages.ipynb` in the `work` folder.
 
-
-
-I actually have an access log that I took from my actual website. It's a real HTTP access log from Apache and is included in your book materials. So, if you do want to play along here, make sure you update the path to move the access log to wherever you saved the book materials:
-
-```
-logPath = "E:\\sundog-consult\\Packt\\DataScience\\access_log.txt"
-```
 
 ### Applying a regular expression on the web log
 
@@ -366,47 +291,10 @@ So, it's pretty surprising how hard it was to get some reasonable results on a s
 
 It's very important to understand your source data, look at it, look at a representative sample of it, make sure you understand what's coming into your system. Always question your results and tie it back to the original source data to see where questionable results are coming from.
 
-### Normalizing numerical data
-
-This is a very quick section: I just want to remind you about the importance of normalizing your data, making sure that your various input feature data is on the same scale, and is comparable. And, sometimes it matters, and sometimes it doesn't. But, you just have to be cognizant of when it does. Just keep that in the back of your head because sometimes it will affect the quality of your results if you don't.
-
-So, sometimes models will be based on several different numerical attributes. If you remember multivariant models, we might have different attributes of a car that we're looking at, and they might not be directly comparable measurements. Or, for example, if we're looking at relationships between ages and incomes, ages might range from 0 to 100, but incomes in dollars might range from 0 to billions, and depending on the currency it could be an even larger range! Some models are okay with that.
-
-If you're doing a regression, usually that's not a big deal. But, other models don't perform so well unless those values are scaled down first to a common scale. If you're not careful, you can end up with some attributes counting more than others. Maybe the income would end up counting much more than the age, if you were trying to treat those two values as comparable values in your model.
-
-
-So this can introduce also a bias in the attributes, which can also be a problem. Maybe one set of your data is skewed, you know, sometimes you need to normalize things versus the actual range seen for that set of values and not just to a 0 to whatever the maximum is scale. There's no set rule as to when you should and shouldn't do this sort of normalization. All I can say is always read the documentation for whatever technique you're using.
-
-So, for example, in scikit-learn their PCA implementation has a whiten option that will automatically normalize your data for you. You should probably use that. It also has some preprocessing modules available that will normalize and scale things for you automatically as well.
-
-Be aware too of textual data that should actually be represented numerically, or ordinally. If you have yes or no data you might need to convert that to 1 or 0 and do that in a consistent matter. So again, just read the documentation. Most techniques do work fine with raw, un-normalized data, but before you start using a new technique for the first time, just read the documentation and understand whether or not the inputs should be scaled or normalized or whitened first. If so, scikit-learn will probably make it very easy for you to do so, you just have to remember to do it! Don't forget to rescale your results when you're done if you are scaling the input data.
-
-If you want to be able to interpret the results you get, sometimes you need to scale them back up to their original range after you're done. If you are scaling things and maybe even biasing them towards a certain amount before you input them into a model, make sure that you unscale them and unbias them before you actually present those results to somebody. Or else they won't make any sense! And just a little reminder, a little bit of a parable if you will, always check to see if you should normalize or whiten your data before you pass it into a given model.
-
-No exercise associated with this section; it's just something I want you to remember. I'm just trying to drive the point home. Some algorithms require whitening, or normalization, some don't. So, always read the documentation! If you do need to normalize the data going into an algorithm it will usually tell you so, and it will make it very easy to do so. Please just be aware of that!
-
-### Detecting outliers
-
-A common problem with real-world data is outliers. You'll always have some strange users, or some strange agents that are polluting your data, that act abnormally and atypically from the typical user. They might be legitimate outliers; they might be caused by real people and not by some sort of malicious traffic, or fake data. So sometimes, it's appropriate to remove them, sometimes it isn't. Make sure you make that decision responsibly. So, let's dive into some examples of dealing with outliers.
-
-For example, if I'm doing collaborative filtering, and I'm trying to make movie recommendations or something like that, you might have a few power users that have watched every movie ever made, and rated every movie ever made. They could end up having an inordinate influence on the recommendations for everybody else.
-
-You don't really want a handful of people to have that much power in your system. So, that might be an example where it would be a legitimate thing to filter out an outlier, and identify them by how many ratings they've actually put into the system. Or, maybe an outlier would be someone who doesn't have enough ratings.
-
-We might be looking at web log data, like we saw in our example earlier when we were doing data cleaning, outliers could be telling you that there's something very wrong with your data to begin with. It could be malicious traffic, it could be bots, or other agents that should be discarded that don't represent actual human beings that you're trying to model.
-
-
-If someone really wanted the mean average income in the United States (and not the median), you shouldn't just throw out Donald Trump because you don't like him. You know the fact is, his billions of dollars are going to push that mean amount up, even if it doesn't budge the median. So, don't fudge your numbers by throwing out outliers. But throw out outliers if it's not consistent with what you're trying to model in the first place.
-
-Now, how do we identify outliers? Well, remember our old friend standard deviation? We covered that very early in this book. It's a very useful tool for detecting outliers. You can, in a very principled matter, compute the standard deviation of a dataset that should have a more or less normal distribution. If you see a data point that's outside of one or two standard deviations, there you have an outlier.
-
-Remember, we talked earlier too about the box and whisker diagrams too, and those also have a built-in way of detecting and visualizing outliers. Those diagrams define outliers as lying outside 1.5 the interquartile range.
-
-What multiple do you choose? Well, you kind of have to use common sense, you know, there's no hard and fast rule as to what is an outlier. You have to look at your data and kind of eyeball it, look at the distribution, look at the histogram. See if there's actual things that stick out to you as obvious outliers, and understand what they are before you just throw them away.
 
 ### Dealing with outliers
 
-So, let's take some example code, and see how you might handle outliers in practice. Let's mess around with some outliers. It's a pretty simple section. A little bit of review actually. If you want to follow along, we're in `Outliers.ipynb`. So, go ahead and open that up if you'd like:
+Let's take some example code, and see how you might handle outliers in practice. Let's mess around with some outliers. It's a pretty simple section. A little bit of review actually. If you want to follow along, we're in `Outliers.ipynb`. So, go ahead and open that up if you'd like:
 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for several notebooks. Open and run `Outliers.ipynb` in the `work` folder.
@@ -482,5 +370,4 @@ By the way, our mean is also much more meaningful now; much closer to 27,000 tha
 
 So, if you want to play around with this, you know just fiddle around with it like I normally ask you to do. Try different multiples of the standard deviation, try adding in more outliers, try adding in outliers that aren't quite as outlier-ish as Donald Trump. You know, just fabricate some extra fake data there and play around with it, see if you can identify those people successfully.
 
-So there you have it! Outliers; pretty simple concept. So, that's an example of identifying outliers by looking at standard deviations, and just looking at the number of standard deviations from the mean or median that you care about. Median is probably a better choice actually, given that the outliers might be skewing the mean in and of themselves, right? So, by using the standard deviation, that's a good way of identifying outliers in a more principled manner than just picking some arbitrary cutoff. Again, you need to decide what the right thing to do is with those outliers. What are you actually trying to measure? Is it appropriate to actually discard them or not? So, keep that in your head!
 

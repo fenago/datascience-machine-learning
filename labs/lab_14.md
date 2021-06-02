@@ -5,7 +5,7 @@ Lab : Apache Spark - Machine Learning on Big Data - Part 2
 -------------------------------------
 
 
-Everyone talks about big data, and odds are you might be working for a company that does in fact have big data to process. Big data meaning that you can't actually control it all, you can't actually wrangle it all on just one system. You need to actually compute it using the resources of an entire cloud, a cluster of computing resources. And that's where Apache Spark comes in. Apache Spark is a very powerful tool for managing big data, and doing machine learning on large Datasets. By the end of the chapter, you will have an in-depth knowledge of the following topics:
+In this lab, we'll cover following topics:
 
 - Working with Spark
 - Decision Trees in Spark
@@ -22,34 +22,8 @@ Now, move in the directory which contains the source code.
 - There should be terminal opened already. You can also open New terminal by Clicking `File` > `New` > `Terminal` from the top menu.
 - To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-### TF-IDF
 
-So, our final example of MLlib is going to be using something called Term Frequency Inverse Document Frequency, or TF-IDF, which is the fundamental building block of many search algorithms. As usual, it sounds complicated, but it's not as bad as it sounds.
 
-So, first, let's talk about the concepts of TF-IDF, and how we might go about using that to solve a search problem. And what we're actually going to do with TF-IDF is create a rudimentary search engine for Wikipedia using Apache Spark in MLlib. How awesome is that? Let's get started.
-
-TF-IDF stands for Term Frequency and Inverse Document Frequency, and these are basically two metrics that are closely interrelated for doing search and figuring out the relevancy of a given word to a document, given a larger body of documents. So, for example, every article on Wikipedia might have a term frequency associated with it, every page on the Internet could have a term frequency associated with it for every word that appears in that document. Sounds fancy, but, as you'll see, it's a fairly simple concept.
-
-- **All Term Frequency** means is how often a given word occurs in a given document. So, within one web page, within one Wikipedia article, within one whatever, how common is a given word within that document? You know, what is the ratio of that word's occurrence rate throughout all the words in that document? That's it. That's all term frequency is.
-- **Document frequency** is the same idea, but this time it is the frequency of that word across the entire corpus of documents. So, how often does this word occur throughout all of the documents that I have, all the web pages, all of the articles on Wikipedia, whatever. For example, common words like "a" or "the" would have a very high document frequency, and I would expect them to also have a very high term frequency, but that doesn't necessarily mean they're relevant to a given document.
-
-You can kind of see where we're going with this. So, let's say we have a very high term frequency and a very low document frequency for a given word. The ratio of these two things can give me a measure of the relevance of that word to the document. So, if I see a word that occurs very often in a given document, but not very often in the overall space of documents, then I know that this word probably conveys some special meaning to this particular document. It might convey what this document is actually about.
-
-So, that's TF-IDF. It just stands for Term Frequency x Inverse Document Frequency, which is just a fancy way of saying term frequency over document frequency, which is just a fancy way of saying how often does this word occur in this document compared to how often it occurs in the entire body of documents? It's that simple.
-
-### TF-IDF in practice
-
-In practice, there are a few little nuances to how we use this. For example, we use the actual log of the inverse document frequency instead of the raw value, and that's because word frequencies in reality tend to be distributed exponentially. So, by taking the log, we end up with a slightly better weighting of words, given their overall popularity. There are some limitations to this approach, obviously, one is that we basically assume a document is nothing more than a bagful of words, we assume there are no relationships between the words themselves. And, obviously, that's not always the case, and actually parsing them out can be a good part of the work, because you have to deal with things like synonyms and various tenses of words, abbreviations, capitalizations, misspellings, and so on. This gets back to the idea of cleaning your data being a large part of your job as a data scientist, and it's especially true when you're dealing with natural language processing stuff. Fortunately, there are some libraries out there that can help you with this, but it is a real problem and it will affect the quality of your results.
-
-Another implementation trick that we use with TF-IDF is, instead of storing actual string words with their term frequencies and inverse document frequency, to save space and make things more efficient, we actually map every word to a numerical value, a hash value we call it. The idea is that we have a function that can take any word, look at its letters, and assign that, in some fairly well-distributed manner, to a set of numbers in a range. That way, instead of using the word "represented", we might assign that a hash value of 10, and we can then refer to the word "represented" as "10" from now on. Now, if the space of your hash values isn't large enough, you could end up with different words being represented by the same number, which sounds worse than it is. But, you know, you want to make sure that you have a fairly large hash space so that is unlikely to happen. Those are called hash collisions. They can cause issues, but, in reality, there's only so many words that people commonly use in the English language. You can get away with 100,000 or so and be just fine.
-
-Doing this at scale is the hard part. If you want to do this over all of Wikipedia, then you're going to have to run this on a cluster. But for the sake of argument, we are just going to run this on our own desktop for now, using a small sample of Wikipedia data.
-
-### Using TF- IDF
-
-How do we turn that into an actual search problem? Once we have TF-IDF, we have this measure of each word's relevancy to each document. What do we do with it? Well, one thing you could do is compute TF-IDF for every word that we encounter in the entire body of documents that we have, and then, let's say we want to search for a given term, a given word. Let's say we want to search for "what Wikipedia article in my set of Wikipedia articles is most relevant to Gettysburg?" I could sort all the documents by their TF-IDF score for Gettysburg, and just take the top results, and those are my search results for Gettysburg. That's it. Just take your search word, compute TF-IDF, take the top results. That's it.
-
-Obviously, in the real world there's a lot more to search than that. Google has armies of people working on this problem and it's way more complicated in practice, but this will actually give you a working search engine algorithm that produces reasonable results. Let's go ahead and dive in and see how it all works.
 
 ### Searching wikipedia with Spark MLlib
 
@@ -87,7 +61,6 @@ Next, we're going to use our SparkContext to create an RDD from subset-small.tsv
 rawData = sc.textFile("./subset-small.tsv") 
 ```
 
-This is a file containing tab-separated values, and it represents a small sample of Wikipedia articles. Again, you'll need to change your path as shown in the preceding code as necessary for wherever you installed the course materials for this book.
 
 That gives me back an RDD where every document is in each line of the RDD. The tsv file contains one entire Wikipedia document on every line, and I know that each one of those documents is split up into tabular fields that have various bits of metadata about each article.
 
@@ -194,7 +167,13 @@ print (zippedResults.max())
 So, let's go run that and see what happens. As usual, to run the Spark script, we're not going to just hit the play icon. We have to go to Tools>Canopy Command Prompt. In the Command Prompt that opens up, we will type in spark-submit TF-IDF.py, and off it goes.
 
 #### Run Code
-Now, run the python code by running: `python TF-IDF.py`
+Now, run the python code by running: `spark-submit TF-IDF.py`
+
+**Note:** We can also run python code by running:
+
+```
+python TF-IDF.py
+```
 
 We are asking it to chunk through quite a bit of data, even though it's a small sample of Wikipedia it's still a fair chunk of information, so it might take a while. Let's see what comes back for the best document match for Gettysburg, what document has the highest TF-IDF score?
 
@@ -204,25 +183,9 @@ It's Abraham Lincoln! Isn't that awesome? We just made an actual search engine t
 
 And there you have it, an actual working search algorithm for a little piece of Wikipedia using Spark in MLlib and TF-IDF. And the beauty is we can actually scale that up to all of Wikipedia if we wanted to, if we had a cluster large enough to run it.
 
-Hopefully we got your interest up there in Spark, and you can see how it can be applied to solve what can be pretty complicated machine learning problems in a distributed manner. So, it's a very important tool, and I want to make sure you don't get through this book on data science without at least knowing the concepts of how Spark can be applied to big data problems. So, when you need to move beyond what one computer can do, remember, Spark is at your disposal.
-
-This chapter was originally produced for Spark 1, so let's talk about what's new in Spark 2, and what new capabilities exist in MLlib now.
-
-So, the main thing with Spark 2 is that they moved more and more toward Dataframes and Datasets. Datasets and Dataframes are kind of used interchangeably sometimes. Technically a dataframe is a Dataset of row objects, they're kind of like RDDs, but the only difference is that, whereas an RDD just contains unstructured data, a Dataset has a defined schema to it.
-
-A Dataset knows ahead of time exactly what columns of information exists in each row, and what types those are. Because it knows about the actual structure of that Dataset ahead of time, it can optimize things more efficiently. It also lets us think of the contents of this Dataset as a little, mini database, well, actually, a very big database if it's on a cluster. That means we can do things like issue SQL queries on it.
-
-This creates a higher-level API with which we can query and analyze massive Datasets on a Spark cluster. It's pretty cool stuff. It's faster, it has more opportunities for optimization, and it has a higher-level API that's often easier to work with.
-
-### How Spark 2.0 MLlib works
-
-Going forward in Spark 2.0, MLlib is pushing dataframes as its primary API. This is the way of the future, so let's take a look at how it works. I've gone ahead and opened up the SparkLinearRegression.py file in Canopy, as shown in the following figure, so let's walk through it a little bit:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-02/steps/26/1.png)
-
-As you see, for one thing, we're using ml instead of MLlib, and that's because the new dataframe-based API is in there.
 
 #### Implementing linear regression
+
 In this example, what we're going to do is implement linear regression, and linear regression is just a way of fitting a line to a set of data. What we're going to do in this exercise is take a bunch of fabricated data that we have in two dimensions, and try to fit a line to it with a linear model.
 
 We're going to separate our data into two sets, one for building the model and one for evaluating the model, and we'll compare how well this linear model does at actually predicting real values. First of all, in Spark 2, if you're going to be doing stuff with the SparkSQL interface and using Datasets, you've got to be using a SparkSession object instead of a SparkContext. To set one up, you do the following:
@@ -333,13 +296,8 @@ for prediction in predictionAndLabel:
 spark.stop() 
 ```
 
-This is kind of a convoluted way of doing it; I did this to be more consistent with the previous example, but a simpler approach would be to just actually select prediction and label together into a single RDD that maps out those two columns together and then I don't have to zip them up, but either way it works. You'll also note that right at the end there we need to stop the Spark session.
-
-So let's see if it works. Let's go up to Tools, Canopy Command Prompt, and we'll type in spark-submit SparkLinearRegression.py and let's see what happens.
-
-
 #### Run Code
-Now, run the python code by running: `python SparkLinearRegression.py`
+Now, run the python code by running: `spark-submit SparkLinearRegression.py`
 
 There's a little bit more upfront time to actually run these APIs with Datasets, but once they get going, they're very fast. Alright, there you have it.
 

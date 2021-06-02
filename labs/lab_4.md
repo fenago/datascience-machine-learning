@@ -5,8 +5,6 @@ Lab : Matplotlib and Advanced Probability Concepts - Part 1
 -------------------------------------
 
 
-After going through some of the simpler concepts of statistics and probability in the previous chapter, we're now going to turn our attention to some more advanced topics that you'll need to be familiar with to get the most out of the remainder of this book. Don't worry, they're not too complicated. First of all, let's have some fun and look at some of the amazing graphing capabilities of the matplotlib library.
-
 We'll be covering the following topics in this scenario:
 
 - Using the matplotlib package to plot graphs
@@ -267,9 +265,6 @@ In this example, you call plt.xkcd(), which puts Matplotlib in XKCD mode. After 
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/10.png)
 
-There's a little bit of interesting Python here in how we're actually putting this graph together. We're starting out by making a data line that is nothing but the value 1 across 100 data points. Then we use the old Python list slicing operator to take everything after the value of 70, and we subtract off from that sub-list of 30 items, the range of 0 through 30. So that has the effect of subtracting off a larger value linearly as you get past 70, which results in that line heading downward down to 0 beyond the point 70.
-
-So, it's a little example of some Python list slicing in action there, and a little creative use of the arange function to modify your data.
 
 ### Generating pie charts
 
@@ -313,11 +308,8 @@ I've defined an array of values and an array of colors, and just plot the data. 
 
 ### Generating scatter plots
 
-A scatter plot is something we'll see pretty often in this book. So, say you have a couple of different attributes you want to plot for the same set of people or things. For example, maybe we're plotting ages against incomes for each person, where each dot represents a person and the axes represent different attributes of those people.
 
-The way you do that with a scatter plot is you call plt.scatter() using the two axes that you want to define, that is, the two attributes that contain data that you want to plot against each other.
-
-Let's say I have a random distribution in X and Y and I scatter those on the scatter plot, and I show it:
+Let's say we have a random distribution in X and Y and I scatter those on the scatter plot, and I show it:
 
 ```
 from pylab import randn 
@@ -352,19 +344,6 @@ In this example, I call a normal distribution centered on 27,000, with a standar
 
 ### Generating box-and-whisker plots
 
-Finally, let's look at box-and-whisker plots. Remember in the previous chapter, when we talked about percentiles I touched on this a little bit.
-
-Again, with a box-and-whisker plot, the box represents the two inner quartiles where 50% of your data resides. Conversely, another 25% resides on either side of that box; the whiskers (dotted lines in our example) represent the range of the data except for outliers.
-
-We define outliers in a box-and-whisker plot as anything beyond 1.5 times the interquartile range, or the size of the box. So, we take the size of the box times 1.5, and up to that point on the dotted whiskers, we call those parts outer quartiles. But anything outside of the outer quartiles is considered an outlier, and that's what the lines beyond the outer quartiles represent. That's where we are defining outliers based on our definition with the box-and-whisker plot.
-
-Some points to remember about box-and-whisker plots:
-
-- They are useful for visualizing the spread and skew of data
-- The line in the middle of the box represents the median of the data, and the box represents the bounds of the 1st and 3rd quartiles
-- Half of the data exists within the box
-- The "whiskers" indicate the range of the data-except for outliers, which are plotted outside the whiskers.
-- Outliers are 1.5 times or more the interquartile range.
 
 Now, just to give you an example here, we have created a fake dataset. The following example creates uniformly distributed random numbers between -40 and 60, plus a few outliers above 100 and below -100:
 
@@ -383,43 +362,6 @@ In the code, we have a uniform random distribution of data (uniformSkewed). Then
 
 You can see that the graph is showing the box that represents the inner 50% of all data, and then we have these outlier lines where we can see little crosses (they may be circles in your version) for each individual outlier that lies in that range.
 
-### Covariance and correlation
-
-Next, we're going to talk about covariance and correlation. Let's say I have two different attributes of something and I want to see if they're actually related to each other or not. This section will give you the mathematical tools you need to do so, and we'll dive into some examples and actually figure out covariance and correlation using Python. These are ways of measuring whether two different attributes are related to each other in a set of data, which can be a very useful thing to find out.
-
-#### Defining the concepts
-Imagine we have a scatter plot, and each one of the data points represents a person that we measured, and we're plotting their age on one axis versus their income on another. Each one of these dots would represent a person, for example their x value represents their age and the y value represents their income. I'm totally making this up, this is fake data.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/1.png)
-
-Now if I had a scatter plot that looks like the left one in the preceding image, you see that these values tend to lie all over the place, and this would tell you that there's no real correlation between age and income based on this data. For any given age, there can be a huge range of incomes and they tend to be clustered around the middle, but we're not really seeing a very clear relationship between these two different attributes of age and income. Now in contrast, in the scatter plot on the right you can see there's a very clear linear relationship between age and income.
-
-So, covariance and correlation give us a means of measuring just how tight these things are correlated. I would expect a very low correlation or covariance for the data in the left scatter plot, but a very high covariance and correlation for the data in the right scatter plot. So that's the concept of covariance and correlation. It measures how much these two attributes that I'm measuring seem to depend on each other.
-
-### Measuring covariance
-
-Measuring covariance mathematically is a little bit hard, but I'll try to explain it. These are the steps:
-
-- Think of the data sets for the two variables as high-dimensional vectors
-- Convert these to vectors of variances from the mean
-- Take the dot product (cosine of the angle between them) of the two vectors
-- Divide by the sample size
-
-It's really more important that you understand how to use it and what it means. To actually derive it, think of the attributes of the data as high dimensional vectors. What we're going to do on each attribute for each data point is compute the variance from the mean at each point. So now I have these high dimensional vectors where each data point, each person, if you will, corresponds to a different dimension.
-
-I have one vector in this high dimensional space that represents all the variances from the mean for, let's say, age for one attribute. Then I have another vector that represents all the variances from the mean for some other attribute, like income. What I do then is I take these vectors that measure the variances from the mean for each attribute, and I take the dot product between the two. Mathematically, that's a way of measuring the angle between these high dimensional vectors. So if they end up being very close to each other, that tells me that these variances are pretty much moving in lockstep with each other across these different attributes. If I take that final dot product and divide it by the sample size, that's how I end up with the covariance amount.
-
-Now you're never going to have to actually compute this yourself the hard way. We'll see how to do this the easy way in Python, but conceptually, that's how it works.
-
-Now the problem with covariance is that it can be hard to interpret. If I have a covariance that's close to zero, well, I know that's telling me there's not much correlation between these variables at all, but a large covariance implies there is a relationship. But how large is large? Depending on the units I'm using, there might be very different ways of interpreting that data. That's a problem that correlation solves.
-
-### Correlation
-
-Correlation normalizes everything by the standard deviation of each attribute (just divide the covariance by the standard deviations of both variables and that normalizes things). By doing so, I can say very clearly that a correlation of -1 means there's a perfect inverse correlation, so as one value increases, the other decreases, and vice versa. A correlation of 0 means there's no correlation at all between these two sets of attributes. A correlation of 1 would imply perfect correlation, where these two attributes are moving in exactly the same way as you look at different data points.
-
-**Note:**
-
-Remember, correlation does not imply causation. Just because you find a very high correlation value does not mean that one of these attributes causes the other. It just means there's a relationship between the two, and that relationship could be caused by something completely different. The only way to really determine causation is through a controlled experiment, which we'll talk about more later.
 
 ### Computing covariance and correlation in Python
 

@@ -8,8 +8,6 @@ Lab : Getting Started
 In this scenario, we will first install and get ready in a working Python environment:
 
 - How to work with the IPython/Jupyter Notebook
-- How to use, read and run the code files for this book
-- Then we'll dive into a crash course into understanding Python code:
 - Python basics - part 1
 - Understanding Python code
 - Importing modules
@@ -34,7 +32,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 ### Using and understanding IPython (Jupyter) Notebooks
 
-Let's now explore using Jupyter Notebooks, which is also known as IPython Notebook. These days, the more modern name is the Jupyter Notebook, but a lot of people still call it an IPython Notebook, and I consider the names interchangeable for working developers as a result. I do also find the name IPython Notebooks helps me remember the notebook file name suffix which is .ipynb as you'll get to know very well in this book!
 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `Outliers.ipynb` in the `work` folder.
@@ -43,7 +40,6 @@ The Notebook opens in a new browser window. You can create a new notebook or ope
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/2/1.png)
 
-As you can see here, notebooks are structured in such a way that I can intersperse my little notes and commentary about what you're seeing here within the actual code itself, and you can actually run this code within your web browser! So, it's a very handy format for me to give you sort of a little reference that you can use later on in life to go and remind yourself how these algorithms work that we're going to talk about, and actually experiment with them and play with them yourself.
 
 The way that the IPython/Jupyter Notebook files work is that they actually run from within your browser, like a webpage, but they're backed by the Python engine that you installed. So you should be seeing a screen similar to the one shown in the previous screenshot.
 
@@ -150,9 +146,7 @@ So again, the point I want to make is that whitespace is important. You will des
 
 ### Importing modules
 
-Python itself, like any language, is fairly limited in what it can do. The real power of using Python for machine learning and data mining and data science is the power of all the external libraries that are available for it for that purpose. One of those libraries is called NumPy, or numeric Python, and, for example, here we can import the Numpy package, which is included with Canopy as np.
 
-This means that I'll refer to the NumPy package as np, and I could call that anything I want. I could call it Fred or Tim, but it's best to stick with something that actually makes sense; now that I'm calling that NumPy package np, I can refer to it using np:
 
 ```
 import numpy as np
@@ -465,12 +459,10 @@ for ship in captains:
      print (ship + ": " + captains[ship])
 ```
 
-The output of the above code is as follows:
-
 
 Let's look at a little example of iterating through the entries in a dictionary. If I want to iterate through every ship that I have in my dictionary and print out captains, I can type for ship in captains, and this will iterate through every single key in my dictionary. Then I can print out the lookup value of each ship's captain, and that's the output that I get there.
 
-There you have it. This is basically the main data structures that you'll encounter in Python. There are some others, such as sets, but we'll not really use them in this book, so I think that's enough to get you started. Let's dive into some more Python nuances in our next section.
+
 
 ### Python basics - Part 2
 
@@ -492,7 +484,7 @@ The output of the above code is as follows:
 4
 ```
 
-You declare a function using the def keyword. It just says this is a function, and we'll call this function SquareIt, and the parameter list is then followed inside parentheses. This particular function only takes one parameter that we'll call x. Again, remember that whitespace is important in Python. There's not going to be any curly brackets or anything enclosing this function. It's strictly defined by whitespace. So we have a colon that says that this function declaration line is over, but then it's the fact that it's tabbed by one or more tabs that tells the interpreter that we are in fact within the SquareIt function.
+
 
 So def SquareIt(x): tab returns x * x, and that will return the square of x in this function. We can go ahead and give that a try. print squareIt(2) is how we call that function. It looks just like it would be in any other language, really. This should return the number 4; we run the code, and in fact it does. Awesome! That's pretty simple, that's all there is to functions. Obviously, I could have more than one parameter if I wanted to, even as many parameters as I need.
 
@@ -516,8 +508,6 @@ Now I have a function called DoSomething, def DoSomething, and it will take two 
 
 For example, we'll say print DoSomething, and for the first parameter, we'll pass in SquareIt, which is actually another function, and the number 3. What this should do is to say do something with the SquareIt function and the 3 parameter, and that will return (SquareIt, 3), and 3 squared last time I checked was 9, and sure enough, that does in fact work.
 
-This might be a little bit of a new concept to you, passing functions around as parameters,so if you need to stop for a minute there, wait and let that sink in, play around with it, please feel free to do so. Again, I encourage you to stop and take this at your own pace.
-
 ### Lambda functions - functional programming
 
 One more thing that's kind of a Python-ish sort of a thing to do, which you might not see in other languages is the concept of lambda functions, and it's kind of called functional programming. The idea is that you can include a simple function into a function. This makes the most sense with an example:
@@ -533,7 +523,7 @@ The output of the above code is as follows:
 27
 ```
 
-We'll print `DoSomething`, and remember that our first parameter is a function, so instead of passing in a named function, I can declare this function inline using the lambda keyword. Lambda basically means that I'm defining an unnamed function that just exists for now. It's transitory, and it takes a parameter x. In the syntax here, lambda means I'm defining an inline function of some sort, followed by its parameter list. It has a single parameter, x, and the colon, followed by what that function actually does. I'll take the x parameter and multiply it by itself three times to basically get the cube of a parameter.
+
 
 In this example, `DoSomething` will pass in this lambda function as the first parameter, which computes the cube of x and the `3` parameter. So what's this really doing under the hood? This lambda function is a function of itself that gets passed into the f in DoSomething in the previous example, and x here is going to be 3. This will return f of x, which will end up executing our lambda function on the value 3. So that 3 goes into our x parameter, and our lambda function transforms that into 3 times 3 times 3, which is, of course, 27.
 
@@ -603,10 +593,12 @@ The last concept I want to cover in our Python basics is looping, and we saw a c
 ```
 for x in range(10):
  print (x),
+```
+
 The output of the previous code is as follows:
 
-```
 0 1 2 3 4 5 6 7 8 9
+
 For example, we can use this range operator to automatically define a list of numbers in the range. So if we say for x in range(10), range 10 will produce a list of 0 through 9, and by saying for x in that list, we will iterate through every individual entry in that list and print it out. Again, the comma after the print statement says don't give me a new line, just keep on going. So the output of this ends up being all the elements of that list printed next to each other.
 
 To do something a little bit more complicated, we'll do something similar, but this time we'll show how continue and break work. As in other languages, you can actually choose to skip the rest of the processing for a loop iteration, or actually stop the iteration of the loop prematurely:
@@ -618,10 +610,13 @@ for x in range(10):
  if (x > 5):
     break
  print (x),
-The output of the above code is as follows:
 
 ```
+
+The output of the above code is as follows:
+
 0 2 3 4 5
+
 In this example, we'll go through the values 0 through 9, and if we hit on the number 1, we will continue before we print it out. We'll skip the number 1, basically, and if the number is greater than 5, we'll break the loop and stop the processing entirely. The output that we expect is that we will print out the numbers 0 through 5, unless it's 1, in which case, we'll skip number 1, and sure enough, that's what it does.
 
 ### The while loop

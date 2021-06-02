@@ -5,9 +5,7 @@ Lab : Recommender Systems
 -------------------------------------
 
 
-Let's talk about my personal area of expertise—recommender systems, so systems that can recommend stuff to people based on what everybody else did. We'll look at some examples of this and a couple of ways to do it. Specifically, two techniques called user-based and item-based collaborative filtering. So, let's dive in.
 
-I spent most of my career at amazon.com and imdb.com, and a lot of what I did there was developing recommender systems; things like people who bought this also bought, or recommended for you, and things that did movie recommendations for people. So, this is something I know a lot about personally, and I hope to share some of that knowledge with you. We'll walk through, step by step, covering the following topics:
 
 - What are recommender systems?
 - User-based collaborative filtering
@@ -29,115 +27,7 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
 
- ### What are recommender systems?
-
- Well, like I said Amazon is a great example, and one I'm very familiar with. So, if you go to their recommendations section, as shown in the following image, you can see that it will recommend things that you might be interested in purchasing based on your past behavior on the site.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/3/1.png)
-
-The recommender system might include things that you've rated, or things that you bought, and other data as well. I can't go into the details because they'll hunt me down, and you know, do bad things to me. But, it's pretty cool. You can also think of the people who bought this also bought feature on Amazon as a form of recommender system.
-
-The difference is that the recommendations you're seeing on your Amazon recommendations page are based on all of your past behavior, whereas people who bought this also bought or people who viewed this also viewed, things like that, are just based on the thing you're looking at right now, and showing you things that are similar to it that you might also be interested in. And, it turns out, what you're doing right now is probably the strongest signal of your interest anyhow.
-
-
-Another example is from Netflix, as shown in the following image (the following image is a screenshot from Netflix):
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/3/2.png)
-
-They have various features that try to recommend new movies or other movies you haven't seen yet, based on the movies that you liked or watched in the past as well, and they break that down by genre. They have kind of a different spin on things, where they try to identify the genres or the types of movies that they think you're enjoying the most and they then show you more results from those genres. So, that's another example of a recommender system in action.
-
-The whole point of it is to help you discover things you might not know about before, so it's pretty cool. You know, it gives individual movies, or books, or music, or whatever, a chance to be discovered by people who might not have heard about them before. So, you know, not only is it cool technology, it also kind of levels the playing field a little bit, and helps new items get discovered by the masses. So, it plays a very important role in today's society, at least I'd like to think so! There are few ways of doing this, and we'll look at the main ones in this scenario.
-
-User-based collaborative filtering
-First, let's talk about recommending stuff based on your past behavior. One technique is called user-based collaborative filtering, and here's how it works:
-
-**Note:**
-
-Collaborative filtering, by the way, is just a fancy name for saying recommending stuff based on the combination of what you did and what everybody else did, okay? So, it's looking at your behavior and comparing that to everyone else's behavior, to arrive at the things that might be interesting to you that you haven't heard of yet.
-
-The idea here is we build up a matrix of everything that every user has ever bought, or viewed, or rated, or whatever signal of interest that you want to base the system on. So basically, we end up with a row for every user in our system, and that row contains all the things they did that might indicate some sort of interest in a given product. So, picture a table, I have users for the rows, and each column is an item, okay? That might be a movie, a product, a web page, whatever; you can use this for many different things.
-I then use that matrix to compute the similarity between different users. So, I basically treat each row of this as a vector and I can compute the similarity between each vector of users, based on their behavior.
-Two users who liked mostly the same things would be very similar to each other and I can then sort this by those similarity scores. If I can find all the users similar to you based on their past behavior, I can then find the users most similar to me, and recommend stuff that they liked that I didn't look at yet.
-Let's look at a real example, and it'll make a little bit more sense:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/3/3.png)
-
-Let's say that this nice lady in the preceding image watched Star Wars and The Empire Strikes Back and she loved them both. So, we have a user vector, of this lady, giving a 5-star rating to Star Wars and The Empire Strikes Back.
-
-Let's also say Mr. Edgy Mohawk Man comes along and he only watched Star Wars. That's the only thing he's seen, he doesn't know about The Empire Strikes Back yet, somehow, he lives in some strange universe where he doesn't know that there are actually many, many Star Wars movies, growing every year in fact.
-
-We can of course say that this guy's actually similar to this other lady because they both enjoyed Star Wars a lot, so their similarity score is probably fairly good and we can say, okay, well, what has this lady enjoyed that he hasn't seen yet? And, The Empire Strikes Back is one, so we can then take that information that these two users are similar based on their enjoyment of Star Wars, find that this lady also liked The Empire Strikes Back, and then present that as a good recommendation for Mr. Edgy Mohawk Man.
-
-We can then go ahead and recommend The Empire Strikes Back to him and he'll probably love it, because in my opinion, it's actually a better film! But I'm not going to get into geek wars with you here.
-
-### Limitations of user-based collaborative filtering
-
-Now, unfortunately, user-based collaborative filtering has some limitations. When we think about relationships and recommending things based on relationships between items and people and whatnot, our mind tends to go on relationships between people. So, we want to find people that are similar to you and recommend stuff that they liked. That's kind of the intuitive thing to do, but it's not the best thing to do! The following is the list of some limitations of user-based collaborative filtering:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/3/4.png)
-
-**Note:**
-
-It's pretty easy to fabricate fake personas in the system by creating a new user and having them do a sequence of events that likes a lot of popular items and then likes your item too. This is called a shilling attack, and we want to ideally have a system that can deal with that.
-
-There is research around how to detect and avoid these shilling attacks in user-based collaborative filtering, but an even better approach would be to use a totally different approach entirely that's not so susceptible to gaming the system.
-
-That's user-based collaborative filtering. Again, it's a simple concept-you look at similarities between users based on their behavior, and recommend stuff that a user enjoyed that was similar to you, that you haven't seen yet. Now, that does have its limitations as we talked about. So, let's talk about flipping the whole thing on its head, with a technique called item-based collaborative filtering.
-
-### Item-based collaborative filtering
-
-Let's now try to address some of the shortcomings in user-based collaborative filtering with a technique called item-based collaborative filtering, and we'll see how that can be more powerful. It's actually one of the techniques that Amazon uses under the hood, and they've talked about this publicly so I can tell you that much, but let's see why it's such a great idea. With user-based collaborative filtering we base our recommendations on relationships between people, but what if we flip that and base them on relationships between items? That's what item-based collaborative filtering is.
-
-**Understanding item-based collaborative filtering**
-
-This is going to draw on a few insights. For one thing, we talked about people being fickle-their tastes can change over time, so comparing one person to another person based on their past behavior becomes pretty complicated. People have different phases where they have different interests, and you might not be comparing the people that are in the same phase to each other. But, an item will always be whatever it is. A movie will always be a movie, it's never going to change. Star Wars will always be Star Wars, well until George Lucas tinkers with it a little bit, but for the most part, items do not change as much as people do. So, we know that these relationships are more permanent, and there's more of a direct comparison you can make when computing similarity between items, because they do not change over time.
-
-The other advantage is that there are generally fewer things that you're trying to recommend than there are people you're recommending to. So again, 7 billion people in the world, you're probably not offering 7 billion things on your website to recommend to them, so you can save a lot of computational resources by evaluating relationships between items instead of users, because you will probably have fewer items than you have users in your system. That means you can run your recommendations more frequently, make them more current, more up-to-date, and better! You can use more complicated algorithms because you have less relationships to compute, and that's a good thing!
-
-It's also harder to game the system. So, we talked about how easy it is to game a user-based collaborative filtering approach by just creating some fake users that like a bunch of popular stuff and then the thing you're trying to promote. With item-based collaborative filtering that becomes much more difficult. You have to game the system into thinking there are relationships between items, and since you probably don't have the capability to create fake items with fake ties to other items based on many, many other users, it's a lot harder to game an item-based collaborative filtering system, which is a good thing.
-
-While I'm on the topic of gaming the system, another important thing is to make sure that people are voting with their money. A general technique for avoiding shilling attacks or people trying to game your recommender system, is to make sure that the signal behavior is based on people actually spending money. So, you're always going to get better and more reliable results when you base recommendations on what people actually bought, as opposed to what they viewed or what they clicked on, okay?
-
-### How item-based collaborative filtering works?
-
-Alright, let's talk about how item-based collaborative filtering works. It's very similar to user-based collaborative filtering, but instead of users, we're looking at items.
-
-So, let's go back to the example of movie recommendations. The first thing we would do is find every pair of movies that is watched by the same person. So, we go through and find every movie that was watched by identical people, and then we measure the similarity of all those people who viewed that movie to each other. So, by this means we can compute similarities between two different movies, based on the ratings of the people who watched both of those movies.
-
-So, let's presume I have a movie pair, okay? Maybe Star Wars and The Empire Strikes Back. I find a list of everyone who watched both of those movies, then I compare their ratings to each other, and if they're similar then I can say these two movies are similar, because they were rated similarly by people who watched both of them. That's the general idea here. That's one way to do it, there's more than one way to do it!
-
-And then I can just sort everything by the movie, and then by the similarity strength of all the similar movies to it, and there's my results for people who liked also liked, or people who rated this highly also rated this highly and so on and so forth. And like I said, that's just one way of doing it.
-
-
-That's step one of item-based collaborative filtering-first I find relationships between movies based on the relationships of the people who watched every given pair of movies. It'll make more sense when we go through the following example:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/8/1.png)
-
-For example, let's say that our nice young lady in the preceding image watched Star Wars and The Empire Strikes Back and liked both of them, so rated them both five stars or something. Now, along comes Mr. Edgy Mohawk Man who also watched Star Wars and The Empire Strikes Back and also liked both of them. So, at this point we can say there's a relationship, there is a similarity between Star Wars and The Empire Strikes Back based on these two users who liked both movies.
-
-What we're going to do is look at each pair of movies. We have a pair of Star Wars and Empire Strikes Back, and then we look at all the users that watched both of them, which are these two guys, and if they both liked them, then we can say that they're similar to each other. Or, if they both disliked them we can also say they're similar to each other, right? So, we're just looking at the similarity score of these two users' behavior related to these two movies in this movie pair.
-
-So, along comes Mr. Moustachy Lumberjack Hipster Man and he watches The Empire Strikes Back and he lives in some strange world where he watched The Empire Strikes Back, but had no idea that Star Wars the first movie existed.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/8/2.png)
-
-Well that's fine, we computed a relationship between The Empire Strikes Back and Star Wars based on the behavior of these two people, so we know that these two movies are similar to each other. So, given that Mr. Hipster Man liked The Empire Strikes Back, we can say with good confidence that he would also like Star Wars, and we can then recommend that back to him as his top movie recommendation. Something like the following illustration:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/8/3.png)
-
-You can see that you end up with very similar results in the end, but we've kind of flipped the whole thing on its head. So, instead of focusing the system on relationships between people, we're focusing them on relationships between items, and those relationships are still based on the aggregate behavior of all the people that watch them. But fundamentally, we're looking at relationships between items and not relationships between people. Got it?
-
-### Collaborative filtering using Python
-
-Alright, so let's do it! We have some Python code that will use Pandas, and all the various other tools at our disposal, to create movie recommendations with a surprisingly little amount of code.
-
-The first thing we're going to do is show you item-based collaborative filtering in practice. So, we'll build up people who watched also watched basically, you know, people who rated things highly also rated this thing highly, so building up these movie to movie relationships. So, we're going to base it on real data that we got from the MovieLens project. So, if you go to MovieLens.org, there's actually an open movie recommender system there, where people can rate movies and get recommendations for new movies.
-
-And, they make all the underlying data publicly available for researchers like us. So, we're going to use some real movie ratings data-it is a little bit dated, it's like 10 years old, so keep that in mind, but it is real behavior data that we're going to be working with finally here. And, we will use that to compute similarities between movies. And, that data in and of itself is useful. You can use that data to say people who liked also liked. So, let's say I'm looking at a web page for a movie. the system can then say: if you liked this movie, and given that you're looking at it you're probably interested in it, then you might also like these movies. And that's a form of a recommender system right there, even though we don't even know who you are.
-
-Now, it is real-world data, so we're going to encounter some real-world problems with it. Our initial set of results aren't going to look good, so we're going to spend a little bit of extra time trying to figure out why, which is a lot of what you spend your time doing as a data scientist-correct those problems, and go back and run it again until we get results that makes sense.
-
-And finally, we'll actually do item-based collaborative filtering in its entirety, where we actually recommend movies to individuals based on their own behavior. So, let's do this,let's get started!
+## Collaborative filtering using Python
 
 ### Finding movie similarities
 
@@ -157,7 +47,8 @@ In this case, we're going to be looking at similarities between movies, based on
 
 We have included the data files that you need from the GroupLens dataset with the course materials, and the first thing we need to do is import those into a Pandas DataFrame, and we're really going to see the full power of Pandas in this example. It's pretty cool stuff!
 
-Understanding the code
+**Understanding the code**
+
 The first thing we're going to do is import the u.data file as part of the MovieLens dataset, and that is a tab-delimited file that contains every rating in the dataset.
 
 ```
@@ -502,29 +393,3 @@ Running that will let me see the final top 10 results:
 And there we have it! Return of the Jedi (1983), Raiders of the Lost Ark (1981), Indiana Jones and the Last Crusade (1989), all the top results for my fictitious user, and they all make sense. I'm seeing a few family-friendly films, you know, Cinderella (1950), The Wizard of Oz (1939), Dumbo (1941), creeping in, probably based on the presence of Gone with the Wind in there, even though it was weighted downward it's still in there, and still being counted. And, there we have our results, so. There you have it! Pretty cool!
 
 We have actually generated recommendations for a given user and we could do that for any user in our entire DataFrame. So, go ahead and play with that if you want to. I also want to talk about how you can actually get your hands dirty a little bit more, and play with these results; try to improve upon them.
-
-There's a bit of an art to this, you know, you need to keep iterating and trying different ideas and different techniques until you get better and better results, and you can do this pretty much forever. I mean, I made a whole career out of it. So, I don't expect you to spend the next, you know, 10 years trying to refine this like I did, but there are some simple things you can do, so let's talk about that.
-
-### Improving the recommendation results
-
-As an exercise, I want to challenge you to go and make those recommendations even better. So, let's talk about some ideas I have, and maybe you'll have some of your own too that you can actually try out and experiment with; get your hands dirty, and try to make better movie recommendations.
-
-Okay, there's a lot of room for improvement still on these recommendation results. There's a lot of decisions we made about how to weigh different recommendation results based on your rating of that item that it came from, or what threshold you want to pick for the minimum number of people that rated two given movies. So, there's a lot of things you can tweak, a lot of different algorithms you can try, and you can have a lot of fun with trying to make better movie recommendations out of the system. So, if you're feeling up to it, I'm challenging you to go and do just that!
-
-Here are some ideas on how you might actually try to improve upon the results in this scenario. First, you can just go ahead and play with the `ItembasedCF.ipynb` file and tinker with it. So, for example, we saw that the correlation method actually had some parameters for the correlation computation, we used Pearson in our example, but there are other ones you can look up and try out, see what it does to your results. We used a minimum period value of 100, maybe that's too high, maybe it's too low; we just kind of picked it arbitrarily. What happens if you play with that value? If you were to lower that for example, I would expect you to see some new movies maybe you've never heard of, but might still be a good recommendation for that person. Or, if you were to raise it higher, you would see, you know nothing but blockbusters.
-
-Sometimes you have to think about what the result is that you want out of a recommender system. Is there a good balance to be had between showing people movies that they've heard of and movies that they haven't heard of? How important is discovery of new movies to these people versus having confidence in the recommender system by seeing a lot of movies that they have heard of? So again, there's sort of an art to that.
-
-We can also improve upon the fact that we saw a lot of movies in the results that were similar to Gone with the Wind, even though I didn't like Gone with the Wind. You know we weighted those results lower than similarities to movies that I enjoyed, but maybe those movies should actually be penalized. If I hated Gone with the Wind that much, maybe similarities to Gone with the Wind, like The Wizard of Oz, should actually be penalized and, you know lowered in their score instead of raised at all.
-
-That's another simple modification you can make and play around with. There are probably some outliers in our user rating dataset, what if I were to throw away people that rated some ridiculous number of movies? Maybe they're skewing everything. You could actually try to identify those users and throw them out, as another idea. And, if you really want a big project, if you really want to sink your teeth into this stuff, you could actually evaluate the results of this recommender engine by using the techniques of train/test. So, what if instead of having an arbitrary recommendation score that sums up the correlation scores of each individual movie, actually scale that down to a predicted rating for each given movie.
-
-
-If the output of my recommender system were a movie and my predicted rating for that movie, in a train/test system I could actually try to figure out how well do I predict movies that the user has in fact watched and rated before? Okay? So, I could set aside some of the ratings data and see how well my recommender system is able to predict the user's ratings for those movies. And, that would be a quantitative and principled way to measure the error of this recommender engine. But again, there's a little bit more of an art than a science to this. Even though the Netflix prize actually used that error metric, called root-mean-square error is what they used in particular, is that really a measure of a good recommender system?
-
-Basically, you're measuring the ability of your recommender system to predict the ratings of movies that a person already watched. But isn't the purpose of a recommender engine to recommend movies that a person hasn't watched, that they might enjoy? Those are two different things. So unfortunately, it's not very easy to measure the thing you really want to be measuring. So sometimes, you do kind of have to go with your gut instinct. And, the right way to measure the results of a recommender engine is to measure the results that you're trying to promote through it.
-
-Maybe I'm trying to get people to watch more movies, or rate new movies more highly, or buy more stuff. Running actual controlled experiments on a real website would be the right way to optimize for that, as opposed to using train/test. So, you know, I went into a little bit more detail there than I probably should have, but the lesson is, you can't always think about these things in black and white. Sometimes, you can't really measure things directly and quantitatively, and you have to use a little bit of common sense, and this is an example of that.
-
-Anyway, those are some ideas on how to go back and improve upon the results of this recommender engine that we wrote. So, please feel free to tinker around with it, see if you can improve upon it however you wish to, and have some fun with it. This is actually a very interesting part of the book, so I hope you enjoy it!
-

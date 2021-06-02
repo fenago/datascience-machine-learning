@@ -5,9 +5,7 @@ Lab : Statistics and Probability Refresher, and Python Practice - Part 2
 -------------------------------------
 
 
-In this scenario, we are going to go through a few concepts of statistics and probability, which might be a refresher for some of you. These concepts are important to go through if you want to be a data scientist. We will see examples to understand these concepts better. We will also look at how to implement those examples using actual Python code.
-
-We'll be covering the following topics in this scenario:
+We'll be covering the following topics in this lab:
 
 - Types of data distributions and how to plot them
 - Understanding percentiles and moments
@@ -27,7 +25,7 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
  ### Types of data distributions
 
- Let's look at some real examples of probability distribution functions and data distributions in general and wrap your head a little bit more around data distributions and how to visualize them and use them in Python.
+Let's look at some real examples of probability distribution functions and data distributions in general and wrap your head a little bit more around data distributions and how to visualize them and use them in Python.
 
 Go ahead and open up the Distributions.ipynb from the book materials, and you can follow along with me here if you'd like.
 
@@ -59,7 +57,7 @@ So what would the probability distribution function of this look like? Well, I'd
 
 ### Normal or Gaussian distribution
 
-Now we've seen normal, also known as Gaussian, distribution functions already in this book. You can actually visualize those in Python. There is a function called pdf (probability density function) in the scipy.stats.norm package function.
+Now we've seen normal, also known as Gaussian, distribution functions already in this course. You can actually visualize those in Python. There is a function called pdf (probability density function) in the scipy.stats.norm package function.
 
 So, let's look at the following example:
 
@@ -137,11 +135,8 @@ Coming back to our code, we're creating some discrete x values between 0 and 10 
 
 If you want to go and play around with different values to see what effects it has, that's a good way to get an intuitive sense of how those shape parameters work on the probability mass function.
 
-Lastly, the other distribution function you might hear about is a Poisson probability mass function, and this has a very specific application. It looks a lot like a normal distribution, but it's a little bit different.
 
-The idea here is, if you have some information about the average number of things that happen in a given time period, this probability mass function can give you a way to predict the odds of getting another value instead, on a given future day.
-
-As an example, let's say I have a website, and on average I get 500 visitors per day. I can use the Poisson probability mass function to estimate the probability of seeing some other value on a specific day. For example, with my average of 500 visitors per day, what's the odds of seeing 550 visitors on a given day? That's what a Poisson probability mass function can give you take a look at the following code:
+Let's say I have a website, and on average I get 500 visitors per day. I can use the Poisson probability mass function to estimate the probability of seeing some other value on a specific day. For example, with my average of 500 visitors per day, what's the odds of seeing 550 visitors on a given day? That's what a Poisson probability mass function can give you take a look at the following code:
 
 ```
 from scipy.stats import poisson 
@@ -170,37 +165,12 @@ So that's probability density functions, and probability mass functions. Basical
 
 Next, we'll talk about percentiles and moments. You hear about percentiles in the news all the time. People that are in the top 1% of income: that's an example of percentile. We'll explain that and have some examples. Then, we'll talk about moments, a very fancy mathematical concept, but it turns out it's very simple to understand conceptually. Let's dive in and talk about percentiles and moments, a couple of a pretty basic concepts in statistics, but again, we're working our way up to the hard stuff, so bear with me as we go through some of this review.
 
-### Percentiles
 
-Let's see what percentiles mean. Basically, if you were to sort all of the data in a dataset, a given percentile is the point at which that percent of the data is less than the point you're at.
+
+### Percentiles
 
 A common example you see talked about a lot, is income distribution. When we talk about the 99th percentile, or the one-percenters, imagine that you were to take all the incomes of everybody in the country, in this case the United States, and sort them by income. The 99th percentile will be the income amount at which 99% of the rest of the country was making less than that amount. It's a very easy way to comprehend it.
 
-**Note:**
-
-In a dataset, a percentile is the point at which x% of the values are less than the value at that point.
-
-The following graph is an example for income distribution:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/1.png)
-
-The preceding image shows an example of income distribution data. For example, at the 99th percentile we can say that 99% of the data points, which represent people in America, make less than $506,553 a year, and one percent make more than that. Conversely, if you're a one-percenter, you're making more than $506,553 a year. Congratulations! But if you're a more typical median person, the 50th percentile defines the point at which half of the people are making less and half are making more than you are, which is the definition of median. The 50th percentile is the same thing as median, and that would be at $42,327 given this dataset. So, if you're making $42,327 a year in the US, you are making exactly the median amount of income for the country.
-
-You can see the problem of income distribution in the graph above. Things tend to be very concentrated toward the high end of the graph, which is a very big political problem right now in the country. We'll see what happens with that, but that's beyond the scope of this book. That's percentiles in a nutshell.
-
-### Quartiles
-
-Percentiles are also used in the context of talking about the quartiles in a distribution. Let's look at a normal distribution to understand this better.
-
-Here's an example illustrating Percentile in normal distribution:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/2.png)
-
-Looking at the normal distribution in the preceding image, we can talk about quartiles. Quartile 1 (Q1) and quartile 3 (Q3) in the middle are just the points that contain together 50% of the data, so 25% are on left side of the median and 25% are on the right side of the median.
-
-The median in this example happens to be near the mean. For example, the interquartile range (IQR), when we talk about a distribution, is the area in the middle of the distribution that contains 50% of the values.
-
-The topmost part of the image is an example of what we call a box-and-whisker diagram. Don't concern yourself yet about the stuff out on the edges of the box. That gets a little bit confusing, and we'll cover that later. Even though they are called quartile 1 (Q1) and quartile 3 (Q1), they don't really represent 25% of the data, but don't get hung up on that yet. Focus on the point that the quartiles in the middle represent 25% of the data distribution.
 
 ### Computing percentiles in Python
 
@@ -275,42 +245,11 @@ The 20th percentile point works out to be -0.4, roughly, and again I believe tha
 
 If you want to get a feel as to where those breaking points are in a dataset, the percentile function is an easy way to compute them. If this were a dataset representing income distribution, we could just call np.percentile(vals, 99) and figure out what the 99th percentile is. You could figure out who those one-percenters people keep talking about really are, and if you're one of them.
 
-Alright, now to get your hands dirty. I want you to play around with this data. This is an IPython Notebook for a reason, so you can mess with it and mess with the code, try different standard deviation values, see what effect it has on the shape of the data and where those percentiles end up lying, for example. Try using smaller dataset sizes and add a little bit more random variation in the thing. Just get comfortable with it, play around with it, and find you can actually do this stuff and write some real code that works.
 
 ### Moments
 
-Next, let's talk about moments. Moments are a fancy mathematical phrase, but you don't actually need a math degree to understand it, though. Intuitively, it's a lot simpler than it sounds.
-
-It's one of those examples where people in statistics and data science like to use big fancy terms to make themselves sound really smart, but the concepts are actually very easy to grasp, and that's the theme you're going to hear again and again in this book.
-
 Basically, moments are ways to measure the shape of a data distribution, of a probability density function, or of anything, really. Mathematically, we've got some really fancy notation to define them:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/4.png)
-
-If you do know calculus, it's actually not that complicated of a concept. We're taking the difference between each value from some value raised to the nth power, where n is the moment number and integrating across the entire function from negative infinity to infinity. But intuitively, it's a lot easier than calculus.
-
-**Note:**
-
-Moments can be defined as quantitative measures of the shape of a probability density function.
-
-
-Ready? Here we go!
-
-- The first moment works out to just be the mean of the data that you're looking at. That's it. The first moment is the mean, the average. It's that simple.
-- The second moment is the variance. That's it. The second moment of the dataset is the same thing as the variance value. It might seem a little bit creepy that these things kind of fall out of the math naturally, but think about it. The variance is really based on the square of the differences from the mean, so coming up with a mathematical way of saying that variance is related to mean isn't really that much of a stretch, right. It's just that simple.
-- Now when we get to the third and fourth moments, things get a little bit trickier, but they're still concepts that are easy to grasp. The third moment is called skew, and it is basically a measure of how lopsided a distribution is.
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/5.png)
-
-You can see in these two examples above that, if I have a longer tail on the left, now then that is a negative skew, and if I have a longer tail on the right then, that's a positive skew. The dotted lines show what the shape of a normal distribution would look like without skew. The dotted line out on the left side then I end up with a negative skew, or on the other side, a positive skew in that example. OK, so that's all skew is. It's basically stretching out the tail on one side or the other, and it is a measure of how lopsided, or how skewed a distribution is.
-
-- The fourth moment is called kurtosis. Wow, that's a fancy word! All that really is, is how thick is the tail and how sharp is the peak. So again, it's a measure of the shape of the data distribution. Here's an example:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/6.png)
-
-You can see that the higher peak values have a higher kurtosis value. The topmost curve has a higher kurtosis than the bottommost curve. It's a very subtle difference, but a difference nonetheless. It basically measures how peaked your data is.
-
-Let's review all that: the first moment is mean, the second moment is variance, the third moment is skew, and the fourth moment is kurtosis. We already know what mean and variance are. Skew is how lopsided the data is, how stretched out one of the tails might be. Kurtosis is how peaked, how squished together the data distribution is.
 
 ### Computing moments in Python
 
@@ -394,7 +333,6 @@ Out [5]:0.059954502386585506
 
 Indeed, it does turn out to be zero. Kurtosis reveals our data distribution in two linked ways: the shape of the tail, or the how sharp the peak If I just squish the tail down it kind of pushes up that peak to be pointier, and likewise, if I were to push down that distribution, you can imagine that's kind of spreading things out a little bit, making the tails a little bit fatter, and the peak of it a little bit lower. So that's what kurtosis means, and in this example, kurtosis is near zero because it is just a plain old normal distribution.
 
+### Activity
 
 If you want to play around with it, go ahead and, again, try to modify the distribution. Make it centered around something besides 0, and see if that actually changes anything. Should it? Well, it really shouldn't because these are all measures of the shape of the distribution, and it doesn't really say a whole lot about where that distribution is exactly. It's a measure of the shape. That's what the moments are all about. Go ahead and play around with that, try different center values, try different standard deviation values, and see what effect it has on these values, and it doesn't change at all. Of course, you'd expect things like the mean to change because you're changing the mean value, but variance, skew, maybe not. Play around, find out.
-
-There you have percentiles and moments. Percentiles are a pretty simple concept. Moments sound hard, but it's actually pretty easy to understand how to do it, and it's easy in Python too. Now you have that under your belt. It's time to move on.

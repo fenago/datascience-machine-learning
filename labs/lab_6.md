@@ -5,9 +5,7 @@ Lab : Predictive Models
 ------------------------
 
 
-In this scenario, we're going to look at what predictive modeling is and how it uses statistics to predict outcomes from existing data. We'll cover real world examples to understand the concepts better. We'll see what regression analysis means and analyze some of its forms in detail. We'll also look at an example which predicts the price of a car for us.
-
-These are the topics that we'll cover in this scenario:
+In this lab, we'll cover the following topics:
 
 - Linear regression and how to implement it in Python
 - Polynomial regression, its application and examples
@@ -27,68 +25,6 @@ All Notebooks are present in `work/datascience-machine-learning` folder.
 
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab_
 
-
- ### Linear regression
-
- Let's talk about regression analysis, a very popular topic in data science and statistics. It's all about trying to fit a curve or some sort of function, to a set of observations and then using that function to predict new values that you haven't seen yet. That's all there is to linear regression!
-
-So, linear regression is fitting a straight line to a set of observations. For example, let's say that I have a bunch of people that I measured and the two features that I measured of these people are their weight and their height:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-04/1.png)
-
-I'm showing the weight on the x-axis and the height on the y-axis, and I can plot all these data points, as in the people's weight versus their height, and I can say, "Hmm, that looks like a linear relationship, doesn't it? Maybe I can fit a straight line to it and use that to predict new values", and that's what linear regression does. In this example, I end up with a slope of 0.6 and a y-intercept of 130.2 which define a straight line (the equation of a straight line is y=mx+b, where m is the slope and b is the y-intercept). Given a slope and a y-intercept, that fits the data that I have best, I can use that line to predict new values.
-
-You can see that the weights that I observed only went up to people that weighed 100 kilograms. What if I had someone who weighed 120 kilograms? Well, I could use that line to then figure out where would the height be for someone with 120 kilograms based on this previous data.
-
-I don't know why they call it regression. Regression kind of implies that you're doing something backwards. I guess you can think of it in terms of you're creating a line to predict new values based on observations you made in the past, backwards in time, but it seems like a little bit of a stretch. It's just a confusing term quite honestly, and one way that we kind of obscure what we do with very simple concepts using very fancy terminology. All it is, is fitting a straight line to a set of data points.
-
-### The ordinary least squares technique
-
-How does linear regression work? Well internally, it uses a technique called ordinary least squares; it's also known as, OLS. You might see that term tossed around as well. The way it works is it tries to minimize the squared error between each point and the line, where the error is just the distance between each point and the line that you have.
-
-So, we sum up all the squares of those errors, which sounds a lot like when we computed variance, right, except that instead of relative to the mean, it's relative to the line that we're defining. We can measure the variance of the data points from that line, and by minimizing that variance, we can find the line that fits it the best:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-04/2.png)
-
-Now you'll never have to actually do this yourself the hard way, but if you did have to for some reason, or if you're just curious about what happens under the hood, I'll now describe the overall algorithm for you and how you would actually go about computing the slope and y-intercept yourself the hard way if you need to one day. It's really not that complicated.
-
-Remember the slope-intercept equation of a line? It is `y=mx+c`. The slope just turns out to be the correlation between the two variables times the standard deviation in Y divided by the standard deviation in X. It might seem a little bit weird that standard deviation just kind of creeps into the math naturally there, but remember correlation had standard deviation baked into it as well, so it's not too surprising that you have to reintroduce that term.
-
-The intercept can then be computed as the mean of the `Y` minus the slope times the mean of `X`. Again,even though that's really not that difficult, Python will do it all for you, but the point is that these aren't complicated things to run. They can actually be done very efficiently.
-
-Remember that least squares minimize the sum of squared errors from each point to the line. Another way of thinking about linear regression is that you're defining a line that represents the maximum likelihood of an observation line there; that is, the maximum probability of the y value being something for a given x value.
-
-People sometimes call linear regression maximum likelihood estimation, and it's just another example of people giving a fancy name to something that's very simple, so if you hear someone talk about maximum likelihood estimation, they're really talking about regression. They're just trying to sound really smart. But now you know that term too, so you too can sound smart.
-
-### The gradient descent technique
-
-There is more than one way to do linear regression. We've talked about ordinary least squares as being a simple way of fitting a line to a set of data, but there are other techniques as well, gradient descent being one of them, and it works best in three-dimensional data. So, it tries to follow the contours of the data for you. It's very fancy and obviously a little bit more computationally expensive, but Python does make it easy for you to try it out if you want to compare it to ordinary least squares.
-
-**Note:**
-
-Using the gradient descent technique can make sense when dealing with 3D data.
-
-Usually though, least squares is a perfectly good choice for doing linear regression, and it's always a legitimate thing to do, but if you do run into gradient descent, you will know that that is just an alternate way of doing linear regression, and it's usually seen in higher dimensional data.
-
-### The co-efficient of determination or r-squared
-
-So how do I know how good my regression is? How well does my line fit my data? That's where r-squared comes in, and r-squared is also known as the coefficient of determination. Again, someone trying to sound smart might call it that, but usually it's called r-squared.
-
-It is the fraction of the total variation in Y that is captured by your models. So how well does your line follow that variation that's happening? Are we getting an equal amount of variance on either side of your line or not? That's what r-squared is measuring.
-
-**Computing r-squared**
-
-To actually compute the value, take 1 minus the sum of the squared errors over the sum of the squared variations from the mean:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-04/3.png)
-
-So, it's not very difficult to compute, but again, Python will give you functions that will just compute that for you, so you'll never have to actually do that math yourself.
-
-### Interpreting r-squared
-
-For r-squared, you will get a value that ranges from 0 to 1. Now 0 means your fit is terrible. It doesn't capture any of the variance in your data. While 1 is a perfect fit, where all of the variance in your data gets captured by this line, and all of the variance you see on either side of your line should be the same in that case. So 0 is bad, and 1 is good. That's all you really need to know. Something in between is something in between. A low r-squared value means it's a poor fit, a high r-squared value means it's a good fit.
-
-As you'll see in the coming sections, there's more than one way to do regression. Linear regression is one of them. It's a very simple technique, but there are other techniques as well, and you can use r-squared as a quantitative measure of how good a given regression is to a set of data points, and then use that to choose the model that best fits your data.
 
 ### Computing linear regression and r-squared using Python
 
@@ -169,31 +105,7 @@ Time now to get your hands dirty. Try increasing the random variation in the tes
 
 That's linear regression, a pretty simple concept. All we're doing is fitting a straight line to set of observations, and then we can use that line to make predictions of new values. That's all there is to it. But why limit yourself to a line? There's other types of regression we can do that are more complex. We'll explore these next.
 
-### Polynomial regression
 
-We've talked about linear regression where we fit a straight line to a set of observations. Polynomial regression is our next topic, and that's using higher order polynomials to fit your data. So, sometimes your data might not really be appropriate for a straight line. That's where polynomial regression comes in.
-
-Polynomial regression is a more general case of regression. So why limit yourself to a straight line? Maybe your data doesn't actually have a linear relationship, or maybe there's some sort of a curve to it, right? That happens pretty frequently.
-
-
-Not all relationships are linear, but the linear regression is just one example of a whole class of regressions that we can do. If you remember the linear regression line that we ended up with was of the form y = mx + b, where we got back the values m and b from our linear regression analysis from ordinary least squares, or whatever method you choose. Now this is just a first order or a first-degree polynomial. The order or the degree is the power of x that you see. So that's the first-order polynomial.
-
-Now if we wanted, we could also use a second-order polynomial, which would look like y = ax^2 + bx + c. If we were doing a regression using a second-order polynomial, we would get back values for a, b, and c. Or we could do a third-order polynomial that has the form ax^3 + bx^2 + cx + d. The higher the orders get, the more complex the curves you can represent. So, the more powers of x you have blended together, the more complicated shapes and relationships you can get.
-
-But more degrees aren't always better. Usually there's some natural relationship in your data that isn't really all that complicated, and if you find yourself throwing very large degrees at fitting your data, you might be overfitting!
-
-**Beware of overfitting!**
-
-- Don't use more degrees than you need
-- Visualize your data first to see how complex of a curve there might really be
-- Visualize the fit and check if your curve going out of its way to accommodate outliers
-- A high r-squared simply means your curve fits your training data well; it may or may not be good predictor
-
-If you have data that's kind of all over the place and has a lot of variance, you can go crazy and create a line that just like goes up and down to try to fit that data as closely as it can, but in fact that doesn't represent the intrinsic relationship of that data. It doesn't do a good job of predicting new values.
-
-So always start by just visualizing your data and think about how complicated does the curve really needs to be. Now you can use r-squared to measure how good your fit is, but remember, that's just measuring how well this curve fits your training data—that is, the data that you're using to actually make your predictions based off of. It doesn't measure your ability to predict accurately going forward.
-
-Later, we'll talk about some techniques for preventing overfitting called train/test, but for now you're just going to have to eyeball it to make sure that you're not overfitting and throwing more degrees at a function than you need to. This will make more sense when we explore an example, so let's do that next.
 
 ### Implementing polynomial regression using NumPy
 
@@ -249,7 +161,6 @@ At this point, it looks like a reasonably good fit. What you want to ask yoursel
 
 If I had a really high order polynomial, it might swoop up at the top to catch that one outlier and then swoop downwards to catch the outliers there, and get a little bit more stable through where we have a lot of density, and maybe then it could potentially go all over the place trying to fit the last set of outliers at the end. If you see that sort of nonsense, you know you have too many orders, too many degrees in your polynomial, and you should probably bring it back down because, although it fits the data that you observed, it's not going to be useful for predicting data you haven't seen.
 
-Imagine I have some curve that swoops way up and then back down again to fit outliers. My prediction for something in between there isn't going to be accurate. The curve really should be in the middle. Later in this book we'll talk about the main ways of detecting such overfitting, but for now, please just observe it and know we'll go deeper later.
 
 ### Computing the r-squared error
 
@@ -287,27 +198,7 @@ Our third-degree polynomial is definitely not as good a fit as the fourth-degree
 
 So that's polynomial regression. Again, you need to make sure that you don't put more degrees at the problem than you need to. Use just the right amount to find what looks like an intuitive fit to your data. Too many can lead to overfitting, while too few can lead to a poor fit... so you can use both your eyeballs for now, and the r-squared metric, to figure out what the right number of degrees are for your data. Let's move on.
 
-### Multivariate regression and predicting car prices
 
-What happens then, if we're trying to predict some value that is based on more than one other attribute? Let's say that the height of people not only depends on their weight, but also on their genetics or some other things that might factor into it. Well, that's where multivariate analysis comes in. You can actually build regression models that take more than one factor into account at once. It's actually pretty easy to do with Python.
-
-Let's talk about multivariate regression, which is a little bit more complicated. The idea of multivariate regression is this: what if there's more than one factor that influences the thing you're trying to predict?
-
-In our previous examples, we looked at linear regression. We talked about predicting people's heights based on their weight, for example. We assumed that the weight was the only thing that influenced their height, but maybe there are other factors too. We also looked at the effect of page speed on purchase amounts. Maybe there's more that influences purchase amounts than just page speed, and we want to find how these different factors all combine together to influence that value. So that's where multivariate regression comes in.
-
-The example we're going to look at now is as follows. Let's say that you're trying to predict the price that a car will sell for. It might be based on many different features of that car, such as the body style, the brand, the mileage; who knows, even on how good the tires are. Some of those features are going to be more important than others toward predicting the price of a car, but you want to take into account all of them at once.
-
-So our way forwards here is still going to use the least-squares approach to fit a model to your set of observations. The difference is that we're going to have a bunch of coefficients for each different feature that you have.
-
-So, for example, the price model that we end up with might be a linear relationship of alpha, some constant, kind of like your y-intercept was, plus some coefficient of the mileage, plus some coefficient of the age, plus some coefficient of how many doors it has:
-
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-04/steps/22/1.png)
-
-Once you end up with those coefficients, from least squares analysis, we can use that information to figure out, well, how important are each of these features to my model. So, if I end up with a very small coefficient for something like the number of doors, that implies that the number of doors isn't that important, and maybe I should just remove it from my model entirely to keep it simpler.
-
-You always want to do the simplest thing that works in data science. Don't over complicate things, because it's usually the simple models that work the best. If you can find just the right amount of complexity, but no more, that's usually the right model to go with. Anyway, those coefficients give you a way of actually, "Hey some of these things are more important than others. Maybe I can discard some of these factors."
-
-Now we can still measure the quality of a fit with multivariate regression using r-squared. It works the same way, although one thing you need to assume when you're doing multivariate regression is that the factors themselves are not dependent on each other... and that's not always true. So sometimes you need to keep that little caveat in the back of your head. For example, in this model we're going to assume that mileage and age of the car are not related; but in fact, they're probably pretty tightly related! This is a limitation of this technique, and it might not be capturing an effect at all.
 
 ### Multivariate regression using Python
 
@@ -379,29 +270,4 @@ I can see the average two-door car sells for actually more than the average four
 
 As an activity, please mess around with the fake input data where you want. You can download the data and mess around with the spreadsheet. Read it from your local hard drive instead of from HTTP, and see what kind of differences you can have. Maybe you can fabricate a dataset that has a different behavior and has a better model that fits it. Maybe you can make a wiser choice of features to base your model off of. So, feel free to mess around with that and let's move on.
 
-There you have it: multivariate analysis and an example of it running. Just as important as the concept of multivariate analysis, which we explored, was some of the stuff that we did in that Python notebook. So, you might want to go back there and study exactly what's going on.
-
 We introduced pandas and the way to work with pandas and DataFrame objects. pandas a very powerful tool. We'll use it more in future sections, but make sure you're starting to take notice of these things because these are going to be important techniques in your Python skills for managing large amounts of data and organizing your data.
-
-### Multi-level models
-
-
-It makes sense now to talk about multi-level models. This is definitely an advanced topic, and I'm not going to get into a whole lot of detail here. My objective right now is to introduce the concept of multi-level models to you, and let you understand some of the challenges and how to think about them when you're putting them together. That's it.
-
-The concept of multi-level models is that some effects happen at various levels in the hierarchy. For example, your health. Your health might depend on how healthy your individual cells are, and those cells might be a function of how healthy the organs that they're inside are, and the health of your organs might depend on the health of you as a whole. Your health might depend in part on your family's health and the environment your family gives you. And your family's health in turn might depend on some factors of the city that you live in, how much crime is there, how much stress is there, how much pollution is there. And even beyond that, it might depend on factors in the entire world that we live in. Maybe just the state of medical technology in the world is a factor, right?
-
-Another example: your wealth. How much money do you make? Well, that's a factor of your individual hard work, but it's also a factor of the work that your parents did, how much money were they able to invest into your education and the environment that you grew up in, and in turn, how about your grandparents? What sort of environment were they able to create and what sort of education were they able to offer for your parents, which in turn influenced the resources they have available for your own education and upbringing.
-
-These are all examples of multi-level models where there is a hierarchy of effects that influence each other at larger and larger scales. Now the challenge of multi-level models is to try to figure out, "Well, how do I model these interdependencies? How do I model all these different effects and how they affect each other?"
-
-The challenge here is to identify the factors in each level that actually affect the thing you're trying to predict. If I'm trying to predict overall SAT scores, for example, I know that depends in part on the individual child that's taking the test, but what is it about the child that matters? Well, it might be the genetics, it might be their individual health, the individual brain size that they have. You can think of any number of factors that affect the individual that might affect their SAT score. And then if you go up another level, look at their home environment, look at their family. What is it about their families that might affect their SAT scores? How much education were they able to offer? Are the parents able to actually tutor the children in the topics that are on the SAT? These are all factors at that second level that might be important. What about their neighborhood? The crime rate of the neighborhood might be important. The facilities they have for teenagers and keeping them off the streets, things like that.
-
-
-The point is you want to keep looking at these higher levels, but at each level identify the factors that impact the thing you're trying to predict. I can keep going up to the quality of the teachers in their school, the funding of the school district, the education policies at the state level. You can see there are different factors at different levels that all feed into this thing you're trying to predict, and some of these factors might exist at more than one level. Crime rate, for example, exists at the local and state levels. You need to figure out how those all interplay with each other as well when you're doing multi-level modeling.
-
-As you can imagine, this gets very hard and very complicated very quickly. It is really way beyond the scope of this book, or any introductory book in data science. This is hard stuff. There are entire thick books about it, you could do an entire book about it that would be a very advanced topic.
-
-
-So why am I even mentioning multi-level models? It is because I've seen it mentioned on job descriptions, in a couple of cases, as something that they want you to know about in a couple of cases. I've never had to use it in practice, but I think the important thing from the standpoint of getting a career in data science is that you at least are familiar with the concept, and you know what it means and some of the challenges involved in creating a multi-level model. I hope I've given you those concepts. With that, we can move on to the next section.
-
-There you have the concepts of multi-level models. It's a very advanced topic, but you need to understand what the concept is, at least, and the concept itself is pretty simple. You just are looking at the effects at different levels, different hierarchies when you're trying to make a prediction. So maybe there are different layers of effects that have impacts on each other, and those different layers might have factors that interrelate with each other as well. Multi-level modeling tries to take account of all those different hierarchies and factors and how they interplay with each other. Rest assured that's all you need to know for now.
