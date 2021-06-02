@@ -5,7 +5,7 @@ Lab : Matplotlib and Advanced Probability Concepts - Part 1
 -------------------------------------
 
 
-We'll be covering the following topics in this scenario:
+We'll be covering the following topics in this lab:
 
 - Using the matplotlib package to plot graphs
 - Understanding covariance and correlation to determine the relationship between data
@@ -50,7 +50,7 @@ plt.show()
 
 So in this example, I import matplotlib.pyplot as plt, and with this, we can refer to it as plt from now on in this notebook. Then, I use np.arange(-3, 3, 0.001) to create an x-axis filled with values between -3 and 3 at increments of 0.001, and use pyplot's plot() function to plot x. The y function will be norm.pdf(x). So I'm going to create a probability density function with a normal distribution based on the x values, and I'm using the scipy.stats norm package to do that.
 
-So tying it back into last chapter's look at probability density functions, here we are plotting a normal probability density function using matplotlib. So we just call pyplot's plot() method to set up our plot, and then we display it using plt.show(). When we run the previous code, we get the following output:
+So tying it back into last lab's look at probability density functions, here we are plotting a normal probability density function using matplotlib. So we just call pyplot's plot() method to set up our plot, and then we display it using plt.show(). When we run the previous code, we get the following output:
 
 ![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/1.png)
 
@@ -394,9 +394,6 @@ def covariance(x, y):
 Covariance, again, is defined as the dot product, which is a measure of the angle between two vectors, of a vector of the deviations from the mean for a given set of data and the deviations from the mean for another given set of data for the same data's data points. We then divide that by n - 1 in this case, because we're actually dealing with a sample.
 
 So de_mean(), our deviation from the mean function is taking in a set of data, x, actually a list, and it's computing the mean of that set of data. The return line contains a little bit of Python trickery for you. The syntax is saying, I'm going to create a new list, and go through every element in x, call it xi, and then return the difference between xi and the mean, xmean, for that entire dataset. This function returns a new list of data that represents the deviations from the mean for each data point.
-
-My covariance() function will do that for both sets of data coming in, divided by the number of data points minus 1. Remember that thing about sample versus population in the previous chapter? Well, that's coming into play here. Then we can just use those functions and see what happens.
-
 
 To expand this example, I'm going to fabricate some data that is going to try to find a relationship between page speeds, that, is how quickly a page renders on a website, and how much people spend. For example, at Amazon we were very concerned about the relationship between how quickly pages render and how much money people spend after that experience. We wanted to know if there is an actual relationship between how fast the website is and how much money people actually spend on the website. This is one way you might go about figuring that out. Let's just generate some normally distributed random data for both page speeds and purchase amounts, and since it's random, there's not going to be a real correlation between them.
 

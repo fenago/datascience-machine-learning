@@ -5,7 +5,7 @@ Lab : Machine Learning with Python - Part 3
 -------------------------------------
 
 
-In this scenario, we get into machine learning and how to actually implement machine learning models in Python.
+In this lab, we get into machine learning and how to actually implement machine learning models in Python.
 
 We'll walk through the fascinating concepts of ensemble learning and SVMs, which are some of my favourite machine learning areas!
 

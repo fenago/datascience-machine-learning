@@ -5,7 +5,7 @@ Lab : Getting Started
 -------------------------------------
 
 
-In this scenario, we will first install and get ready in a working Python environment:
+In this lab, we will first install and get ready in a working Python environment:
 
 - How to work with the IPython/Jupyter Notebook
 - Python basics - part 1

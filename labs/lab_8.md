@@ -5,7 +5,7 @@ Lab : Machine Learning with Python - Part 2
 -------------------------------------
 
 
-In this scenario, we'll cover the following topics:
+In this lab, we'll cover the following topics:
 
 - Concept of K-means clustering
 - Example of clustering in Python

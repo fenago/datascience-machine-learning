@@ -5,9 +5,9 @@ Lab : Statistics and Probability Refresher, and Python Practice - Part 1
 -------------------------------------
 
 
-In this scenario, we are going to go through a few concepts of statistics and probability, which might be a refresher for some of you. These concepts are important to go through if you want to be a data scientist. We will see examples to understand these concepts better. We will also look at how to implement those examples using actual Python code.
+In this lab, we are going to go through a few concepts of statistics and probability, which might be a refresher for some of you. These concepts are important to go through if you want to be a data scientist. We will see examples to understand these concepts better. We will also look at how to implement those examples using actual Python code.
 
-We'll be covering the following topics in this scenario:
+We'll be covering the following topics in this lab:
 
 - Types of data you may encounter and how to treat them accordingly
 - Statistical concepts of mean, median, mode, standard deviation, and variance
@@ -114,7 +114,6 @@ The Notebook opens in a new browser window. You can create a new notebook or ope
 
 ### Calculating mean using the NumPy package
 
-What we're going to do is create some fake income data, getting back to our example from the previous section. We're going to create some fake data where the typical American makes around $27,000 a year in this example, we're going to say that's distributed with a normal distribution and a standard deviation of 15,000. All numbers are completely made up, and if you don't know what normal distribution and standard deviation means yet, don't worry. I'm going to cover that a little later in the chapter, but I just want you to know what these different parameters represent in this example. It will make sense later on.
 
 In our Python notebook, remember to import the NumPy package into Python, which makes computing mean, median, and mode really easy. We're going to use the import numpy as np directive, which means we can use np as a shorthand to call numpy from now on.
 

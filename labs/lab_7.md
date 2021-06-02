@@ -57,7 +57,7 @@ Let's go ahead and generate that data. We'll use a normal distribution of random
 
 Next, we'll split that data. We'll take 80% of our data, and we're going to reserve that for our training data. So only 80% of these points are going to be used for training the model, and then we're going to reserve the other 20% for testing that model against unseen data.
 
-We'll use Python's syntax here for splitting the list. The first 80 points are going to go to the training set, and the last 20, everything after 80, is going to go to test set. You may remember this from our Python basics chapter earlier on, where we covered the syntax to do this, and we'll do the same thing for purchase amounts here:
+We'll use Python's syntax here for splitting the list. The first 80 points are going to go to the training set, and the last 20, everything after 80, is going to go to test set. You may remember this from our Python basics lab earlier on, where we covered the syntax to do this, and we'll do the same thing for purchase amounts here:
 
 ```
 trainX = pageSpeeds[:80] 

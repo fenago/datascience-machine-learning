@@ -5,7 +5,7 @@ Lab : Matplotlib and Advanced Probability Concepts - Part 2
 -------------------------------------
 
 
-We'll be covering the following topics in this scenario:
+We'll be covering the following topics in this lab:
 
 - Understanding conditional probability with examples
 - Understanding Bayes' theorem and its importance
