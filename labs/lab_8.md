@@ -96,9 +96,9 @@ Now the scale I alluded to earlier, that's normalizing the data. One important t
 
 So, once we've actually called fit on our model, we can actually look at the resulting labels that we got. Then we can actually visualize it using a little bit of matplotlib magic. You can see in the code we have a little trick where we assigned the color to the labels that we ended up with converted to some floating point number. That's just a little trick you can use to assign arbitrary colors to a given value. So let's see what we end up with:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/8/1.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/8/1.jpg)
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/8/2.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/8/2.jpg)
 
 
 
@@ -119,13 +119,13 @@ We could construct a decision tree that will let us go through an individual res
 
 So let's make some totally fabricated hiring data that we're going to use in this example:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/14/2.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/14/2.jpg)
 
 In the preceding table, we have candidates that are just identified by numerical identifiers. I'm going to pick some attributes that I think might be interesting or helpful to predict whether or not they're a good hire or not. How many years of experience do they have? Are they currently employed? How many employers have they had previous to this one? What's their level of education? What degree do they have? Did they go to what we classify as a top-tier school? Did they do an internship while they were in college? We can take a look at this historical data, and the dependent variable here is Hired. Did this person actually get a job offer or not based on that information?
 
 Now, obviously there's a lot of information that isn't in this model that might be very important, but the decision tree that we train from this data might actually be useful in doing an initial pass at weeding out some candidates. What we end up with might be a tree that looks like the following:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/14/3.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/14/3.jpg)
 
 
 ### Decision trees - Predicting hiring decisions using Python
@@ -157,7 +157,7 @@ df.head()
 
 Sure enough we have some valid data in the output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/1.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/18/1.jpg)
 
 So, for each candidate ID, we have their years of past experience, whether or not they were employed, their number of previous employers, their highest level of education, whether they went to a top-tier school, and whether they did an internship; and finally here, in the Hired column, the answer - where we knew that we either extended a job offer to this person or not.
 
@@ -179,7 +179,7 @@ Basically, we're making a dictionary in Python that maps the letter Y to the num
 
 We do the same thing for Employed, Top-tier school and Interned, so all those get mapped using the yes/no dictionary. So, the Ys and Ns become 1s and 0s instead. For the Level of Education, we do the same trick, we just create a dictionary that assigns BS to 0, MS to 1, and PhD to 2 and uses that to remap those degree names to actual numerical values. So if I go ahead and run that and do a head() again, you can see that it worked:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/2.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/18/2.jpg)
 
 All my yeses are 1's, my nos are 0's, and my Level of Education is now represented by a numerical value that has real meaning.
 
@@ -193,7 +193,7 @@ features
 
 We get the following output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/3.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/18/3.jpg)
 
 Above are the column names that contain our feature information: Years Experience, Employed?, Previous employers, Level of Education, Top-tier school, and Interned. These are the attributes of candidates that we want to predict hiring on.
 
@@ -228,7 +228,7 @@ So let's go ahead and run this.
 
 This is what your output should now look like:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/4.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/18/4.jpg)
 
 There we have it! How cool is that?! We have an actual flow chart here.
 
@@ -272,7 +272,7 @@ You don't have to walk through the trees by hand, and when you're dealing with a
 
 If you remember this maps to these columns: Years Experience, Employed?, Previous employers, Level of Education, Top-tier school, and Interned; interpreted as numerical values. We predict the employment of an employed 10-year veteran. We also predict the employment of an unemployed 10-year veteran. And, sure enough, we get a result:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-02/steps/18/5.jpg)
+![](../images/datascience-machine-learning-chapter-05-02/steps/18/5.jpg)
 
 So, in this particular case, we ended up with a hire decision on both. But, what's interesting is there is a random component to that. You don't actually get the same result every time! More often than not, the unemployed person does not get a job offer, and if you keep running this you'll see that's usually the case. But, the random nature of bagging, of bootstrap aggregating each one of those trees, means you're not going to get the same result every time. So, maybe 10 isn't quite enough trees. So, anyway, that's a good lesson to learn here!
 

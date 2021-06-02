@@ -82,7 +82,7 @@ The following graph shows our data that we're playing with. Every time you run t
 
 A couple of new things here--I'm using the figsize parameter on plt.figure() to actually make a larger plot. So, if you ever need to adjust the size in matplotlib, that's how you do it. I'm using that same trick of using the color as the classification number that I end up with. So the number of the cluster that I started with is being plotted as the color of these data points. You can see, it's a pretty challenging problem, there's definitely some intermingling of clusters here:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/1.jpg)
+![](../images/datascience-machine-learning-chapter-05-03/steps/9/1.jpg)
 
 
 Now we can use linear SVC (SVC is a form of SVM), to actually partition that into clusters. We're going to use SVM with a linear kernel, and with a C value of 1.0. C is just an error penalty term that you can adjust; it's 1 by default. Normally, you won't want to mess with that, but if you're doing some sort of convergence on the right model using ensemble learning or train/test, that's one of the things you can play with. Then, we will fit that model to our feature data, and the actual classifications that we have for our training dataset.
@@ -115,7 +115,7 @@ plotPredictions(svc)
 
 So, let's see how that works out. SVC is computationally expensive, so it takes a long time to run:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/2.jpg)
+![](../images/datascience-machine-learning-chapter-05-03/steps/9/2.jpg)
 
 You can see here that it did its best. Given that it had to draw straight lines, and polygonal shapes, it did a decent job of fitting to the data that we had. So, you know, it did miss a few - but by and large, the results are pretty good.
 
@@ -130,7 +130,7 @@ This would put that person in, in our case, cluster number 1:
 
 If I had a someone making $50,000 here who was 65, I would use the following code:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/3.jpg)
+![](../images/datascience-machine-learning-chapter-05-03/steps/9/3.jpg)
 
 ```
 svc.predict([[50000, 65]])
@@ -138,7 +138,7 @@ svc.predict([[50000, 65]])
 
 This is what your output should now look like:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-03/steps/9/4.jpg)
+![](../images/datascience-machine-learning-chapter-05-03/steps/9/4.jpg)
 
 
 That person would end up in cluster number 2, whatever that represents in this example. So,go ahead and play with it.

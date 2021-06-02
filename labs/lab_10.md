@@ -40,7 +40,7 @@ The Notebook opens in a new browser window. You can create a new notebook or ope
 
 Okay so, let's go ahead and compute the first half of item-based collaborative filtering, which is finding similarities between items.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/11/1.png)
+![](../images/datascience-machine-learning-chapter-06/steps/11/1.png)
 
 In this case, we're going to be looking at similarities between movies, based on user behavior. And, we're going to be using some real movie rating data from the GroupLens project. GroupLens.org provides real movie ratings data, by real people who are using the MovieLens.org website to rate movies and get recommendations back for new movies that they want to watch.
 
@@ -83,7 +83,7 @@ ratings = pd.merge(movies, ratings)
 
 Let's add a ratings.head() command and then run those cells. What we end up with is something like the following table. That was pretty quick!
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/11/2.png)
+![](../images/datascience-machine-learning-chapter-06/steps/11/2.png)
 
 We end up with a new DataFrame that contains the user_id and rating for each movie that a user rated, and we have both the movie_id and the title that we can read and see what it really is. So, the way to read this is user_id number 308 rated the Toy Story (1995) movie 4 stars, user_id number 287 rated the Toy Story (1995) movie 5 stars, and so on and so forth. And, if we were to keep looking at more and more of this DataFrame, we'd see different ratings for different movies as we go through it.
 
@@ -100,7 +100,7 @@ So, what we're saying with this code is-take our ratings DataFrame and create a 
 
 And, we end up with a new DataFrame that looks like the following table:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/11/3.png)
+![](../images/datascience-machine-learning-chapter-06/steps/11/3.png)
 
 It's kind of amazing how that just put it all together for us. Now, you'll see some NaN values, which stands for Not a Number, and its just how Pandas indicates a missing value. So, the way to interpret this is, user_id number 1, for example, did not watch the movie 1-900 (1994), but user_id number 1 did watch 101 Dalmatians (1996) and rated it 2 stars. The user_id number 1 also watched 12 Angry Men (1957) and rated it 5 stars, but did not watch the movie 2 Days in the Valley (1996), for example, okay? So, what we end up with here is a sparse matrix basically, that contains every user, and every movie, and at every intersection where a user rated a movie there's a rating value.
 
@@ -115,7 +115,7 @@ starWarsRatings.head()
 
 Now, with the help of that, let's go ahead and extract all the users who rated Star Wars (1977):
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/11/4.png)
+![](../images/datascience-machine-learning-chapter-06/steps/11/4.png)
 
 And, we can see most people have, in fact, watched and rated Star Wars (1977) and everyone liked it, at least in this little sample that we took from the head of the DataFrame. So, we end up with a resulting set of user IDs and their ratings for Star Wars (1977). The user ID 3 did not rate Star Wars (1977) so we have a NaN value, indicating a missing value there, but that's okay. We want to make sure that we preserve those missing values so we can directly compare columns from different movies. So, how do we do that?
 
@@ -136,7 +136,7 @@ Drop all the NaN values, so that we only have movie similarities that actually e
 And, we're going to construct a new DataFrame from the results and look at the top 10 results.
 And here we are with the results shown in the following screenshot:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/11/5.png)
+![](../images/datascience-machine-learning-chapter-06/steps/11/5.png)
 
 We ended up with this result of correlation scores between each individual movie for Star Wars and we can see, for example, a surprisingly high correlation score with the movie 'Til There Was You (1997), a negative correlation with the movie 1-900 (1994), and a very weak correlation with 101 Dalmatians (1996).
 
@@ -148,7 +148,7 @@ similarMovies.sort_values(ascending=False)
 
 Just call sort_values on the resulting DataFrame, again Pandas makes it really easy, and we can say ascending=False, to actually get it sorted in reverse order by correlation score. So, let's do that:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/11/6.png)
+![](../images/datascience-machine-learning-chapter-06/steps/11/6.png)
 
 Okay, so Star Wars (1977) came out pretty close to top, because it is similar to itself, but what's all this other stuff? What the heck? We can see in the preceding output, some movies such as: Full Speed (1996), Man of the Year (1995), The Outlaw (1943). These are all, you know, fairly obscure movies, that most of them I've never even heard of, and yet they have perfect correlations with Star Wars. That's kinda weird! So, obviously we're doing something wrong here. What could it be?
 
@@ -175,7 +175,7 @@ What we're going to do is try to identify the movies that weren't actually rated
 
 We can say that we want to aggregate specifically on the rating, and we want to show both the size, the number of ratings for each movie, and the mean average score, the mean rating for that movie. So, when we do that, we end up with something like the following:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/14/1.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/14/1.jpg)
 
 This is telling us, for example, for the movie 101 Dalmatians (1996), 109 people rated that movie and their average rating was 2.9 stars, so not that great of a score really! So, if we just eyeball this data, we can say okay well, movies that I consider obscure, like 187 (1997), had 41 ratings, but 101 Dalmatians (1996), I've heard of that, you know 12 Angry Men (1957), I've heard of that. It seems like there's sort of a natural cutoff value at around 100 ratings, where maybe that's the magic value where things start to make sense.
 
@@ -188,7 +188,7 @@ movieStats[popularMovies].sort_values([('rating', 'mean')], ascending=False)[:15
 
 We can just say popularMovies, a new DataFrame, is going to be constructed by looking at movieStats and we're going to only take rows where the rating size is greater than or equal to 100, and I'm then going to sort that by mean rating, just for fun, to see the top rated, widely watched movies.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/14/2.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/14/2.jpg)
 
 What we have here is a list of movies that were rated by more than 100 people, sorted by their average rating score, and this in itself is a recommender system. These are highly-rated popular movies. A Close Shave (1995), apparently, was a really good movie and a lot of people watched it and they really liked it.
 
@@ -204,7 +204,7 @@ df.head()
 
 In this code, we create a new DataFrame based on similarMovies where we extract the similarity column, join that with our movieStats DataFrame, which is our popularMovies DataFrame, and we look at the combined results. And, there we go with that output!
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/14/3.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/14/3.jpg)
 
 Now we have, restricted only to movies that are rated by more than 100 people, the similarity score to Star Wars. So, now all we need to do is sort that using the following code:
 
@@ -214,7 +214,7 @@ df.sort_values(['similarity'], ascending=False)[:15]
 
 Here, we're reverse sorting it and we're just going to take a look at the first 15 results. If you run that now, you should see the following:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/14/4.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/14/4.jpg)
 
 This is starting to look a little bit better! So, Star Wars (1977) comes out on top because it's similar to itself, The Empire Strikes Back (1980) is number 2, Return of the Jedi (1983) is number 3, Raiders of the Lost Ark (1981), number 4. You know, it's still not perfect, but these make a lot more sense, right? So, you would expect the three Star Wars films from the original trilogy to be similar to each other, this data goes back to before the next three films, and Raiders of the Lost Ark (1981) is also a very similar movie to Star Wars in style, and it comes out as number 4. So, I'm starting to feel a little bit better about these results. There's still room for improvement, but hey! We got some results that make sense, whoo-hoo!
 
@@ -257,7 +257,7 @@ ratings.head()
 Just like earlier, we're going to import the u.data file that contains all the individual ratings for every user and what movie they rated, and then we're going to tie that together with the movie titles, so we don't have to just work with numerical movie IDs. Go ahead and hit the run cell button, and we end up with the following DataFrame.
 
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/1.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/1.jpg)
 
 The way to read this is, for example, user_id number 308 rated Toy Story (1995) a 4 star, and user_id number 66 rated Toy Story (1995) a 3 star. And, this will contain every rating, for every user, for every movie.
 
@@ -272,7 +272,7 @@ userRatings.head()
 
 Here, each row is the user_id, the columns are made up of all the unique movie titles in my dataset, and each cell contains a rating:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/2.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/2.jpg)
 
 What we end up with is this incredibly useful matrix shown in the preceding output, that contains users for every row and movies for every column. And we have basically every user rating for every movie in this matrix. So, user_id number 1, for example, gave 101 Dalmatians (1996) a 2-star rating. And, again all these NaN values represent missing data. So, that just indicates, for example, user_id number 1 did not rate the movie 1-900 (1994).
 
@@ -287,7 +287,7 @@ corrMatrix.head()
 
 Let's go ahead and run the preceding code. It's a fairly computationally expensive thing to do, so it will take a moment to actually come back with a result. But, there we have it!
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/3.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/3.jpg)
 
 So, what do we have in the preceding output? We have here a new DataFrame where every movie is on the row, and in the column. So, we can look at the intersection of any two given movies and find their correlation score to each other based on this userRatings data that we had up here originally. How cool is that? For example, the movie 101 Dalmatians (1996) is perfectly correlated with itself of course, because it has identical user rating vectors. But, if you look at 101 Dalmatians (1996) movie's relationship to the movie 12 Angry Men (1957), it's a much lower correlation score because those movies are rather dissimilar, makes sense, right?
 
@@ -302,7 +302,7 @@ corrMatrix.head()
 
 You'll notice that it also has a min_periods parameter you can give it, and that basically says I only want you to consider correlation scores that are backed up by at least, in this example, 100 people that rated both movies. Running that will get rid of the spurious relationships that are based on just a handful of people. The following is the matrix that we get after running the code:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/4.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/4.jpg)
 
 It's a little bit different to what we did in the item similarities exercise where we just threw out any movie that was rated by less than 100 people. What we're doing here, is throwing out movie similarities where less than 100 people rated both of those movies, okay? So, you can see in the preceding matrix that we have a lot more NaN values.
 
@@ -321,7 +321,7 @@ myRatings
 
 This gives the following output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/5.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/5.jpg)
 
 
 That kind of represents someone like me, who loved Star Wars and The Empire Strikes Back, but hated the movie Gone with the Wind. So, this represents someone who really loves Star Wars, but does not like old style, romantic dramas, okay? So, I gave a rating of 5 star to The Empire Strikes Back (1980) and Star Wars (1977), and a rating of 1 star to Gone with the Wind (1939). So, I'm going to try to find recommendations for this fictitious user.
@@ -353,7 +353,7 @@ So, the idea here is I'm going to go through all the similarities for The Empire
 
 So, I just go through and build up this list of similarity candidates, recommendation candidates if you will, sort the results and print them out. Let's see what we get:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/6.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/6.jpg)
 
 Hey, those don't look too bad, right? So, obviously The Empire Strikes Back (1980) and Star Wars (1977) come out on top, because I like those movies explicitly, I already watched them and rated them. But, bubbling up to the top of the list is Return of the Jedi (1983), which we would expect and Raiders of the Lost Ark (1981).
 
@@ -370,7 +370,7 @@ simCandidates.head(10)
 
 Following is the result:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/7.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/7.jpg)
 
 Hey, this is looking really good!
 
@@ -388,7 +388,7 @@ filteredSims.head(10)
 
 Running that will let me see the final top 10 results:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-06/steps/17/8.jpg)
+![](../images/datascience-machine-learning-chapter-06/steps/17/8.jpg)
 
 And there we have it! Return of the Jedi (1983), Raiders of the Lost Ark (1981), Indiana Jones and the Last Crusade (1989), all the top results for my fictitious user, and they all make sense. I'm seeing a few family-friendly films, you know, Cinderella (1950), The Wizard of Oz (1939), Dumbo (1941), creeping in, probably based on the presence of Gone with the Wind in there, even though it was weighted downward it's still in there, and still being counted. And, there we have our results, so. There you have it! Pretty cool!
 

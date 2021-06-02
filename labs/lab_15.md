@@ -52,7 +52,7 @@ stats.ttest_ind(A, B)
 
 In this code example, our treatment group (A) is going to have a randomly distributed purchase behavior where they spend, on average, $25 per transaction, with a standard deviation of five and ten thousand samples, whereas the old website used to have a mean of $26 per transaction with the same standard deviation and sample size. We're basically looking at an experiment that had a negative result. All you have to do to figure out the t-statistic and the p-value is use this handy stats.ttest_ind method from scipy. What you do is, you pass it in your treatment group and your control group, and out comes your t-statistic as shown in the output here:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/1.jpg)
+![](../images/datascience-machine-learning-chapter-10/steps/9/1.jpg)
 
 In this case, we have a t-statistic of -14. The negative indicates that it is a negative change, this was a bad thing. And the p-value is very, very small. So, that implies that there is an extremely low probability that this change is just a result of random chance.
 
@@ -78,7 +78,7 @@ stats.ttest_ind(A, B)
 
 If we go ahead and run this, you can see our t-test ends up being below one now:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/2.jpg)
+![](../images/datascience-machine-learning-chapter-10/steps/9/2.jpg)
 
 Remember this is in terms of standard deviation. So this implies that there's probably not a real change there unless we have a much higher p-value as well, over 30 percent.
 
@@ -102,7 +102,7 @@ stats.ttest_ind(A, B)
 
 You can see in the following output that actually the p-value got a little bit lower and the t-test a little bit larger, but it's still not enough to declare a real difference. It's actually going in the direction you wouldn't expect it to go? Kind of interesting!
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/3.jpg)
+![](../images/datascience-machine-learning-chapter-10/steps/9/3.jpg)
 
 But these are still high values. Again, it's just the effect of random variance, and it can have more of an effect than you realize. Especially on a website when you're talking about order amounts.
 
@@ -118,7 +118,7 @@ stats.ttest_ind(A, B)
 
 Here is the result:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/4.jpg)
+![](../images/datascience-machine-learning-chapter-10/steps/9/4.jpg)
 
 What does that do? Well, now, we're back under 1 for the t-statistic, and our value's around 35 percent.
 
@@ -134,7 +134,7 @@ stats.ttest_ind(A, A)
 
 We can see in the following output, a t-statistic of 0 and a p-value of 1.0 because there is in fact no difference whatsoever between these sets.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-10/steps/9/5.jpg)
+![](../images/datascience-machine-learning-chapter-10/steps/9/5.jpg)
 
 Now, if you were to run that using real website data where you were looking at the same exact people and you saw a different value, that indicates there's a problem in the system itself that runs your testing. At the end of the day, like I said, it's all a judgment call.
 

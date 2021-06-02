@@ -38,22 +38,20 @@ The Notebook opens in a new browser window. You can create a new notebook or ope
 
 
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/2/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/2/1.png)
 
 
 The way that the IPython/Jupyter Notebook files work is that they actually run from within your browser, like a webpage, but they're backed by the Python engine that you installed. So you should be seeing a screen similar to the one shown in the previous screenshot.
-
-You'll notice as you scroll down the notebook in your browser, there are code blocks. They're easy to spot because they contain our actual code.
 
 Let's take a quick look at this code while we're here. We are setting up a little income distribution in this code. We're simulating the distribution of income in a population of people, and to illustrate the effect that an outlier can have on that distribution, we're simulating Donald Trump entering the mix and messing up the mean value of the income distribution. By the way, I'm not making a political statement, this was all done before Trump became a politician. So you know, full disclosure there.
 
 We can select any code block in the notebook by clicking on it. So if you now click in the code block that contains the code we just looked at above, we can then hit the run button at the top to run it. Here's the area at the top of the screen where you'll find the Run button:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/3/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/3/1.png)
 
 Hitting the Run button with the code block selected, will cause this graph to be regenerated:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/3/2.png)
+![](../images/datascience-machine-learning-chapter-01/steps/3/2.png)
 
 Similarly, we can click on the next code block a little further down, you'll spot the one which has the following single line of code :
 
@@ -84,7 +82,7 @@ plt.show()
 
 So select the corresponding code block in the notebook, and press the run button again. When you do that, you'll see this graph instead:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/4/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/4/1.png)
 
 Now we see a much better histogram that represents the more typical American - now that we've taken out our outlier that was messing things up.
 
@@ -97,21 +95,13 @@ There are a few quirky things about the Python scripting language that you need 
 #### Open Notebook
 The Notebook opens in a new browser window. You can create a new notebook or open a local one. Check out the local folder `work` for notebooks. Open and run `Python101.ipynb` in the `work` folder.
 
-
-
-
-
-There are a few quirks about Python that are a little bit different than other languages you might have seen; so I just want to walk through what's different about Python from other scripting languages you may have worked with, and the best way to do that is by looking at some real examples. Let's dive right in and look at some Python code.
-
-One cool thing about Python is that there are several ways to run code with Python. You can run it as a script, like you would with a normal programming language. You can also write in this thing called the IPython Notebook, which is what we're using here. So it's this format where you actually have a web browser-like view where you can actually write little notations and notes to yourself in HTML markup stuff, and you can also embed actual code that really runs using the Python interpreter.
-
 The first example that I want to give you of some Python code is right here. The following block of code represents some real Python code that we can actually run right within this view of the entire notebook page, but let's zoom in now and look at that code:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/7/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/7/1.png)
 
 Let's take a look at what's going on. We have a list of numbers and a list in Python, kind of like an array in other languages. It is designated by these square brackets:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/7/2.png)
+![](../images/datascience-machine-learning-chapter-01/steps/7/2.png)
 
 We have this data structure of a list that contains the numbers 1 through 6, and then to iterate through every number in that list, we'll say for number in listOfNumbers:, that's the Python syntax for iterating through a list of stuff and a colon.
 
@@ -135,12 +125,12 @@ print ("Hooray! We're all done.")
 
 You'll notice that within this for block, we have a tab of one within that entire block, and for every number in listOfNumbers we will execute all of this code that's tabbed in by one Tab stop. We'll print the number, and the comma just means that we're not going to do a new line afterwards. We'll print something else right after it, and if (number % 2 = 0), we'll say it's even. Otherwise, we'll say it's odd, and when we're done, we'll print out All done:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/7/3.png)
+![](../images/datascience-machine-learning-chapter-01/steps/7/3.png)
 
 
 You can see the output right below the code. I ran the output before as I had actually saved it within my notebook, but if you want to actually run it yourself, you can just click within that block and click on the Play button, and we'll actually execute it and do it again. Just to convince yourself that it's really doing something, let's change the print statement to say something else, say, Hooray! We're all done. Let's party! If I run this now, you can see, sure enough, my message there has changed:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/8/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/8/1.png)
 
 So again, the point I want to make is that whitespace is important. You will designate blocks of code that run together, you know, such as a for loop or if then statements, using indentation or tabs, so remember that. Also, pay attention to your colons too. You'll notice that a lot of these clauses begin with a colon.
 
@@ -162,7 +152,7 @@ print (A)
 
 The output should look like this:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/9/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/9/1.png)
 
 Sure enough, I get different results. That's pretty cool.
 
@@ -178,7 +168,7 @@ print (A)
 
 Hey, all my numbers changed, they're closer to 55 now, how about that?
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-01/steps/10/1.png)
+![](../images/datascience-machine-learning-chapter-01/steps/10/1.png)
 
 Alright, let's talk about data structures a little bit here. As we saw in our first example, you can have a list, and the syntax looks like this.
 

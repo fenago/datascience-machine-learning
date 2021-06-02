@@ -109,7 +109,7 @@ Let's say I created an RDD just from the list 1, 2, 3, 4. I can then call rdd.ma
 
 You can also perform actions on an RDD, when you want to actually get a result. Here are some examples of what you can do:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/9-2/1.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/9-2/1.png)
 
 Remember, too, that nothing actually happens in Spark until you call an action. Once you call one of those action methods, that's when Spark goes out and does its magic with directed acyclic graphs, and actually computes the optimal way to get the answer you want. But remember, nothing really occurs until that action happens. So, that can sometimes trip you up when you're writing Spark scripts, because you might have a little print statement in there, and you might expect to get an answer, but it doesn't actually appear until the action is actually performed.
 
@@ -125,7 +125,7 @@ Now, up until this point we've been using IPython notebooks for our code, but yo
 #### Exploring decision trees code
 So, we are just looking at a raw Python script file now, without any of the usual embellishment of the IPython notebook stuff. let's walk through what's going on in the script.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/2.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/2.png)
 
 
 
@@ -217,7 +217,7 @@ Let's just get down these functions for now, and we'll come back to them later.
 
 Let's go to the first bit of Python code that actually gets executed in this script.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/3.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/3.png)
 
 The first thing we're going to do is load up this PastHires.csv file, and that's the same file we used in the decision tree exercise that we did earlier in this course.
 
@@ -225,7 +225,7 @@ Let's pause quickly to remind ourselves of the content of that file. If you reme
 
 Now, let's take a quick peek at the PastHires.csv, which will be an Excel file.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/4.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/4.png)
 
 You can see that Excel actually imported this into a table, but if you were to look at the raw text you'd see that it's made up of comma-separated values.
 
@@ -285,7 +285,7 @@ def createLabeledPoints(fields):
 
 It takes in a list of fields, and just to remind you again what that looks like, let's pull up that .csv Excel file again:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/5.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/5.png)
 
 So, at this point, every RDD entry has a field, it's a Python list, where the first element is the years of experience, second element is employed, so on and so forth. The problems here are that we want to convert those lists to Labeled Points, and we want to convert everything to numerical data. So, all these yes and no answers need to be converted to ones and zeros. These levels of experience need to be converted from names of degrees to some numeric ordinal value. Maybe we'll assign the value zero to no education, one can mean BS, two can mean MS, and three can mean PhD, for example. Again, all these yes/no values need to be converted to zeros and ones, because at the end of the day, everything going into our decision tree needs to be numeric, and that's what createLabeledPoints does. Now, let's go back to the code and run through it:
 
@@ -348,7 +348,7 @@ testCandidates = [ array([10, 1, 3, 1, 0, 0])]
 
 Let's quickly compare that code with the Excel document so you can see the array mapping:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/6.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/6.png)
 
 Again, we need to map these back to their original column representation, so that 10, 1, 3, 1, 0, 0 means 10 years of prior experience, currently employed, three previous employers, a BS degree, did not go to a top-tier school and did not do an internship. We could actually create an entire RDD full of candidates if we wanted to, but we'll just do one for now.
 
@@ -413,11 +413,11 @@ python SparkDecisionTree.py
 
 When it's finished, you should see the below output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/7.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/7.png)
 
 So, in the above image, you can see in the test person that we put in above, we have a prediction that this person would be hired, and I've also printed out the decision tree itself, so it's kind of cool. Now, let's bring up that Excel document once more so we can compare it to the output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/12/8.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/12/8.png)
 
 We can walk through this and see what it means. So, in our output decision tree we actually end up with a depth of four, with nine different nodes, and, again, if we remind ourselves what these different fields correlate to, the way to read this is: If (feature 1 in 0), so that means if the employed is No, then we drop down to feature 5. This list is zero-based, so feature 5 in our Excel document is internships. We can run through the tree like that: this person is not currently employed, did not do an internship, has no prior years of experience and has a Bachelor's degree, we would not hire this person. Then we get to the Else clauses. If that person had an advanced degree, we would hire them, just based on the data that we had that we trained it on. So, you can work out what these different feature IDs mean back to your original source data, remember, you always start counting at 0, and interpret that accordingly. Note that all the categorical features are expressed in Boolean in this list of possible categories that it saw, whereas continuous data is expressed numerically as less than or greater than relationships.
 
@@ -427,7 +427,7 @@ And there you have it, an actual decision tree built using Spark and MLlib that 
 
 Alright, let's look at another example of using Spark in MLlib, and this time we're going to look at k-means clustering, and just like we did with decision trees, we're going to take the same example that we did using scikit-learn and we're going to do it in Spark instead, so it can actually scale up to a massive Dataset. So, again, I've made sure to close out of everything else, and I'm going to go into my book materials and open up the SparkKMeans Python script, and let's study what's going on in.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/23/1.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/23/1.png)
 
 Alright, so again, we begin with some boilerplate stuff.
 
@@ -533,7 +533,7 @@ Now, run the python code by running: `spark-submit SparkKMeans.py`
 python SparkKMeans.py
 ```
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-09-01/steps/23/2.png)
+![](../images/datascience-machine-learning-chapter-09-01/steps/23/2.png)
 
 
 Remember, the output that we asked for was, first of all, a count of how many points ended up in each cluster. So, this is telling us that cluster 0 had 21 points in it, cluster 1 had 20 points in it, and so on and so forth. It ended up pretty evenly distributed, so that's a good sign.

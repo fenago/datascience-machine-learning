@@ -49,7 +49,7 @@ plt.show()
 
 So we can create a uniform distribution by using the NumPy random.uniform function. The preceding code says, I want a uniformly distributed random set of values that ranges between -10 and 10, and I want 100000 of them. If I then create a histogram of those values, you can see it looks like the following.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/1.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/2/1.png)
 
 There's pretty much an equal chance of any given value or range of values occurring within that data. So, unlike the normal distribution, where we saw a concentration of values near the mean, a uniform distribution has equal probability across any given value within the range that you define.
 
@@ -71,7 +71,7 @@ plt.plot(x, norm.pdf(x))
 
 In the preceding example, we're creating a list of x values for plotting that range between -3 and 3 with an increment of 0.001 in between them by using the arange function. So those are the x values on the graph and we're going to plot the x-axis with using those values. The y-axis is going to be the normal function, norm.pdf, that the probability density function for a normal distribution, on those x values. We end up with the following output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/2.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/2/2.png)
 
 The pdf function with a normal distribution looks just like it did in our previous section, that is, a normal distribution for the given numbers that we provided, where 0 represents the mean, and the numbers -3, -2, -1, 1, 2, and 3 are standard deviations.
 
@@ -90,7 +90,7 @@ plt.show()
 
 In the above code, we use the random.normal function of the NumPy package, and the first parameter mu, represents the mean that you want to center the data around. sigma is the standard deviation of that data, which is basically the spread of it. Then, we specify the number of data points that we want using a normal probability distribution function, which is 10000 here. So that's a way to use a probability distribution function, in this case the normal distribution function, to generate a set of random data. We can then plot that, using a histogram broken into 50 buckets and show it. The following output is what we end up with:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/3.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/2/3.png)
 
 It does look more or less like a normal distribution, but since there is a random element, it's not going to be a perfect curve. We're talking about probabilities; there are some odds of things not quite being what they should be.
 
@@ -112,7 +112,7 @@ plt.plot(x, expon.pdf(x))
 
 So again, in the above code, we just create our x values using the NumPy arange function to create a bunch of values between 0 and 10 with a step size of `0.001`. Then, we plot those x values against the y-axis, which is defined as the function `expon.pdf(x)`. The output looks like an exponential fall off. As shown in the following screenshot:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/4.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/2/4.png)
 
 
 ### Binomial probability mass function
@@ -131,7 +131,7 @@ So instead of expon or norm, we just use binom. A reminder: The probability mass
 
 Coming back to our code, we're creating some discrete x values between 0 and 10 at a spacing of 0.01, and we're saying I want to plot a binomial probability mass function using that data. With the binom.pmf function, I can actually specify the shape of that data using two shape parameters, n and p. In this case, they're 10 and 0.5 respectively. output is shown on the following graph:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/5.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/2/5.png)
 
 If you want to go and play around with different values to see what effects it has, that's a good way to get an intuitive sense of how those shape parameters work on the probability mass function.
 
@@ -149,7 +149,7 @@ plt.plot(x, poisson.pmf(x, mu))
 
 In this code example, I'm saying my average is 500 mu. I'm going to set up some x values to look at between 400 and 600 with a spacing of 0.5. I'm going to plot that using the poisson.pmf function. I can use that graph to look up the odds of getting any specific value that's not `500`, assuming a normal distribution:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/2/6.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/2/6.png)
 
 The odds of seeing 550 visitors on a given day, it turns out, comes out to about 0.002 or 0.2% probability. Very interesting.
 
@@ -197,7 +197,7 @@ plt.show()
 
 In this example, what we're going to do is generate some data centered around zero, that is with a mean of zero, with a standard deviation of 0.5, and I'm going to make 10000 data points with that distribution. Then, we're going to plot a histogram and see what we come up with.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/3.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/9/3.png)
 
 The generated histogram looks very much like a normal distribution, but because there is a random component we have a little outlier near the deviation of -2 in this example here. Things are tipped a little bit at the mean, a little bit of random variation there to make things interesting.
 
@@ -274,7 +274,7 @@ plt.show()
 
 So again, we get a randomly generated set of data with a normal distribution around zero.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/9/7.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/9/7.png)
 
 Now, we find the mean and variance. We've done this before; NumPy just gives you a mean and var function to compute that. So, we just call np.mean to find the first moment, which is just a fancy word for the mean, as shown in the following code:
 

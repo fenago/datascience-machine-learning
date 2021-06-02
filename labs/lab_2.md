@@ -153,7 +153,7 @@ plt.show()
 
 Go ahead and select the code block and hit play. It will actually create a new graph for us as follows:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/10/1.jpg)
+![](../images/datascience-machine-learning-chapter-02-01/steps/10/1.jpg)
 
 If you're not familiar with histograms or you need a refresher, the way to interpret this is that for each one of these buckets that we've discretized our data into is showing the frequency of that data.
 
@@ -225,7 +225,7 @@ ages
 
 Your output will be random, but should look something like the following screenshot:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/13/1.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/13/1.png)
 
 Now, SciPy, kind of like NumPy, is a bunch of like handy-dandy statistics functions, so we can import stats from SciPy using the following syntax. It's a little bit different than what we saw before.
 
@@ -254,7 +254,7 @@ stats.mode(ages)
 
 The output for randomizing the equation is as distribution is as follows:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/13/2.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/13/2.png)
 
 Make sure you selected that code block and then you can hit the play button to actually execute it.
 
@@ -283,7 +283,7 @@ Let's talk about standard deviation and variance. The concepts and terms you've 
 #### Identifying outliers with standard deviation
 Here's a histogram of the actual data we were looking at in the preceding example for calculating variance.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/17/2.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/17/2.png)
 
 Now we see that the number 4 occurred twice in our dataset, and then we had one 1, one 5, and one 8.
 
@@ -334,7 +334,7 @@ We use matplotlib to plot a histogram of some normally distributed random data, 
 
 Let's go ahead and generate that by executing that above code block and plotting it as shown in the following graph:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-02-01/steps/21/1.png)
+![](../images/datascience-machine-learning-chapter-02-01/steps/21/1.png)
 
 We have 10,000 data points centered around 100. With a normal distribution and a standard deviation of 20, a measure of the spread of this data, you can see that the most common occurrence is around 100, and as we get further and further from that, things become less and less likely. The standard deviation point of 20 that we specified is around 80 and around 120. You can see in the histogram that this is the point where things start to fall off sharply, so we can say that things beyond that standard deviation boundary are unusual.
 

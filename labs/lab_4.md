@@ -52,7 +52,7 @@ So in this example, I import matplotlib.pyplot as plt, and with this, we can ref
 
 So tying it back into last lab's look at probability density functions, here we are plotting a normal probability density function using matplotlib. So we just call pyplot's plot() method to set up our plot, and then we display it using plt.show(). When we run the previous code, we get the following output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/1.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/1.png)
 
 That's what we get: a pretty little graph with all the default formatting.
 
@@ -68,7 +68,7 @@ plt.show()
 
 In this example, I'm calling my original function of just a normal distribution, but I'm going to render another normal distribution here as well, with a mean around 1.0 and a standard deviation of 0.5. Then, I'm going to show those two together so you can see how they compare to each other.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/2.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/2.png)
 
 You can see that by default, matplotlib chooses different colors for each graph automatically for you, which is very nice and handy of it.
 
@@ -106,7 +106,7 @@ In this example, first I get the axes using plt.axes. Once I have these axes obj
 
 Once I've adjusted my axes, I just called plot() with the functions that I want to plot and called show() to display it. Sure enough, there you have the result.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/3.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/3.png)
 
 ### Adding a grid
 
@@ -127,7 +127,7 @@ plt.show()
 
 By executing the above code, I get nice little grid lines. That makes it a little bit easier to see where a specific point is, although it clutters things up a little bit. It's a little bit of a stylistic choice there.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/4.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/4.png)
 
 ### Changing line types and colors
 
@@ -147,7 +147,7 @@ plt.show()
 
 So you see in the preceding code, there's actually an extra parameter on the plot() functions at the end where I can pass a little string that describes the style of a line. In this first example, what b- indicates is I want a blue, solid line. The b stands for blue, and the dash means a solid line. For my second plot() function, I'm going to plot it in red, that's what the r means, and the colon means I'm going to plot it with a dotted line.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/5.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/5.png)
 
 If I run that, you can see in the above graph what it does, and you can change different types of line styles.
 
@@ -167,7 +167,7 @@ plt.show()
 
 The preceding code gives you dashed red line as a line style as shown in the following graph image:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/6.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/6.png)
 
 
 I can also do a dash dot combination (-.).
@@ -186,7 +186,7 @@ plt.show()
 
 You get an output that looks like the following graph image:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/7.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/7.png)
 
 So, those are the different choices there. I could even make it green with vertical slashes (g:).
 
@@ -204,7 +204,7 @@ plt.show()
 
 I'll get the following output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/8.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/8.png)
 
 Have some fun with that if you want, experiment with different values, and you can get different line styles.
 
@@ -229,7 +229,7 @@ plt.show()
 
 Into the legend, you pass in basically a list of what you want to name each graph. So, my first graph is going to be called Sneetches, and my second graph is going to be called Gacks, and the loc parameter indicates what location you want it at, where 4 represents the lower right-hand corner. Let's go ahead and run the code, and you should see the following:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/9.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/9.png)
 
 You can see that I'm plotting Greebles versus Probability for both Sneetches and Gacks. A little Dr. Seuss reference for you there. So that's how you set axes labels and legends.
 
@@ -263,7 +263,7 @@ plt.ylabel('my overall health')
 
 In this example, you call plt.xkcd(), which puts Matplotlib in XKCD mode. After you do that, things will just have a style with kind of a comic book font and squiggly lines automatically. This little simple example will show a funny little graph where we are plotting your health versus time, where your health takes a steep decline once you realize you can cook bacon whenever you want to. All we're doing there is using the xkcd() method to go into that mode. You can see the results below:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/10.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/10.png)
 
 
 ### Generating pie charts
@@ -287,7 +287,7 @@ plt.show()
 
 You can see in this code that I'm creating a pie chart with the values 12, 55, 4, 32, and 14. I'm assigning explicit colors to each one of those values, and explicit labels to each one of those values. I'm exploding out the Russian segment of the pie by 20%, and giving this plot a title of Student Locations and showing it. The following is the output you should see:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/11.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/11.png)
 
 That's all there is to it.
 
@@ -304,7 +304,7 @@ plt.show()
 
 I've defined an array of values and an array of colors, and just plot the data. The above code plots from the range of 0 to 5, using the y values from the values array and using the explicit list of colors listed in the colors array. Go ahead and show that, and there you have your bar chart:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/12.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/12.png)
 
 ### Generating scatter plots
 
@@ -322,7 +322,7 @@ plt.show()
 
 You get the following scatter plot as output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/13.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/13.png)
 
 
 This is what it looks like, pretty cool. You can see the sort of a concentration in the center here, because of the normal distribution that's being used in both axes, but since it is random, there's no real correlation between those two.
@@ -340,7 +340,7 @@ plt.show()
 
 In this example, I call a normal distribution centered on 27,000, with a standard deviation of 15,000 with 10,000 data points. Then, I just call pyplot's histogram function, that is, hist(), and specify the input data and the number of buckets that we want to group things into in our histogram. Then I call show() and the rest is magic.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/14.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/14.png)
 
 ### Generating box-and-whisker plots
 
@@ -358,7 +358,7 @@ plt.show()
 
 In the code, we have a uniform random distribution of data (uniformSkewed). Then we added a few outliers on the high end (high_outliers) and a few negative outliers (low_outliers) as well. Then we concatenated these lists together and created a single dataset from these three different sets that we created using NumPy. We then took that combined dataset of uniform data and a few outliers and we plotted using plt.boxplot(), and that's how you get a box-and-whisker plot. Call show() to visualize it, and there you go.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/2/15.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/2/15.png)
 
 You can see that the graph is showing the box that represents the inner 50% of all data, and then we have these outlier lines where we can see little crosses (they may be circles in your version) for each individual outlier that lies in that range.
 
@@ -408,7 +408,7 @@ covariance (pageSpeeds, purchaseAmount)
 
 So just as a sanity check here we'll start off by scatter plotting this stuff:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/2.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/17/2.png)
 
 You'll see that it tends to cluster around the middle because of the normal distribution on each attribute, but there's no real relationship between the two. For any given page speed is a wide variety of amount spent, and for any given amount spent there's a wide variety of page speeds, so no real correlation there except for ones that are coming out the randomness or through the nature of the normal distribution. Sure enough, if we compute the covariance in these two sets of attributes, we end up with a very small value, -0.07. So that's a very small covariance value, close to zero. That implies there's no real relationship between these two things.
 
@@ -425,7 +425,7 @@ covariance (pageSpeeds, purchaseAmount)
 
 Here, we are keeping things a little bit random, but we are creating a real relationship between these two sets of values. For a given user, there's a real relationship between the page speeds they encounter and the amount that they spend. If we plot that out, we can see the following output:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/3.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/17/3.png)
 
 You can see that there's actually this little curve where things tend to be tightly aligned. Things get a little bit wonky near the bottom, just because of how random things work out. If we compute the covariance, we end up with a much larger value, -8, and it's the magnitude of that number that matters. The sign, positive or negative, just implies a positive or negative correlation, but that value of 8 says that's a much higher value than zero. So there's something going on there, but again it's hard to interpret what 8 actually means.
 
@@ -442,7 +442,7 @@ correlation(pageSpeeds, purchaseAmount)
 
 Again, doing that from first principles, we can take the correlation between two sets of attributes, compute the standard deviation of each, then compute the covariance between these two things, and divide by the standard deviations of each dataset. That gives us the correlation value, which is normalized to -1 to 1. We end up with a value of -0.4, which tells us there is some correlation between these two things in the negative direction:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/4.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/17/4.png)
 
 It's not a perfect line, that would be -1, but there's something interesting going on there.
 
@@ -479,6 +479,6 @@ correlation (pageSpeeds, purchaseAmount)
 
 And again, here we would expect the correlation to come out to -1 for a perfect negative correlation, and in fact, that's what we end up with:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-03-01/steps/17/5.png)
+![](../images/datascience-machine-learning-chapter-03-01/steps/17/5.png)
 
 Again, a reminder: Correlation does not imply causality. Just because people might spend more if they have faster page speeds, maybe that just means that they can afford a better Internet connection. Maybe that doesn't mean that there's actually a causation between how fast your pages render and how much people spend, but it tells you there's an interesting relationship that's worth investigating more. You cannot say anything about causality without running an experiment, but correlation can tell you what experiments you might want to run.

@@ -53,7 +53,7 @@ scatter(pageSpeeds, purchaseAmount)
 
 Let's go ahead and generate that data. We'll use a normal distribution of random data for both page speeds and purchase amount using the relationship as shown in the following screenshot:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/10/1.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/10/1.jpg)
 
 Next, we'll split that data. We'll take 80% of our data, and we're going to reserve that for our training data. So only 80% of these points are going to be used for training the model, and then we're going to reserve the other 20% for testing that model against unseen data.
 
@@ -78,7 +78,7 @@ scatter(trainX, trainY)
 
 This is what your output should now look like:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/11/1.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/11/1.jpg)
 
 Basically, 80 points that were selected at random from the original complete dataset have been plotted. It has basically the same shape, so that's a good thing. It's representative of our data. That's important!
 
@@ -88,7 +88,7 @@ Now let's plot the remaining 20 points that we reserved as test data.
 scatter(testX, testY) 
 ```
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/11/2.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/11/2.jpg)
 
 Here, we see our remaining 20 for testing also has the same general shape as our original data. So I think that's a representative test set too. It's a little bit smaller than you would like to see in the real world, for sure. You probably get a little bit of a better result if you had 1,000 points instead of 100, for example, to choose from and reserved 200 instead of 20.
 
@@ -120,7 +120,7 @@ plt.show()
 
 You can see in the following graph that it looks like a pretty good fit, but you know that clearly it's doing some overfitting:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/11/3.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/11/3.jpg)
 
 
 What's this craziness out at the right? I'm pretty sure our real data, if we had it out there, wouldn't be crazy high, as this function would implicate. So this is a great example of overfitting your data. It fits the data you gave it very well, but it would do a terrible job of predicting new values beyond the point where the graph is going crazy high on the right. So let's try to tease that out. Let's give it our test dataset:
@@ -139,7 +139,7 @@ plt.show()
 
 Indeed, if we plot our test data against that same function, well, it doesn't actually look that bad.
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/11/4.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/11/4.jpg)
 
 We got lucky and none of our test is actually out here to begin with, but you can see that it's a reasonable fit, but far from perfect. And in fact, if you actually measure the r-squared score, it's worse than you might think. We can measure that using the r2_score() function from sklearn.metrics. We just give it our original data and our predicted values and it just goes through and measures all the variances from the predictions and squares them all up for you:
 
@@ -182,7 +182,7 @@ data.head()
 
 The first few entries in our DataFrame look like this: for each path to a given file full of e-mails we have a classification and we have the message body:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/18/1.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/18/1.jpg)
 
 Alright, now for the fun part, we're going to use the MultinomialNB() function from scikit-learn to actually perform Naive Bayes on the data that we have.
 
@@ -197,7 +197,7 @@ classifier.fit(counts, targets)
 
 This is what your output should now look like:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/18/2.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/18/2.jpg)
 
 Once we build a MultinomialNB classifier, it needs two inputs. It needs the actual data that we're training on (counts), and the targets for each thing (targets). So counts is basically a list of all the words in each e-mail and the number of times that word occurs.
 
@@ -215,7 +215,7 @@ predictions
 
 The first thing we do is convert the messages into the same format that I trained my model on. So I use that same vectorizer that I created when creating the model to convert each message into a list of words and their frequencies, where the words are represented by positions in an array. Then once I've done that transformation, I can actually use the predict() function on my classifier, on that array of examples that have transformed into lists of words, and see what we come up with:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-05-01/steps/18/3.jpg)
+![](../images/datascience-machine-learning-chapter-05-01/steps/18/3.jpg)
 
 ```
 array(['spam', 'ham'], dtype='|S4') 

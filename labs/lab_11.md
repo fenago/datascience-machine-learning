@@ -56,7 +56,7 @@ ratings.head()ratings.head()
 
 If we go ahead and run that and look at the top of it, we can see that it's working, here's how the output should look like:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/1.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/1.png)
 
 We end up with a DataFrame that has user_id, movie_id, and rating. For example, user_id 0 rated movie_id 50, which I believe is Star Wars, 5 stars, and so on and so forth.
 
@@ -71,7 +71,7 @@ movieProperties.head()
 
 Let's go ahead and do that - comes back pretty quickly, here's how the output looks like:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/2.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/2.png)
 
 This gives us another DataFrame that tells us, for example, movie_id 1 had 452 ratings (which is a measure of its popularity, that is, how many people actually watched it and rated it), and a mean review score of 3.8. So, 452 people watched movie_id 1, and they gave it an average review of 3.87, which is pretty good.
 
@@ -87,13 +87,13 @@ movieNormalizedNumRatings.head()
 
 What this gives us, when we run it, is the following:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/3.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/3.png)
 
 This is basically a measure of popularity for each movie, on a scale of 0 to 1. So, a score of 0 here would mean that nobody watched it, it's the least popular movie, and a score of 1 would mean that everybody watched, it's the most popular movie, or more specifically, the movie that the most people watched. So, we have a measure of movie popularity now that we can use for our distance metric.
 
 Next, let's extract some general information. So, it turns out that there is a u.item file that not only contains the movie names, but also all the genres that each movie belongs to:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/4.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/4.png)
 
 The code above will actually go through each line of u.item. We're doing this the hard way; we're not using any pandas functions; we're just going to use straight-up Python this time. Again, make sure you change that path to wherever you installed this information.
 
@@ -105,7 +105,7 @@ movieDict[1]
 
 Following is the output of the preceding code:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/5.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/5.png)
 
 Entry 1 in our dictionary for movie_id 1 happens to be Toy Story, an old Pixar film from 1995 you've probably heard of. Next is a list of all the genres, where a 0 indicates it is not part of that genre, and 1 indicates it is part of that genre. There is a data file in the MovieLens dataset that will tell you what each of these genre fields actually corresponds to.
 
@@ -117,7 +117,7 @@ We will then compare the popularity scores and just take the raw difference, the
 
 Now, imagine a scatter plot if you will, like we saw back in our example from the previous sections, where one axis might be a measure of genre similarity, based on cosine metric, the other axis might be popularity, okay? We're just finding the distance between these two things:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/6.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/6.png)
 
 For this example, where we're trying to compute the distance using our distance metric between movies 2 and 4, we end up with a score of 0.8
 
@@ -131,7 +131,7 @@ print movieDict[4]
 
 It turns out it's the movies GoldenEye and Get Shorty, which are pretty darn different movies:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/7.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/7.png)
 
 You know, you have James Bond action-adventure, and a comedy movie - not very similar at all! They're actually comparable in terms of popularity, but the genre difference did it in. Okay! So, let's put it all together!
 
@@ -146,11 +146,11 @@ In this example, we're going to set K to 10, find the 10 nearest neighbors. We w
 
 As a side effect, we also get the 10 nearest neighbors based on our distance function, which we could call similar movies. So, that information itself is useful. Going back to that "Customers Who Watched Also Watched" example, if you wanted to do a similar feature that was just based on this distance metric and not actual behavior data, this might be a reasonable place to start, right?
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/8.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/8.png)
 
 So, let's go ahead and run this, and see what we end up with. The output of the following code is as follows:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/9.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/9.png)
 
 The results aren't that unreasonable. So, we are using as an example the movie Toy Story, which is movieID 1, and what we came back with, for the top 10 nearest neighbors, are a pretty good selection of comedy and children's movies. So, given that Toy Story is a popular comedy and children's movie, we got a bunch of other popular comedy and children's movies; so, it seems to work! We didn't have to use a bunch of fancy collaborative filtering algorithms, these results aren't that bad.
 
@@ -162,7 +162,7 @@ avgRating
 
 Following is the output of the preceding code:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/6/10.png)
+![](../images/datascience-machine-learning-chapter-07/steps/6/10.png)
 
 We end up with a predicted rating of 3.34, which actually isn't all that different from the actual rating for that movie, which was 3.87. So not great, but it's not too bad either! I mean it actually works surprisingly well, given how simple this algorithm is!
 
@@ -208,7 +208,7 @@ print list(iris.target_names)
 
 There's a handy dandy load_iris() function built into scikit-learn that will just load that up for you with no additional work; so you can just focus on the interesting part. Let's take a look at what that dataset looks like, the output of the preceding code is as follows:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/1.png)
+![](../images/datascience-machine-learning-chapter-07/steps/14/1.png)
 
 You can see that we are extracting the shape of that dataset, which means how many data points we have in it, that is 150, and how many features, or how many dimensions that dataset has, and that is 4. So, we have 150 Iris specimens in our dataset, with 4 dimensions of information. Again, that is the length and width of the sepal, and the length and width of the petal, for a total of 4 features, which we can think of as 4 dimensions.
 
@@ -232,7 +232,7 @@ print pca.components_
 
 Output to the preceding code is as follows:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/2.png)
+![](../images/datascience-machine-learning-chapter-07/steps/14/2.png)
 
 You can actually look at those values, they're not going to mean a lot to you, because you can't really picture 4 dimensions anyway, but we did that just so you can see that it's actually doing something with principal components. So, let's evaluate our results:
 
@@ -243,7 +243,7 @@ print sum(pca.explained_variance_ratio_)
 
 The PCA model gives us back something called explained_variance_ratio. Basically, that tells you how much of the variance in the original 4D data was preserved as I reduced it down to 2 dimensions. So, let's go ahead and take a look at that:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/3.png)
+![](../images/datascience-machine-learning-chapter-07/steps/14/3.png)
 
 What it gives you back is actually a list of 2 items for the 2 dimensions that we preserved. This is telling me that in the first dimension I can actually preserve 92% of the variance in the data, and the second dimension only gave me an additional 5% of variance. If I sum it together, these 2 dimensions that I projected my data down into, I still preserved over 97% of the variance in the source data. We can see that 4 dimensions weren't really necessary to capture all the information in this dataset, which is pretty interesting. It's pretty cool stuff!
 
@@ -266,7 +266,7 @@ pl.show()
 
 The following is what we end up with:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-07/steps/14/4.png)
+![](../images/datascience-machine-learning-chapter-07/steps/14/4.png)
 
 That is our 4D Iris data projected down to 2 dimensions. Pretty interesting stuff! You can see it still clusters together pretty nicely. You know, you have all the Virginicas sitting together, all the Versicolors sitting in the middle, and the Setosas way off on the left side. It's really hard to imagine what these actual values represent. But, the important point is, we've projected 4D data down to 2D, and in such a way that we still preserve the variance. We can still see clear delineations between these 3 species. A little bit of intermingling going on in there, it's not perfect you know. But by and large, it was pretty effective.
 

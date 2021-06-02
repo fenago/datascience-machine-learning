@@ -46,7 +46,7 @@ Just to refresh your memory, the Iris dataset contains a set of 150 Iris flower 
 
 We're going to use the SVC model. If you remember back again, that's just a way of classifying data that's pretty robust. There's a section on that if you need to go and refresh your memory:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/6/1.png)
+![](../images/datascience-machine-learning-chapter-08/steps/6/1.png)
 
 What we do is use the cross_validation library from scikit-learn, and we start by just doing a conventional train test split, just a single train/test split, and see how that will work.
 
@@ -56,7 +56,7 @@ In this case, it contains all the species for each flower. test_size says what p
 
 Then after that we go ahead and build an SVC model for predicting Iris species given their measurements, and we build that only using the training data. We fit this SVC model, using a linear kernel, using only the training feature data, and the training species data, that is, target data. We call that model clf. Then, we call the score() function on clf to just measure its performance against our test dataset. So, we score this model against the test data we reserved for the Iris measurements, and the test Iris species, and see how well it does:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/6/2.png)
+![](../images/datascience-machine-learning-chapter-08/steps/6/2.png)
 
 It turns out it does really well! Over 96% of the time, our model is able to correctly predict the species of an Iris that it had never seen before, just based on the measurements of that Iris. So that's pretty cool!
 
@@ -79,7 +79,7 @@ I want cv=5 which means it's actually going to use 5 different training datasets
 
 If we print back the output of that, it gives us back a list of the actual error metric from each one of those iterations, that is, each one of those folds. We can average those together to get an overall error metric based on k-fold cross-validation:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/6/3.png)
+![](../images/datascience-machine-learning-chapter-08/steps/6/3.png)
 
 When we do this over 5 folds, we can see that our results are even better than we thought! 98% accuracy. So that's pretty cool! In fact, in a couple of the runs we had perfect accuracy. So that's pretty amazing stuff.
 
@@ -94,7 +94,7 @@ print scores.mean()
 
 We'll just run this all again, using the same technique. But this time, we're using a polynomial kernel. We'll fit that to our training dataset, and it doesn't really matter where you fit to in this case, because cross_val_score() will just keep re-running it for you:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/6/4.png)
+![](../images/datascience-machine-learning-chapter-08/steps/6/4.png)
 
 It turns out that when we use a polynomial fit, we end up with an overall score that's even lower than our original run. So, this tells us that the polynomial kernel is probably overfitting. When we use k-fold cross-validation it reveals an actual lower score than with our linear kernel.
 
@@ -123,9 +123,9 @@ If it comes back that you made a mistake where you ingested a bunch of bad data 
 
 There are a lot of different kinds of problems and data that you need to watch out for:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/10/1.png)
+![](../images/datascience-machine-learning-chapter-08/steps/10/1.png)
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/10/2.png)
+![](../images/datascience-machine-learning-chapter-08/steps/10/2.png)
 
 
 There are a lot of different things that you might find in raw data. Data that comes in to you, just raw data, is going to be very dirty, it's going to be polluted in many different ways. If you don't deal with it it's going to skew your results, and it will ultimately end up in your business making the wrong decisions.
@@ -134,9 +134,9 @@ If it comes back that you made a mistake where you ingested a bunch of bad data 
 
 There are a lot of different kinds of problems and data that you need to watch out for:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/10/1.png)
+![](../images/datascience-machine-learning-chapter-08/steps/10/1.png)
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/10/2.png)
+![](../images/datascience-machine-learning-chapter-08/steps/10/2.png)
 
 ### Cleaning web log data
 
@@ -173,11 +173,11 @@ So, we're going to construct a little Python dictionary called URLCounts. We're 
 
 Let's extract the request field out of it, which is the actual HTTP request, the page which is actually being requested by the browser. We're going to split that up into its three components: it consists of an action, like get or post; the actual URL being requested; and the protocol being used. Given that information split out, we can then just see if that URL already exists in my dictionary. If so, I will increment the count of how many times that URL has been encountered by 1; otherwise, I'll introduce a new dictionary entry for that URL and initialize it to the value of 1. I do that for every line in the log, sort the results in reverse order, numerically, and print them out:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/1.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/1.png)
 
 So, let's go ahead and run that:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/2.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/2.png)
 
 Oops! We end up with this big old error here. It's telling us that, we need more than 1 value to unpack. So apparently, we're getting some requests fields that don't contain an action, a URL, and a protocol that they contain something else.
 
@@ -199,7 +199,7 @@ with open(logPath, "r") as f:
 
 Let's see what's actually in there:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/3.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/3.png)
 
 So, we have a bunch of empty fields. That's our first problem. But, then we have the first field that's full just garbage. Who knows where that came from, but it's clearly erroneous data. Okay, fine, let's modify our script.
 
@@ -208,11 +208,11 @@ So, we have a bunch of empty fields. That's our first problem. But, then we have
 
 We'll actually just throw out any lines that don't have the expected 3 fields in the request. That seems like a legitimate thing to do, because this does in fact have completely useless data inside of it, it's not like we're missing out on anything here by doing that. So, we'll modify our script to do that. We've introduced an if (len(fields) == 3) line before it actually tries to process it. We'll run that:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/4.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/4.png)
 
 Hey, we got a result!
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/5.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/5.png)
 
 But this doesn't really look like the top pages on my website. Remember, this is a news site. So, we're getting a bunch of PHP file hits, that's Perl scripts. What's going on there? Our top result is this xmlrpc.php script, and then WP_login.php, followed by the homepage. So, not very useful. Then there is robots.txt, then a bunch of XML files.
 
@@ -224,11 +224,11 @@ This was an example of malicious data being introduced into my data stream that 
 
 Now, I know that the data that I care about, you know in the spirit of the thing I'm trying to figure out is, people getting web pages from my website. So, a legitimate thing for me to do is to filter out anything that's not a get request, out of these logs. So, let's do that next. We're going to check again if we have three fields in our request field, and then we're also going to check if the action is get. If it's not, we're just going to ignore that line entirely:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/6.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/6.png)
 
 We should be getting closer to what we want now, the following is the output of the preceding code:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/7.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/7.png)
 
 
 Yeah, this is starting to look more reasonable. But, it still doesn't really pass a sanity check. This is a news website; people go to it to read news. Are they really reading my little blog on it that just has a couple of articles? I don't think so! That seems a little bit fishy. So, let's dive in a little bit, and see who's actually looking at those blog pages. If you were to actually go into that file and examine it by hand, you would see that a lot of these blog requests don't actually have any user agent on them. They just have a user agent of -, which is highly unusual:
@@ -240,11 +240,11 @@ If a real human being with a real browser was trying to get this page, it would 
 
 Maybe, we should be looking at the UserAgents too, to see if these are actual humans making requests, or not. Let's go ahead and print out all the different UserAgents that we're encountering. So, in the same spirit of the code that actually summed up the different URLs we were seeing, we can look at all the different UserAgents that we were seeing, and sort them by the most popular user_agent strings in this log:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/8.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/8.png)
 
 We get the following result:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/9.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/9.png)
 
 You can see most of it looks legitimate. So, if it's a scraper, and in this case it actually was a malicious attack but they were actually pretending to be a legitimate browser. But this dash user_agent shows up a lot too. So, I don't know what that is, but I know that it isn't an actual browser.
 
@@ -254,13 +254,13 @@ The other thing I'm seeing is a bunch of traffic from spiders, from web crawlers
 
 Alright, so this gets a little bit tricky. There's no real good way of identifying spiders or robots just based on the user string alone. But we can at least take a legitimate crack at it, and filter out anything that has the word "bot" in it, or anything from my caching plugin that might be requesting pages in advance as well. We'll also strip out our friend single dash. So, we will once again refine our script to, in addition to everything else, strip out any UserAgents that look fishy:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/10.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/10.png)
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/11.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/11.png)
 
 What do we get?
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/12.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/12.png)
 
 
 Alright, so here we go! This is starting to look more reasonable for the first two entries, the homepage is most popular, which would be expected. Orlando headlines is also popular, because I use this website more than anybody else, and I live in Orlando. But after that, we get a bunch of stuff that aren't webpages at all: a bunch of scripts, a bunch of CSS files. Those aren't web pages.
@@ -269,11 +269,11 @@ Alright, so here we go! This is starting to look more reasonable for the first t
 
 I can just apply some knowledge about my site, where I happen to know that all the legitimate pages on my site just end with a slash in their URL. So, let's go ahead and modify this again, to strip out anything that doesn't end with a slash:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/13.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/13.png)
 
 Let's run that!
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/13/14.png)
+![](../images/datascience-machine-learning-chapter-08/steps/13/14.png)
 
 Finally, we're getting some results that seem to make sense! So, it looks like, that the top page requested from actual human beings on my little No-Hate News site is the homepage, followed by orlando-headlines, followed by world news, followed by the comics, then the weather, and the about screen. So, this is starting to look more legitimate.
 
@@ -318,7 +318,7 @@ Then, I'm going to stick in an outlier - call it Donald Trump, who has a billion
 
 We'll go ahead and plot that as a histogram:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/22/1.png)
+![](../images/datascience-machine-learning-chapter-08/steps/22/1.png)
 
 Wow! That's not very helpful! We have the entire normal distribution of everyone else in the country squeezed into one bucket of the histogram. On the other hand, we have Donald Trump out at the right side screwing up the whole thing at a billion dollars.
 
@@ -358,7 +358,7 @@ plt.show()
 
 It takes in a list of data and finds the median. It also finds the standard deviation of that dataset. So, I filter that out, so I only preserve data points that are within two standard deviations of the median for my data. So, I can use this handy dandy reject_outliers() function on my income data, to actually strip out weird outliers automatically:
 
-![](https://github.com/fenago/datascience-machine-learning/raw/master/images/datascience-machine-learning-chapter-08/steps/22/2.png)
+![](../images/datascience-machine-learning-chapter-08/steps/22/2.png)
 
 Sure enough, it works! I get a much prettier graph now that excludes Donald Trump and focuses in on the more typical dataset here in the center. So, pretty cool stuff!
 
